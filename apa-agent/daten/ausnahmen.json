@@ -1,0 +1,106 @@
+[
+  {
+    "meldung_id": "M-001",
+    "case_id": "P2P-1001",
+    "ausnahme_typ": "VERZOEGERUNG",
+    "erkennungsregel": "Durchlaufzeit über SLA (28 Tage)",
+    "beschreibung": "Fall seit 32 Tagen offen (SLA: 28 Tage). Seit 13.9 Tagen keine Aktivität nach «Create Request for Quotation».",
+    "kennzahlen": {
+      "tage_offen": 32.0,
+      "sla_tage": 28,
+      "letzte_aktivitaet": "Create Request for Quotation",
+      "tage_seit_letzter_aktivitaet": 13.9
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-002",
+    "case_id": "P2P-1002",
+    "ausnahme_typ": "VERZOEGERUNG",
+    "erkennungsregel": "Durchlaufzeit über SLA (28 Tage)",
+    "beschreibung": "Fall seit 41 Tagen offen (SLA: 28 Tage). Seit 20.7 Tagen keine Aktivität nach «Create Purchase Order».",
+    "kennzahlen": {
+      "tage_offen": 41.0,
+      "sla_tage": 28,
+      "letzte_aktivitaet": "Create Purchase Order",
+      "tage_seit_letzter_aktivitaet": 20.7
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-003",
+    "case_id": "P2P-1003",
+    "ausnahme_typ": "FEHLENDE_INFO",
+    "erkennungsregel": "Rückfrage an Lieferant länger als 5 Tage unbeantwortet",
+    "beschreibung": "Rückfrage an den Lieferanten seit 10.9 Tagen ohne Antwort.",
+    "kennzahlen": {
+      "tage_seit_rueckfrage": 10.9,
+      "typische_antwortzeit_tage": 5
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-004",
+    "case_id": "P2P-1004",
+    "ausnahme_typ": "FEHLENDE_INFO",
+    "erkennungsregel": "Rückfrage an Lieferant länger als 5 Tage unbeantwortet",
+    "beschreibung": "Rückfrage an den Lieferanten seit 24.9 Tagen ohne Antwort, letzte Erinnerung vor 16.9 Tagen.",
+    "kennzahlen": {
+      "tage_seit_rueckfrage": 24.9,
+      "tage_seit_erinnerung": 16.9,
+      "typische_antwortzeit_tage": 5
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-005",
+    "case_id": "P2P-1005",
+    "ausnahme_typ": "REWORK",
+    "erkennungsregel": "Überarbeitungsschritt mehr als einmal im selben Fall",
+    "beschreibung": "«Amend Request for Quotation» wurde 3-mal ausgeführt.",
+    "kennzahlen": {
+      "aktivitaet": "Amend Request for Quotation",
+      "anzahl": 3
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-006",
+    "case_id": "P2P-1006",
+    "ausnahme_typ": "ABWEICHUNG",
+    "erkennungsregel": "Soll-Reihenfolge verletzt: «Approve Purchase Order» vor «Release Purchase Order»",
+    "beschreibung": "«Release Purchase Order» wurde ohne vorheriges «Approve Purchase Order» ausgeführt.",
+    "kennzahlen": {
+      "fehlende_aktivitaet": "Approve Purchase Order",
+      "betroffene_aktivitaet": "Release Purchase Order"
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-007",
+    "case_id": "P2P-1007",
+    "ausnahme_typ": "VERZOEGERUNG",
+    "erkennungsregel": "Durchlaufzeit über SLA (28 Tage)",
+    "beschreibung": "Fall seit 46 Tagen offen (SLA: 28 Tage). Seit 38.9 Tagen keine Aktivität nach «Confirm Purchase Order».",
+    "kennzahlen": {
+      "tage_offen": 46.0,
+      "sla_tage": 28,
+      "letzte_aktivitaet": "Confirm Purchase Order",
+      "tage_seit_letzter_aktivitaet": 38.9
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  },
+  {
+    "meldung_id": "M-008",
+    "case_id": "P2P-1008",
+    "ausnahme_typ": "ABWEICHUNG",
+    "erkennungsregel": "Nächster Soll-Schritt fehlt länger als typisch",
+    "beschreibung": "Nach «Choose best option» fehlt seit 5.8 Tagen der nächste Schritt des Soll-Ablaufs (typisch: 2 Tage).",
+    "kennzahlen": {
+      "letzte_aktivitaet": "Choose best option",
+      "tage_seit_letzter_aktivitaet": 5.8,
+      "typische_dauer_tage": 2
+    },
+    "erkannt_am": "2026-10-26T07:00:00"
+  }
+]

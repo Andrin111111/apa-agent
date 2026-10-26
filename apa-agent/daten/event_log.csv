@@ -1,0 +1,49 @@
+case_id,activity,timestamp,resource,role
+P2P-1001,Create Purchase Requisition,2026-09-24T09:10:00,P. Steiner,Fachabteilung
+P2P-1001,Analyze Purchase Requisition,2026-09-28T13:45:00,L. Meier,Einkauf
+P2P-1001,Create Request for Quotation,2026-10-12T10:20:00,L. Meier,Einkauf
+P2P-1002,Create Purchase Requisition,2026-09-15T08:30:00,D. Wyss,Fachabteilung
+P2P-1002,Analyze Purchase Requisition,2026-09-16T11:00:00,M. Keller,Einkauf
+P2P-1002,Create Request for Quotation,2026-09-18T15:10:00,M. Keller,Einkauf
+P2P-1002,Analyze Request for Quotation,2026-10-01T09:40:00,M. Keller,Einkauf
+P2P-1002,Choose best option,2026-10-02T10:15:00,M. Keller,Einkauf
+P2P-1002,Create Purchase Order,2026-10-05T14:30:00,M. Keller,Einkauf
+P2P-1003,Create Purchase Requisition,2026-10-05T09:00:00,P. Steiner,Fachabteilung
+P2P-1003,Analyze Purchase Requisition,2026-10-06T10:30:00,S. Frei,Einkauf
+P2P-1003,Create Request for Quotation,2026-10-08T13:20:00,S. Frei,Einkauf
+P2P-1003,Analyze Request for Quotation,2026-10-14T09:50:00,S. Frei,Einkauf
+P2P-1003,Request Additional Info from Vendor,2026-10-15T11:05:00,S. Frei,Einkauf
+P2P-1004,Create Purchase Requisition,2026-09-22T08:45:00,R. Graf,Fachabteilung
+P2P-1004,Analyze Purchase Requisition,2026-09-23T14:10:00,S. Frei,Einkauf
+P2P-1004,Create Request for Quotation,2026-09-25T09:30:00,S. Frei,Einkauf
+P2P-1004,Analyze Request for Quotation,2026-09-30T16:20:00,S. Frei,Einkauf
+P2P-1004,Request Additional Info from Vendor,2026-10-01T10:00:00,S. Frei,Einkauf
+P2P-1004,Send Reminder to Vendor,2026-10-09T09:15:00,S. Frei,Einkauf
+P2P-1005,Create Purchase Requisition,2026-10-07T09:20:00,D. Wyss,Fachabteilung
+P2P-1005,Analyze Purchase Requisition,2026-10-08T10:00:00,N. Baumann,Einkauf
+P2P-1005,Create Request for Quotation,2026-10-09T14:30:00,N. Baumann,Einkauf
+P2P-1005,Analyze Request for Quotation,2026-10-13T11:15:00,N. Baumann,Einkauf
+P2P-1005,Amend Request for Quotation,2026-10-14T15:40:00,N. Baumann,Einkauf
+P2P-1005,Analyze Request for Quotation,2026-10-16T10:05:00,N. Baumann,Einkauf
+P2P-1005,Amend Request for Quotation,2026-10-19T13:50:00,N. Baumann,Einkauf
+P2P-1005,Analyze Request for Quotation,2026-10-21T09:30:00,N. Baumann,Einkauf
+P2P-1005,Amend Request for Quotation,2026-10-23T16:10:00,N. Baumann,Einkauf
+P2P-1006,Create Purchase Requisition,2026-10-01T08:50:00,P. Steiner,Fachabteilung
+P2P-1006,Analyze Purchase Requisition,2026-10-02T09:30:00,M. Keller,Einkauf
+P2P-1006,Create Request for Quotation,2026-10-05T10:45:00,M. Keller,Einkauf
+P2P-1006,Analyze Request for Quotation,2026-10-09T14:00:00,M. Keller,Einkauf
+P2P-1006,Choose best option,2026-10-12T09:10:00,M. Keller,Einkauf
+P2P-1006,Create Purchase Order,2026-10-13T11:20:00,M. Keller,Einkauf
+P2P-1006,Release Purchase Order,2026-10-14T08:15:00,M. Keller,Einkauf
+P2P-1006,Confirm Purchase Order,2026-10-16T13:30:00,Lieferant,Lieferant
+P2P-1007,Create Purchase Requisition,2026-09-10T09:00:00,R. Graf,Fachabteilung
+P2P-1007,Analyze Purchase Requisition,2026-09-11T10:20:00,L. Meier,Einkauf
+P2P-1007,Create Purchase Order,2026-09-14T13:00:00,L. Meier,Einkauf
+P2P-1007,Approve Purchase Order,2026-09-15T08:40:00,A. Huber,Einkaufsleitung
+P2P-1007,Release Purchase Order,2026-09-15T15:30:00,L. Meier,Einkauf
+P2P-1007,Confirm Purchase Order,2026-09-17T11:10:00,Lieferant,Lieferant
+P2P-1008,Create Purchase Requisition,2026-10-12T09:30:00,D. Wyss,Fachabteilung
+P2P-1008,Analyze Purchase Requisition,2026-10-13T10:40:00,S. Frei,Einkauf
+P2P-1008,Create Request for Quotation,2026-10-14T14:15:00,S. Frei,Einkauf
+P2P-1008,Analyze Request for Quotation,2026-10-19T09:20:00,S. Frei,Einkauf
+P2P-1008,Choose best option,2026-10-20T11:45:00,S. Frei,Einkauf

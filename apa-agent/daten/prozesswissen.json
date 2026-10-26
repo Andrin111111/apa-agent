@@ -1,0 +1,50 @@
+{
+  "prozess": "Procure-to-Pay (Beschaffung), vereinfacht - angelehnt an das Beispiel aus Apromore «Process Mining 101»",
+  "quelle": "PLATZHALTER: wird durch die Ergebnisse der Apromore-Analyse ersetzt",
+  "soll_ablauf": [
+    "Create Purchase Requisition",
+    "Analyze Purchase Requisition",
+    "Create Request for Quotation",
+    "Analyze Request for Quotation",
+    "Choose best option",
+    "Create Purchase Order",
+    "Approve Purchase Order",
+    "Release Purchase Order",
+    "Confirm Purchase Order",
+    "Receive Goods",
+    "Pay Invoice"
+  ],
+  "weitere_aktivitaeten": [
+    "Amend Request for Quotation",
+    "Request Additional Info from Vendor",
+    "Send Reminder to Vendor",
+    "Receive Info from Vendor",
+    "Settle PO dispute with supplier"
+  ],
+  "sla": {
+    "durchlaufzeit_tage": 28,
+    "gemessen": "von Create Purchase Requisition bis Pay Invoice"
+  },
+  "typische_dauern_tage": {
+    "Create Request for Quotation bis Analyze Request for Quotation": 5,
+    "Antwort des Lieferanten auf eine Rückfrage": 5,
+    "Choose best option bis Create Purchase Order": 2,
+    "Create Purchase Order bis Approve Purchase Order": 3
+  },
+  "rollen": {
+    "Einkauf": "bearbeitet Bestellanforderungen, Offertanfragen und Bestellungen",
+    "Senior-Einkauf": "erfahrene Einkäufer:innen, übernehmen schwierige Fälle",
+    "Einkaufsleitung": "gibt Bestellungen frei, Eskalationsstufe bei Verzögerungen",
+    "Compliance": "zuständig für Regelverstösse",
+    "Fachabteilung": "bestellt und nimmt Waren entgegen",
+    "Buchhaltung": "bezahlt Rechnungen"
+  },
+  "geschaeftsregeln": [
+    "R1: Jede Bestellung muss vor «Release Purchase Order» mit «Approve Purchase Order» freigegeben werden. Ein Verstoss ist ein Compliance-Fall: an Compliance eskalieren.",
+    "R2: SLA-Überschreitung (Durchlaufzeit über 28 Tage): Ist die Bestellung produktionskritisch oder über CHF 50'000, an die Einkaufsleitung eskalieren. Sonst den Fall priorisieren.",
+    "R3: Offene Rückfragen an Lieferanten: Nach 5 Tagen ohne Antwort einmal erinnern (Info nachfordern). Bleibt auch die Erinnerung unbeantwortet, an die Einkaufsleitung eskalieren.",
+    "R4: Wird «Amend Request for Quotation» mindestens zweimal von derselben Person ausgeführt, den Fall dem Senior-Einkauf zuweisen.",
+    "R5: Abrufe aus Rahmenverträgen brauchen keine Offertanfrage. Für sie gilt die vertraglich vereinbarte Lieferfrist statt des SLA: Wartezeit innerhalb dieser Frist ist kein Verzug.",
+    "R6: Stockt ein Fall, weil der nächste Schritt des Soll-Ablaufs fehlt, und liegt kein Regelverstoss vor, den nächsten Schritt empfehlen."
+  ]
+}

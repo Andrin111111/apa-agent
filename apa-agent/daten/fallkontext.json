@@ -1,0 +1,81 @@
+{
+  "P2P-1001": {
+    "bezeichnung": "Büromaterial Standort Winterthur",
+    "bestellwert_chf": 2400,
+    "lieferant": "Papeterie Beispiel AG",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "L. Meier (Einkauf)",
+    "prioritaet": "normal"
+  },
+  "P2P-1002": {
+    "bezeichnung": "Ersatzteil Spritzgussmaschine Linie 2",
+    "bestellwert_chf": 86500,
+    "lieferant": "TechParts Muster GmbH",
+    "produktionskritisch": true,
+    "rahmenvertrag": false,
+    "zustaendig": "M. Keller (Einkauf)",
+    "prioritaet": "normal",
+    "bemerkung": "Linie 2 läuft bis zur Lieferung mit einer Notlösung."
+  },
+  "P2P-1003": {
+    "bezeichnung": "Laborgeräte Qualitätslabor",
+    "bestellwert_chf": 12800,
+    "lieferant": "LabEquip Demo AG",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "S. Frei (Einkauf)",
+    "prioritaet": "normal",
+    "offene_rueckfrage": "Technisches Datenblatt und verbindliche Lieferzeit",
+    "erinnerungen_gesendet": 0
+  },
+  "P2P-1004": {
+    "bezeichnung": "IT-Hardware (20 Notebooks)",
+    "bestellwert_chf": 23400,
+    "lieferant": "IT-Handel Beispiel AG",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "S. Frei (Einkauf)",
+    "prioritaet": "normal",
+    "offene_rueckfrage": "Garantie- und Supportbedingungen",
+    "erinnerungen_gesendet": 1
+  },
+  "P2P-1005": {
+    "bezeichnung": "Reinigungsdienstleistung 2027",
+    "bestellwert_chf": 31000,
+    "lieferant": "noch offen (Offertvergleich läuft)",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "N. Baumann (Einkauf, seit 08/2026 im Team)",
+    "prioritaet": "normal"
+  },
+  "P2P-1006": {
+    "bezeichnung": "Messgeräte Qualitätssicherung",
+    "bestellwert_chf": 18900,
+    "lieferant": "Messtechnik Demo GmbH",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "M. Keller (Einkauf)",
+    "prioritaet": "normal"
+  },
+  "P2P-1007": {
+    "bezeichnung": "Verpackungsmaterial (Abruf aus Rahmenvertrag)",
+    "bestellwert_chf": 9600,
+    "lieferant": "Verpackung Beispiel AG",
+    "produktionskritisch": false,
+    "rahmenvertrag": true,
+    "vereinbarte_lieferfrist_tage": 56,
+    "bestaetigter_liefertermin": "2026-11-05",
+    "zustaendig": "L. Meier (Einkauf)",
+    "prioritaet": "normal"
+  },
+  "P2P-1008": {
+    "bezeichnung": "Werkzeugsatz Unterhalt",
+    "bestellwert_chf": 4300,
+    "lieferant": "Werkzeug Muster AG (Bestofferte)",
+    "produktionskritisch": false,
+    "rahmenvertrag": false,
+    "zustaendig": "S. Frei (Einkauf)",
+    "prioritaet": "normal"
+  }
+}
