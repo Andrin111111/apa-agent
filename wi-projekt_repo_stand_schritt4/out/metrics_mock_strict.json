@@ -1,0 +1,549 @@
+{
+ "Pilot (20)": {
+  "detection": {
+   "per_type": [
+    {
+     "typ": "E2",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E3",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E5",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E6",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E7",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "none",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    }
+   ],
+   "boundary_n": 0,
+   "boundary_false_alarms": 0,
+   "boundary_false_alarm_ids": [],
+   "routing_required": 17,
+   "routing_missing": 0,
+   "routed_total": 17
+  },
+  "actions": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "per_run": [
+    {
+     "run": 1,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 2,
+       "acc": 0.5,
+       "reasons": {
+        "guardrail_blockiert": 2,
+        "ok": 2
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 5,
+       "acc": 0.8333333333333334,
+       "reasons": {
+        "ok": 5,
+        "enthaltung": 1
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "enthaltung": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 2,
+        "guardrail_blockiert": 1
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 6,
+       "acc": 0.75
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 5,
+       "acc": 0.8333333333333334
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 13,
+       "acc": 0.7647058823529411
+      }
+     },
+     "outputs": 17,
+     "abstention": 1,
+     "abstention_rate": 0.058823529411764705,
+     "agent_false_alarms": 1,
+     "agent_false_alarm_n": 3,
+     "type_match": 13,
+     "type_n": 17
+    },
+    {
+     "run": 2,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 3,
+       "acc": 0.75,
+       "reasons": {
+        "ok": 3,
+        "guardrail_blockiert": 1
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 3,
+       "acc": 0.75,
+       "reasons": {
+        "ok": 3,
+        "guardrail_blockiert": 1
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 4,
+        "guardrail_blockiert": 2
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "guardrail_blockiert": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 1,
+       "acc": 0.5,
+       "reasons": {
+        "ok": 1,
+        "guardrail_blockiert": 1
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 2,
+        "guardrail_blockiert": 1
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 6,
+       "acc": 0.75
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 12,
+       "acc": 0.7058823529411765
+      }
+     },
+     "outputs": 17,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 1,
+     "agent_false_alarm_n": 3,
+     "type_match": 12,
+     "type_n": 17
+    },
+    {
+     "run": 3,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 3,
+       "acc": 0.75,
+       "reasons": {
+        "ok": 3,
+        "guardrail_blockiert": 1
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 4,
+        "guardrail_blockiert": 2
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "guardrail_blockiert": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 1,
+       "acc": 0.5,
+       "reasons": {
+        "ok": 1,
+        "guardrail_blockiert": 1
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 3
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 7,
+       "acc": 0.875
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 14,
+       "acc": 0.8235294117647058
+      }
+     },
+     "outputs": 17,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 3,
+     "type_match": 14,
+     "type_n": 17
+    }
+   ],
+   "schema_errors": {
+    "missing:exception_type": 11,
+    "missing:actions": 11,
+    "missing:rationale": 11,
+    "missing:key_evidence": 11,
+    "enum:exception_type": 11,
+    "actions_empty": 11,
+    "rationale_short": 11
+   },
+   "outputs_checked": 51,
+   "invalid_outputs": 11,
+   "duplicates": 0,
+   "reproducibility": {
+    "cases": 17,
+    "identical": 8,
+    "rate": 0.47058823529411764
+   },
+   "errors": [
+    {
+     "run": 1,
+     "case_id": "C0317",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 1,
+     "case_id": "C0412",
+     "gt_type": "none",
+     "gt_category": "irrelevant",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 1,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "enthaltung",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": "unknown",
+     "out_actions": "A6/Buchhaltung",
+     "baseline_category": ""
+    },
+    {
+     "run": 1,
+     "case_id": "C0902",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0166",
+     "gt_type": "E3",
+     "gt_category": "none",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A4\"],[\"A2\"],[\"A4\",\"A2\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0412",
+     "gt_type": "none",
+     "gt_category": "irrelevant",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0551",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0671",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 3,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 3,
+     "case_id": "C0551",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 3,
+     "case_id": "C0671",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "guardrail_blockiert",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    }
+   ]
+  },
+  "e5": {
+   "n": 0,
+   "ok": 0
+  }
+ }
+}

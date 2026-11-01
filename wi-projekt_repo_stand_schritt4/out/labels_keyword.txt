@@ -1,0 +1,41 @@
+item_id|label|unsicher|begruendung
+L01|irrelevant|ja|keine Treffer
+L02|payment_difficulty|nein|payment_difficulty:4
+L03|irrelevant|ja|keine Treffer
+L04|irrelevant|ja|keine Treffer
+L05|irrelevant|ja|keine Treffer
+L06|irrelevant|ja|keine Treffer
+L07|irrelevant|ja|keine Treffer
+L08|irrelevant|ja|keine Treffer
+L09|payment_announced|nein|payment_announced:1
+L10|irrelevant|ja|keine Treffer
+L11|payment_announced|nein|payment_announced:2
+L12|irrelevant|ja|keine Treffer
+L13|complaint|nein|complaint:1
+L14|complaint|nein|complaint:3
+L15|irrelevant|ja|keine Treffer
+L16|irrelevant|ja|keine Treffer
+L17|payment_announced|nein|payment_announced:1
+L18|payment_announced|nein|payment_announced:2
+L19|payment_difficulty|ja|payment_difficulty:2, payment_announced:1
+L20|payment_announced|nein|payment_announced:1
+L21|irrelevant|ja|keine Treffer
+L22|payment_difficulty|nein|payment_difficulty:1
+L23|payment_announced|nein|payment_announced:1
+L24|irrelevant|ja|keine Treffer
+L25|complaint|nein|complaint:1
+L26|payment_difficulty|ja|payment_difficulty:2, payment_announced:1
+L27|payment_announced|nein|payment_announced:1
+L28|complaint|nein|complaint:1
+L29|payment_difficulty|nein|payment_difficulty:1
+L30|irrelevant|ja|keine Treffer
+L31|payment_announced|nein|payment_announced:2
+L32|payment_difficulty|nein|payment_difficulty:1
+L33|irrelevant|ja|keine Treffer
+L34|irrelevant|ja|keine Treffer
+L35|irrelevant|ja|keine Treffer
+L36|complaint|nein|complaint:1
+L37|irrelevant|ja|keine Treffer
+L38|complaint|nein|complaint:1
+L39|irrelevant|ja|keine Treffer
+L40|payment_difficulty|nein|payment_difficulty:1

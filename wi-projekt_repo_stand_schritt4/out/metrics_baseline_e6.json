@@ -1,0 +1,434 @@
+{
+ "E6 alle (80)": {
+  "detection": {
+   "per_type": [
+    {
+     "typ": "E2",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E3",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E5",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E6",
+     "n_gt": 80,
+     "tp": 80,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E7",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "none",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    }
+   ],
+   "boundary_n": 0,
+   "boundary_false_alarms": 0,
+   "boundary_false_alarm_ids": [],
+   "routing_required": 80,
+   "routing_missing": 0,
+   "routed_total": 80
+  },
+  "actions": {
+   "runs": [
+    1
+   ],
+   "per_run": [
+    {
+     "run": 1,
+     "groups": {
+      "E2": {
+       "n": 0,
+       "ok": 0,
+       "acc": null,
+       "reasons": {}
+      },
+      "E3": {
+       "n": 0,
+       "ok": 0,
+       "acc": null,
+       "reasons": {}
+      },
+      "E6": {
+       "n": 80,
+       "ok": 59,
+       "acc": 0.7375,
+       "reasons": {
+        "ok": 59,
+        "aktionsmenge": 21
+       }
+      },
+      "E6:complaint": {
+       "n": 20,
+       "ok": 10,
+       "acc": 0.5,
+       "reasons": {
+        "aktionsmenge": 10,
+        "ok": 10
+       }
+      },
+      "E6:irrelevant": {
+       "n": 20,
+       "ok": 20,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 20
+       }
+      },
+      "E6:payment_announced": {
+       "n": 20,
+       "ok": 16,
+       "acc": 0.8,
+       "reasons": {
+        "aktionsmenge": 4,
+        "ok": 16
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 20,
+       "ok": 13,
+       "acc": 0.65,
+       "reasons": {
+        "ok": 13,
+        "aktionsmenge": 7
+       }
+      },
+      "none_text": {
+       "n": 0,
+       "ok": 0,
+       "acc": null,
+       "reasons": {}
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 0,
+       "ok": 0,
+       "acc": null
+      },
+      "Ermessen (E6)": {
+       "n": 80,
+       "ok": 59,
+       "acc": 0.7375
+      },
+      "Happy Path mit Freitext": {
+       "n": 0,
+       "ok": 0,
+       "acc": null
+      },
+      "bewertet gesamt": {
+       "n": 80,
+       "ok": 59,
+       "acc": 0.7375
+      }
+     },
+     "outputs": 80,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 0,
+     "type_match": 80,
+     "type_n": 80
+    }
+   ],
+   "schema_errors": {},
+   "outputs_checked": 80,
+   "invalid_outputs": 0,
+   "duplicates": 0,
+   "reproducibility": null,
+   "errors": [
+    {
+     "run": 1,
+     "case_id": "C0028",
+     "gt_type": "E6",
+     "gt_category": "payment_announced",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0179",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0244",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0253",
+     "gt_type": "E6",
+     "gt_category": "payment_announced",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0263",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0298",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0353",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0375",
+     "gt_type": "E6",
+     "gt_category": "payment_announced",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0406",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0492",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0496",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0610",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0612",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0756",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0759",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0771",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0776",
+     "gt_type": "E6",
+     "gt_category": "payment_announced",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0853",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0874",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0918",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    },
+    {
+     "run": 1,
+     "case_id": "C0952",
+     "gt_type": "E6",
+     "gt_category": "complaint",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A5\"]]",
+     "gt_role": "Kundendienst",
+     "out_type": "E6",
+     "out_actions": "A3",
+     "baseline_category": "irrelevant"
+    }
+   ]
+  },
+  "e5": {
+   "n": 0,
+   "ok": 0
+  }
+ }
+}

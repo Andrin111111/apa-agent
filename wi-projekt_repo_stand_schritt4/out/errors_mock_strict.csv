@@ -1,0 +1,13 @@
+run,case_id,gt_type,gt_category,grund,gt_allowed,gt_role,out_type,out_actions,baseline_category
+1,C0317,E2,none,guardrail_blockiert,"[[""A6""]]",Credit Management,,,
+1,C0412,none,irrelevant,guardrail_blockiert,"[[""A0""]]",,,,
+1,C0447,E6,irrelevant,enthaltung,"[[""A3""]]",,unknown,A6/Buchhaltung,
+1,C0902,E2,none,guardrail_blockiert,"[[""A6""]]",Credit Management,,,
+2,C0166,E3,none,guardrail_blockiert,"[[""A4""],[""A2""],[""A4"",""A2""]]",,,,
+2,C0412,none,irrelevant,guardrail_blockiert,"[[""A0""]]",,,,
+2,C0447,E6,irrelevant,guardrail_blockiert,"[[""A3""]]",,,,
+2,C0551,E6,payment_difficulty,guardrail_blockiert,"[[""A6""]]",Credit Management,,,
+2,C0671,E2,none,guardrail_blockiert,"[[""A6""]]",Credit Management,,,
+3,C0447,E6,irrelevant,guardrail_blockiert,"[[""A3""]]",,,,
+3,C0551,E6,payment_difficulty,guardrail_blockiert,"[[""A6""]]",Credit Management,,,
+3,C0671,E2,none,guardrail_blockiert,"[[""A6""]]",Credit Management,,,

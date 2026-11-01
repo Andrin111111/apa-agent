@@ -1,0 +1,22 @@
+run,case_id,gt_type,gt_category,grund,gt_allowed,gt_role,out_type,out_actions,baseline_category
+1,C0028,E6,payment_announced,aktionsmenge,"[[""A0""]]",,E6,A3,irrelevant
+1,C0179,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0244,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0253,E6,payment_announced,aktionsmenge,"[[""A0""]]",,E6,A3,irrelevant
+1,C0263,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0298,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0353,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0375,E6,payment_announced,aktionsmenge,"[[""A0""]]",,E6,A3,irrelevant
+1,C0406,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0492,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0496,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0610,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0612,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0756,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0759,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0771,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0776,E6,payment_announced,aktionsmenge,"[[""A0""]]",,E6,A3,irrelevant
+1,C0853,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0874,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
+1,C0918,E6,payment_difficulty,aktionsmenge,"[[""A6""]]",Credit Management,E6,A3,irrelevant
+1,C0952,E6,complaint,aktionsmenge,"[[""A5""]]",Kundendienst,E6,A3,irrelevant
