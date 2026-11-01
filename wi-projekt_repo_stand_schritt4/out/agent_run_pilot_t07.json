@@ -1,0 +1,56 @@
+{
+ "config": {
+  "label": "pilot_t07",
+  "client": "ollama",
+  "model": "qwen3.5:9b-q4_K_M",
+  "temperature": 0.7,
+  "seed": 42,
+  "seed_mode": "per_run",
+  "prompt_variant": "a",
+  "prompt_version": "1.2",
+  "prompt_hash": "509c488c3f44a62c1fac62e8189e38ee43c57594fa402817214d5b13e14aba34",
+  "schema_hash": "9e9b629c7359db8b528b92a779825854a59eb613c143e43c4063c32059aef321",
+  "think": "off",
+  "endpoint": "chat",
+  "mock_faults": null,
+  "replay_label": null
+ },
+ "cases": [
+  "C0014",
+  "C0067",
+  "C0166",
+  "C0303",
+  "C0317",
+  "C0412",
+  "C0447",
+  "C0537",
+  "C0551",
+  "C0556",
+  "C0642",
+  "C0644",
+  "C0671",
+  "C0761",
+  "C0880",
+  "C0902",
+  "C0955"
+ ],
+ "k": 3,
+ "last_run_id": "pilot_t07_20261101T162510Z",
+ "interrupted": false,
+ "summary_last_session": {
+  "calls": 51,
+  "transport_errors": 0,
+  "parse_errors": 0,
+  "guardrail_blocked": 0,
+  "violations": {},
+  "warnings": {
+   "role_on_non_role_action": 3,
+   "evidence_unknown_field": 1
+  },
+  "pending_approval": 24,
+  "executed_actions": 30,
+  "mean_ms": 6890,
+  "completed_pairs": 51,
+  "expected_pairs": 51
+ }
+}

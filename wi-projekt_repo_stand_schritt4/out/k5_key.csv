@@ -1,0 +1,21 @@
+item,case_id,gt_type,gt_category,stil,tpl,gt_allowed,gt_role,agent_korrekt_roh,grund
+K5-01,C0537,E3,none,,,"[[""A4""],[""A2""],[""A4"",""A2""]]",,True,ok
+K5-02,C0317,E2,none,,,"[[""A6""]]",Credit Management,True,ok
+K5-03,C0028,E6,payment_announced,indirekt,payment_announced_08,"[[""A0""]]",,True,ok
+K5-04,C0327,E6,payment_announced,indirekt,payment_announced_05,"[[""A0""]]",,True,ok
+K5-05,C0945,E6,payment_announced,direkt,payment_announced_01,"[[""A0""]]",,True,ok
+K5-06,C0179,E6,payment_difficulty,indirekt,payment_difficulty_06,"[[""A6""]]",Credit Management,True,ok
+K5-07,C0797,E6,complaint,direkt,complaint_03,"[[""A5""]]",Kundendienst,True,ok
+K5-08,C0982,E6,payment_difficulty,direkt,payment_difficulty_09,"[[""A6""]]",Credit Management,True,ok
+K5-09,C0493,E6,irrelevant,direkt,irrelevant_06,"[[""A3""]]",,True,ok
+K5-10,C0955,none,irrelevant,,irrelevant_02,"[[""A0""]]",,True,ok
+K5-11,C0042,E6,irrelevant,direkt,irrelevant_02,"[[""A3""]]",,True,ok
+K5-12,C0067,E3,none,,,"[[""A4""],[""A2""],[""A4"",""A2""]]",,True,ok
+K5-13,C0853,E6,payment_difficulty,indirekt,payment_difficulty_05,"[[""A6""]]",Credit Management,True,ok
+K5-14,C0303,none,irrelevant,,irrelevant_01,"[[""A0""]]",,True,ok
+K5-15,C0880,E6,complaint,indirekt,complaint_10,"[[""A5""]]",Kundendienst,True,ok
+K5-16,C0695,E6,irrelevant,direkt,irrelevant_04,"[[""A3""]]",,True,ok
+K5-17,C0902,E2,none,,,"[[""A6""]]",Credit Management,True,ok
+K5-18,C0298,E6,complaint,indirekt,complaint_06,"[[""A5""]]",Kundendienst,True,ok
+K5-Z1,C0776,E6,payment_announced,indirekt,payment_announced_06,"[[""A0""]]",,False,aktionsmenge
+K5-Z2,C0412,none,irrelevant,,irrelevant_03,"[[""A0""]]",,False,aktionsmenge

@@ -2,9 +2,9 @@
 
 | Feld | Wert |
 |---|---|
-| Version | 0.5 |
+| Version | 0.6 |
 | Stand | 01.11.2026 |
-| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 4 erledigt (K1 bis K3 freigegeben, K4 Entscheide getroffen, Rauchtest bestanden). Nächster Schritt: 5 (Pilotläufe) |
+| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 5 erledigt (K1 bis K5). Nächster Schritt: 6 (Demo) |
 | Ziel | Vorbereitung abgeschlossen bis 01.11.2026 (Vorgabe Jan) |
 | Betreuung | Michael Winter (Thema 75); Modulverantwortung Dr. Stefan Koruna (koru@zhaw.ch) |
 | Ersetzt | `WI-Projekt_Projektkontext.md` v0.1 (inhaltlich vollständig übernommen und konsolidiert) |
@@ -17,7 +17,7 @@
 
 **Zweck:** Dieses Dokument ist die zentrale Arbeitsgrundlage, um die Zwischenpräsentation zu erstellen: Konzept, Entscheide, Plan, Artefakte und Status. Wer damit weiterarbeitet (anderer Chat im Projekt oder Claude Code), soll den aktuellen Stand ohne Rückfragen kennen.
 
-**Lesereihenfolge:** Abschnitt 12 (Plan, Status, nächster Schritt) und 14 (Entscheidungen) zuerst, dann 5 bis 10 für Inhalte. Für Schritt 4 liegt ein fertiger Prompt bereit: `prompt_schritt4_agent_kern.md`. Ergebnisse von Schritt 3: `out/step3_report.md`. Bedienung des Repos: `README.md`.
+**Lesereihenfolge:** Abschnitt 12 (Plan, Status, nächster Schritt) und 14 (Entscheidungen) zuerst, dann 5 bis 10 für Inhalte. Für Schritt 6 liegt ein fertiger Prompt bereit: `docs/prompt_schritt6_demo.md`. Ergebnisse: `out/step3_report.md` (Erkennung, Baseline), `out/step4_report.md` (Agent-Kern), `out/step5_report.md` (Pilotläufe, K5). Bedienung des Repos: `README.md`.
 
 **Arbeitsmodus:**
 - Claude arbeitet als ausführender Agent und liefert Artefakte. Jan kontrolliert an definierten Kontrollpunkten (K1 bis K7). Ohne Freigabe geht Claude nicht über einen Kontrollpunkt hinaus.
@@ -35,23 +35,28 @@
 
 **Pflege:** Bei jeder Änderung Version und Stand anpassen, Entscheide in Abschnitt 14, Änderungen in Abschnitt 17 und Status in Abschnitt 12/13 nachführen. Nicht entschiedene Vorschläge als "Entwurf", "Annahme" oder "offen" kennzeichnen.
 
-**Repo-Struktur (Stand v0.5, * = noch nicht erstellt):**
+**Repo-Struktur (Stand v0.6, * = noch nicht erstellt):**
 ```
 README.md  Bedienung und Status
-docs/      dieses Dokument, Prompts Schritt 3 und 4, ANLEITUNG_lokal.md
+docs/      dieses Dokument, Prompts Schritt 3, 4 und 6, ANLEITUNG_lokal.md, ANLEITUNG_apromore.md
 tests/     37 Unit-Tests (python -m unittest discover -s tests)
 spec/      spec.yaml
 src/       generate_log.py, validate_log.py, make_k2.py, extern_tasks.py, keyword_labeler.py,
-           detect.py, detect_checks.py, baseline.py, metrics.py
-           case_object.py, llm_client.py, guardrails.py, approval.py, run_agent.py, audit_view.py, *demo.py
+           detect.py, detect_checks.py, baseline.py, metrics.py, export_apromore.py
+           case_object.py, llm_client.py, guardrails.py, approval.py, run_agent.py, audit_view.py,
+           step5_eval.py, *demo.py
 prompts/   extern/ (Prompts für externe Modelle, Iteration 2), agent_prompt.md (v1.2)
 data/      event_log.csv, cases.csv, ground_truth.csv, freitext_vorlagen.yaml,
            pilot_sample.csv, labeling_e6_blind.csv, labeling/ (label_items, label_key)
 out/       generation_report.md, labeling_report.md, k2_befunde.md, step3_report.md,
            detections.csv, detect_checks.md, baseline_actions.jsonl, metrics_baseline.(md|json),
-           errors_baseline.csv, step4_report.md, agent_actions_<label>.jsonl, audit_log.jsonl
+           errors_baseline.csv, step4_report.md, audit_log.jsonl,
+           agent_actions_<label>.jsonl, agent_run_<label>.json, metrics_<label>.(md|json), errors_<label>.csv,
+           step5_report.md, step5_tables.md, step5_errors.csv, k5_* (Stichprobe, Prüfprotokoll),
+           console_<label>.log, apromore/ (Import für AP7)
 slides/    *Zwischenpräsentation (.pptx), Grafiken
 ```
+Labels der Läufe Schritt 5: `pilot_t0`, `e6_t0`, `pilot_t07` (dazu `smoke_v12`, `mock`, `mock_replay`).
 
 ---
 
@@ -247,7 +252,7 @@ Event Log → Erkennung (Regeln + Conformance, PM4Py) → Fallobjekt → Agent (
 
 **Modellhinweis:** Der Tag `qwen3.5:9b` lädt auf Apple Silicon einen MLX-Build (nvfp4, 7,6 GB), der strukturierte Ausgabe nicht unterstützt (HTTP 501 "structured output is unavailable", auch mit `--endpoint generate`). Der Build `qwen3.5:9b-q4_K_M` (6,6 GB) erzwingt das Schema (Check bestanden, Ollama 0.40.13). Alle Läufe verwenden den Q4_K_M-Tag.
 
-**Erwartung zum lokalen Modell:** Ein kleines Modell wird bei E6 vermutlich schwächer sein. Das ist ein Befund, die Guardrails gewinnen dadurch an Gewicht.
+**Erwartung zum lokalen Modell:** Ein kleines Modell wird bei E6 vermutlich schwächer sein. Das ist ein Befund, die Guardrails gewinnen dadurch an Gewicht. **Ergebnis Schritt 5:** nicht bestätigt. Das 9B-Modell löst 79 von 80 E6-Fällen, auch 31 von 32 indirekte Texte (Einschränkung Kontamination, Abschnitt 10). Die Guardrails haben in 182 Aufrufen nichts blockiert.
 
 ## 10. Evaluationskonzept
 
@@ -285,6 +290,30 @@ E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von
 
 **Erwartung:** Bei E2 und E3 ist die Baseline mindestens gleich gut (bestätigt: 100 %). Der Mehrwert des Agenten ist bei E6 zu prüfen, insbesondere bei indirekten Texten (E7 später).
 
+**Ergebnis Schritt 5 (Agent, `qwen3.5:9b-q4_K_M`, Prompt v1.2a, Details `out/step5_report.md`):**
+
+| Gruppe | Agent Pilot T = 0 (k = 3) | Agent Pilot T = 0,7 (k = 3) | Baseline Pilot | Agent E6 alle (k = 1) | Baseline E6 alle |
+|---|---|---|---|---|---|
+| E2 | 12/12 | 12/12 | 4/4 | | |
+| E3 | 12/12 | 12/12 | 4/4 | | |
+| E6 | 18/18 | 18/18 | 6/6 | 79/80 (98,8 %) | 59/80 (73,8 %) |
+| Happy Path mit Freitext | 9/9 | 8/9 | 3/3 | | |
+
+| E6 nach Stil | n | Agent | Baseline |
+|---|---|---|---|
+| direkt | 43 | 43 | 43 |
+| indirekt | 32 | 31 | 11 |
+| Distraktor | 5 | 5 | 5 |
+
+- Roh = strikt: 0 von 182 Ausgaben blockiert, 0 Parsefehler, 0 Enthaltungen. Typ-Übereinstimmung 182/182 (Abschreiben von `detected_type`).
+- Statistik E6: auf Vorlagenebene Agent besser bei 8 von 34 Vorlagen, schlechter bei 0 (Vorzeichentest p = 0,0078). Fallebene überschätzt (80 Fälle aus 34 Vorlagen).
+- Reproduzierbarkeit: T = 0 identisch 17/17, Rohtext bytegleich, auch über Sitzungen (9/9). T = 0,7: Entscheidung identisch 12/17, Streuung bei E3 (freie Wahl A2/A4) und 1 Fehlalarm (C0412: A3 statt A0, autonom ausgeführt). Bei T = 0 wählt das Modell bei E3 immer A2+A4, unabhängig von der Lage.
+- Fehler: C0776 (E6 Zahlung avisiert, indirekt): A6 statt A0, geht in die Freigabe. C0412 (T = 0,7, Run 2): A3 statt A0. Beide passieren alle Guardrails.
+- Laufzeit: 182 Aufrufe in 20,7 min (6,3 bis 7,1 s pro Aufruf). Hochrechnung volle Evaluation (370 Fälle, k = 5): rund 3,5 h.
+- **Einordnung:** Pilot 100 % ist kein Befund (vorgegeben, Prompt an 3 Pilotfällen nachgeschärft). Mehrwert nur bei indirekten E6-Texten. Dort ist "indirekt" als "ohne Schlüsselwort" definiert, das Scheitern der Keyword-Baseline also konstruktionsbedingt. Die Kategoriedefinitionen im Prompt treffen die indirekten Vorlagen fast wörtlich (gleicher Autor), 31/32 ist eine Obergrenze. Test auf fremden Texten folgt in Iteration 2 (D-K5-4).
+
+**Nachvollziehbarkeit (K5):** Stichprobe 18 Begründungen (geschichtet, Seed 42) plus 2 Fehler. Raster 0 bis 2 mit Klarstellungen (D-K5-1): 2 = ausschlaggebende Information korrekt, über die richtige Regel mit der Aktion verbunden, keine falschen Aussagen; 1 = Information korrekt, aber generisch, falscher Regelbezug oder falsche Nebenaussage; 0 = ausschlaggebende Information fehlt oder falsch. Bewertung an Claude delegiert, regelgeleitet (Prüfprotokoll Aussage für Aussage): Mittel 1,56 von 2, Information korrekt 18/18, falsche Aussage 6/18, Ermessensrichtlinie statt Zuordnung 2/18. Zusätzlich widerspricht bei C0317 (T = 0,7) die Begründung der Aktion. Kernaussage: Die Begründung nennt die richtige Information, ist aber kein verlässlicher Beleg dafür, warum entschieden wurde. Nicht unabhängig (Claude ist Autor von Prompt, Texten, Labels).
+
 ## 11. Zwischenpräsentation
 
 **Termin:** offen, beim Dozenten bestätigen. **Dauer:** Annahme 15 Minuten.
@@ -297,7 +326,7 @@ E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von
 | 4 | Handlungskatalog und Autonomiestufen | 1 min | Abschnitt 6 |
 | 5 | Architektur und Determinismus-Konzept | 2 min | Abschnitt 9, Architekturgrafik |
 | 6 | Demo: E2 (Eskalation mit Freigabe), E3 (autonome Priorisierung), E6 (Ermessen) | 4 min | `demo.py`, `audit_log.jsonl`. Fallback: Aufzeichnung. |
-| 7 | Evaluationskonzept und Pilot-Zwischenstand | 2 min | Abschnitt 10, Pilotzahlen |
+| 7 | Evaluationskonzept und Pilot-Zwischenstand | 2 min | Abschnitt 10, Formulierung `out/step5_report.md` Abschnitt 9 (D-K5-5) |
 | 8 | Plan bis Januar, offene Fragen | 1,5 min | Abschnitt 12, 15 |
 
 Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
@@ -321,10 +350,10 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | 2 | Log-Generator | AP2 | Claude | `generate_log.py`, `event_log.csv`, `cases.csv`, `ground_truth.csv`, `freitext_vorlagen.yaml` | K2: Stichprobe 10 Fälle pro Typ (bei E7 nur Plausibilität der Attribute, keine Ground Truth), Verteilung prüfen, Teil der Freitexte überarbeiten | erledigt. Stichprobe, Freitext-Revision und Labeling durch Claude (Entscheid Jan). K2 freigegeben |
 | 3 | Erkennung und Baseline | AP3, AP6 | Claude | `detect.py`, `detect_checks.py`, `baseline.py`, `metrics.py`, `step3_report.md` | K3: Precision/Recall, 5 Fehlerfälle prüfen | erledigt (K3 freigegeben 01.11.2026) |
 | 4 | Agent-Kern | AP4, AP5 | Claude | `case_object.py`, `agent_prompt.md`, `llm_client.py`, `guardrails.py`, `approval.py`, `run_agent.py`, `audit_log.jsonl`, Modellvorschlag | K4: Prompt, Guardrails und Modellwahl entscheiden, 3 Audit-Einträge prüfen | erledigt (Entscheide Jan 01.11.2026, Rauchtest 6/6 bestanden mit Prompt v1.2) |
-| 5 | Pilotlauf (20 Fälle, k = 3) und E6-Zusatzlauf (80 Fälle, k = 1) | AP6 | Jan fährt lokal (im Chat), Claude wertet aus | Auswertung | K5: Begründungsraster stichprobenartig selbst bewerten | offen |
+| 5 | Pilotlauf (20 Fälle, k = 3) und E6-Zusatzlauf (80 Fälle, k = 1) | AP6 | Claude (Läufe und Auswertung in Claude Code) | `step5_eval.py`, `step5_report.md`, `k5_*` | K5: Begründungsraster stichprobenartig bewerten | erledigt (Läufe 182/182, K5 an Claude delegiert, Entscheide D-K5-1 bis D-K5-5) |
 | 6 | Demo (E2, E3, E6) | AP8 | Claude | `demo.py`, Screenshots, Aufzeichnung | K6: Probelauf bei Jan | offen |
 | 7 | Folien | AP8 | Claude | `.pptx`, Sprechnotizen, Q&A | K7: inhaltlich und Probevortrag | offen |
-| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.5 nach K4) |
+| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.6 nach K5) |
 
 **Reihenfolge:** 1 → 2 → 3 → 4 → 5 → 6. Folien-Gerüst und Grafiken nach K1 parallel, Finalisierung nach dem Pilot.
 
@@ -344,15 +373,15 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | Iteration 2 (optional) | Externe Revision und externes Labeling nach `prompts/extern/ANLEITUNG.md`. Die Datei `labeling_e6_blind.csv` (15 Fälle) bleibt als Reserve für ein menschliches Labeling | Unabhängige Labels |
 | Ab K7 | Folien lesen, Rollen und Redezeiten verteilen, Probevortrag | Sprechplan, Zeitcheck |
 
-### So geht es weiter (Stand 01.11.2026, nach K4)
+### So geht es weiter (Stand 01.11.2026, nach K5)
 
 | # | Wer | Was | Dauer |
 |---|---|---|---|
-| 1 | Jan | Projektdateien ersetzen: dieses Dokument (v0.5) und `spec.yaml` (v0.5.0). Repo-Stand in Git übernehmen | 10 min |
-| 2 | Jan | Läufe Schritt 5 nach `docs/ANLEITUNG_lokal.md`, Abschnitt 3 (Pilot T = 0, E6-Zusatzlauf, Pilot T = 0,7), immer mit `--model qwen3.5:9b-q4_K_M --think off`. 182 Aufrufe, geschätzt rund 20 bis 25 Minuten (Rauchtest: rund 7 s pro Aufruf) | 25 min |
-| 3 | Jan | Audit-Log und Aktionsdateien (`out/agent_actions_<label>.jsonl`) im Chat zurückmelden | 5 min |
-| 4 | Claude | Auswertung mit `metrics.py` (roh und strikt), Vergleich mit Baseline | |
-| parallel | Gruppe | Apromore-Import von `data/event_log.csv` (AP7) | |
+| 1 | Jan | Neuen Chat in Claude Code mit `docs/prompt_schritt6_demo.md` starten (Repo, Ollama mit `qwen3.5:9b-q4_K_M` laufend) | 5 min |
+| 2 | Claude | Schritt 6: `demo.py` (E2, E3, E6, interaktive Freigabe), Demo-Drehbuch, Fallback-Aufzeichnung vorbereiten | |
+| 3 | Jan | K6: Probelauf der Demo | 15 min |
+| 4 | Claude | Schritt 7: Folien (Folie 7 nach D-K5-5) | |
+| parallel | Gruppe | Apromore-Import nach `docs/ANLEITUNG_apromore.md` (AP7), Screenshots für Folie 3 | 45 bis 60 min |
 
 ## 13. Arbeitspakete (Übersicht)
 
@@ -363,8 +392,8 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | AP3 | Erkennungsmodul (Trigger E2, E3, E6, Conformance) | Claude | erledigt (K3) |
 | AP4 | Agent: Prompt, Tool-Schema, Fallobjekt-Format | Claude | erledigt (K4) |
 | AP5 | Guardrails, Approval-Schritt, Audit-Log | Claude | erledigt (K4) |
-| AP6 | Baseline und Kennzahlen, Pilotauswertung | Claude (Läufe: Jan) | in Arbeit (Baseline und Kennzahlen erledigt, Pilotauswertung offen) |
-| AP7 | Apromore-Visualisierung für Folien | Gruppenmitglieder 2 und 3 | offen |
+| AP6 | Baseline und Kennzahlen, Pilotauswertung | Claude | erledigt (K5) |
+| AP7 | Apromore-Visualisierung für Folien | Gruppenmitglieder 2 und 3 | in Arbeit (Export und Anleitung vorbereitet, Import durch Gruppe offen) |
 | AP8 | Demo und Folien Zwischenpräsentation | Claude erstellt, Gruppe übt | offen |
 
 Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wird als Prozessgrafik umgesetzt (PM4Py oder Diagramm).
@@ -416,6 +445,13 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 01.11.2026 | D-K4-6: `case_id_match` als blockierender Guardrail | Verwechslungen abfangen | entschieden |
 | 01.11.2026 | D-K4-7: Prompt v1.1 und v1.2: Ermessensrichtlinie gilt nur bei E7, bei E3 sind nur A4 und A2 zulässig | Rauchtest mit v1.0: C0317 (E2) A0 statt A6, C0067 (E3) A3 statt A4/A2. Mit v1.1 eskaliert das Modell bei C0067 zu A6, mit v1.2 stimmen alle drei Fälle in beiden Runs. Die Rauchtestfälle sind Pilotfälle: der Prompt wurde an ihnen nachgeschärft, Limitation | entschieden |
 | 01.11.2026 | Annahmen K4: CO1 bis CO4 (Fallobjekt), G1 bis G3 (Guardrail `case_id_match`, nicht blockierende Hinweise, Schema-Reihenfolge), A1 (autonome Aktionen laufen sofort), R1 bis R4 (Läufe, ein Label pro Konfiguration), M5, M6 (Bewertung) | Details in `out/step4_report.md` | Annahme |
+| 01.11.2026 | D-K5-1: Raster K5 als eine Zahl 0 bis 2, falscher Regelbezug oder falsche Nebenaussage höchstens 1 | Eine Zahl genügt für die Zwischenpräsentation, Klarstellungen machen die Bewertung reproduzierbar. Treue als eigenes Kriterium für die Schlussabgabe | entschieden |
+| 01.11.2026 | D-K5-2: `target_role` an A3/A4 bleibt nicht blockierender Hinweis, zählt nicht als Fehler | Keine Regeländerung nach Sicht der Ergebnisse, ohne fachliche Wirkung | entschieden |
+| 01.11.2026 | D-K5-3: Typ-Aktions-Guardrail (Aktionen gegen `detected_type`) nur als Ausblick | Zeit. Nicht zirkulär, hätte C0412 (T = 0,7) blockiert, C0776 nicht | entschieden |
+| 01.11.2026 | D-K5-4: Test auf fremden Texten erst in Iteration 2 | Zeit. Kontamination bleibt Limitation und gehört auf die Folie | entschieden, Limitation |
+| 01.11.2026 | D-K5-5: Folie 7 berichtet E6 getrennt nach direkt/indirekt mit Einschränkung (Obergrenze, gleicher Autor) | Gesamtzahl 98,8 % wäre ohne Einschränkung angreifbar | entschieden |
+| 01.11.2026 | K5-Bewertung an Claude delegiert, regelgeleitet (Prüfprotokoll Aussage für Aussage) | Tempo bis zur Zwischenpräsentation | entschieden, Limitation (nicht unabhängig) |
+| 01.11.2026 | Annahmen Schritt 5: S1 venv ausserhalb des Repos (Python 3.15). S2 K5-Stichprobe geschichtet nach Typ, Kategorie und Stil, eine Vorlage höchstens einmal, Fehler als Zusatzitems ausserhalb des Mittelwerts. S3 Vergleich Agent/Baseline zusätzlich auf Vorlagenebene (Vorzeichentest). S4 Läufe nacheinander, nicht parallel | Details in `out/step5_report.md` | Annahme |
 
 ## 15. Offene Punkte und Fragen an den Dozenten
 
@@ -429,7 +465,10 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 - [ ] E5 vor Umsetzung klären: Soll A7 nach Versand, Rechnung wenige Stunden vor Versand am selben Tag (`spec.yaml`, `detection.open_points`)
 - [x] Schritt 4: Zuordnungswissen Variante a, Guardrail-Verstoss ohne Neuversuch (D-K4-2, D-K4-3)
 - [x] K4: Entscheide getroffen, Rauchtest bestanden (Prompt v1.2)
+- [x] Schritt 5: Läufe, Auswertung, K5 (D-K5-1 bis D-K5-5)
 - [ ] Labeler-Modelle für Iteration 2 dürfen nicht aus der Familie des Agentenmodells (Qwen) stammen
+- [ ] Iteration 2: Agent auf fremden Texten testen (Hold-out). Achtung: Revision nach `prompts/extern/` ändert die Vorlagen, danach alle Auswertungen neu rechnen. Ein separater Hold-out-Satz wäre weniger invasiv
+- [ ] Schlussabgabe: K5 mit mindestens einem menschlichen Rater, Treue als eigenes Kriterium
 - [ ] Genaues Datum Schlussabgabe Januar 2027
 - [ ] Namen der anderen zwei Gruppenmitglieder und Verteilung der Aufgaben ab K7
 - [ ] Datenschutz: bei synthetischen Daten voraussichtlich unkritisch, bei Dozent bestätigen
@@ -455,7 +494,11 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | Ollama erzwingt das Schema nicht (MLX-Build: HTTP 501) | `llm_client.py check` vor jedem Lauf, Tag `qwen3.5:9b-q4_K_M` verwenden |
 | Kontamination: Prompt an Pilotfällen nachgeschärft (v1.0 bis v1.2) | Als Limitation nennen. Auswertung zusätzlich auf dem E6-Zusatzlauf (80 Fälle), der nicht zum Tuning diente |
 | Guardrails ohne semantische Prüfung: schemakonforme, aber falsche Aktionen passieren | Roh und strikt berichten, Fehler nach Typ auswerten. Policy-Guardrail wäre zirkulär (Baseline-Logik) |
-| Kleines Modell ignoriert Zuordnung und zitiert die Ermessensrichtlinie falsch (v1.0, v1.1 beobachtet) | Geltungsregel im Prompt, Befund berichten |
+| Kleines Modell ignoriert Zuordnung und zitiert die Ermessensrichtlinie falsch (v1.0, v1.1 beobachtet) | Geltungsregel im Prompt, Befund berichten. Schritt 5: Aktionen korrekt, aber Richtlinie in 15 von 32 Begründungen zu Reklamationen zitiert |
+| Begründung nicht treu: klingt sicher, auch wenn falsch, widerspricht teils der Aktion (C0317 bei T = 0,7) | Begründung nicht als Erklärung der Entscheidung verkaufen. K5-Befund berichten, Freigabe bleibt die Kontrolle |
+| Keine Enthaltung beobachtet (0 von 182): Regel 4 wird nie über `unknown` umgesetzt | Als Befund nennen. Unsicherheitserkennung ist nicht gezeigt |
+| Autonome Fehlaktion bei T > 0 (A3 statt A0 auf Happy Path, ohne Freigabe ausgeführt) | Produktiv T = 0. Typ-Aktions-Guardrail als Ausblick (D-K5-3) |
+| Kontamination konkretisiert: Kategoriedefinitionen im Prompt treffen die indirekten Vorlagen fast wörtlich | E6-Ergebnis als Obergrenze berichten (D-K5-5), Hold-out in Iteration 2 (D-K5-4) |
 
 ## 17. Änderungslog
 
@@ -469,3 +512,4 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 0.3 | 01.11.2026 | Schritt 2 erledigt (K2 offen). Entscheide 01.11.2026 (Tagesbasis, weicher Trigger, Zielrolle, A0 für Happy Path, Revision und Labeling durch Claude). Datenkonzept, Begriffe, Evaluation, Repo-Struktur, Risiken und offene Punkte nachgeführt. Neu: Abschnitt 12 "So geht es weiter". `spec.yaml` v0.3.0. |
 | 0.4 | 01.11.2026 | K2 und K3 freigegeben, Schritt 3 erledigt. Entscheide D-K3-1 bis D-K3-3, Bewertungsregeln M1 bis M4, Annahmen AN1 bis AN6. Baseline-Ergebnisse (10), E6-Zusatzlauf, E6-Trigger in 5.1 an spec angeglichen, E5 Zeitstempel. Neu: Prompt Schritt 4, Begriffe Baseline und Mutantenprüfung, Risiken. `spec.yaml` v0.4.0. |
 | 0.5 | 01.11.2026 | Schritt 4 erledigt, K4-Entscheide D-K4-1 bis D-K4-7 getroffen. Modell `qwen3.5:9b-q4_K_M` (MLX-Build ohne Schema-Erzwingung ausgeschlossen), Prompt v1.2, Guardrail `case_id_match`, Freigabe-Modi, Bewertung roh und strikt, Temperaturlauf T 0,7 mit Seed pro Run. Abschnitte 0, 9, 10, 12 bis 16 nachgeführt. `spec.yaml` v0.5.0. |
+| 0.6 | 01.11.2026 | Schritt 5 erledigt (Läufe in Claude Code, 182/182), K5 an Claude delegiert und erledigt. Entscheide D-K5-1 bis D-K5-5, Annahmen S1 bis S4. Ergebnisse und Einordnung in Abschnitt 10, Erwartung in 9 beantwortet, Status 12/13 (AP6 erledigt, AP7 in Arbeit), offene Punkte 15, Risiken 16. Prompt Schritt 6 angelegt. `spec.yaml` unverändert (v0.5.0). |

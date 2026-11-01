@@ -1,13 +1,14 @@
 # WI-Projekt Thema 75: Agentic Process Automation (Order-to-Cash)
 
-Stand 01.11.2026. Schritte 1 bis 3 erledigt (K3 freigegeben). Schritt 4 (Agent-Kern) erstellt, wartet auf K4. Bericht: `out/step4_report.md`. Lokale Läufe: `docs/ANLEITUNG_lokal.md`.
-Kontext, Entscheide und Plan: `docs/WI-Projekt_Zwischenpraesentation_Kontext_und_Plan.md` (v0.4). Parameter: `spec/spec.yaml` (v0.4.0).
+Stand 01.11.2026. Schritte 1 bis 5 erledigt (K1 bis K5). Nächster Schritt: 6 (Demo), Prompt `docs/prompt_schritt6_demo.md`.
+Berichte: `out/step3_report.md`, `out/step4_report.md`, `out/step5_report.md`. Lokale Läufe: `docs/ANLEITUNG_lokal.md`.
+Kontext, Entscheide und Plan: `docs/WI-Projekt_Zwischenpraesentation_Kontext_und_Plan.md` (v0.6). Parameter: `spec/spec.yaml` (v0.5.0).
 
 ## Struktur
 
 | Ordner | Inhalt |
 |---|---|
-| `docs/` | Kontextdokument v0.4, Prompts für Schritt 3 und 4, `ANLEITUNG_lokal.md` |
+| `docs/` | Kontextdokument v0.6, Prompts für Schritt 3, 4 und 6, `ANLEITUNG_lokal.md`, `ANLEITUNG_apromore.md` |
 | `spec/` | `spec.yaml` (Single Source of Truth für Parameter) |
 | `src/` | Generator, Validierung, K2-Paket, Keyword-Labeler, Werkzeuge für externe Modelle, Erkennung, Baseline, Metriken, Agent (Fallobjekt, LLM-Client, Guardrails, Freigabe, Pipeline, Audit-Ansicht) |
 | `tests/` | Tests Schritt 4 (`python -m unittest discover -s tests`) |
@@ -30,12 +31,13 @@ Kontext, Entscheide und Plan: `docs/WI-Projekt_Zwischenpraesentation_Kontext_und
 | Apromore-Import vorbereiten (AP7) | `python src/export_apromore.py` (Anleitung: `docs/ANLEITUNG_apromore.md`) |
 | Externe Modelle (Iteration 2) | siehe `prompts/extern/ANLEITUNG.md` und `src/extern_tasks.py` |
 | Tests Agent-Kern | `python -m unittest discover -s tests` |
-| Ollama prüfen | `python src/llm_client.py check --model qwen3.5:9b --think off` |
+| Ollama prüfen | `python src/llm_client.py check --model qwen3.5:9b-q4_K_M --think off` (nicht `qwen3.5:9b`: MLX-Build ohne Schema-Erzwingung) |
 | Agent mit Mock (Sandbox) | `python src/run_agent.py --cases pilot --k 3 --client mock --mock-faults mixed --label mock` |
 | Agent lokal (Ollama) | `python src/run_agent.py --cases pilot --k 3 --client ollama --model <modell> --think off --label <label>` |
 | Replay eines Laufs | `python src/run_agent.py --cases pilot --k 3 --client replay --replay-label <label> --label <neu>` |
 | Audit-Log lesen | `python src/audit_view.py --label <label> [--case C0317] [--run 1]` |
 | Metriken Agent | `python src/metrics.py --actions out/agent_actions_<label>.jsonl --label <label> --scopes pilot` (E6: `--scopes e6_full`, end-to-end: `--strict-guardrails`) |
+| Zusatzauswertung Schritt 5 (E6 nach Stil, Reproduzierbarkeit, Laufzeit, K5-Stichprobe) | `python src/step5_eval.py` |
 
 Nach jeder Änderung an `data/freitext_vorlagen.yaml` oder `spec/spec.yaml`: Generator und Validierung neu laufen lassen.
 
@@ -44,6 +46,7 @@ Nach jeder Änderung an `data/freitext_vorlagen.yaml` oder `spec/spec.yaml`: Gen
 1000 Fälle, 5905 Events. Happy Path 700, E2 60, E3 60, E5 40, E6 80 (je 20 pro Freitext-Kategorie), E7 60.
 Pilot: 20 Fälle in `data/pilot_sample.csv` (17 erreichen den Agenten). Zusatzlauf E6: alle 80 E6-Fälle. Validierung: 43 von 43 Prüfungen bestanden.
 Baseline (Schritt 3): E2/E3 120/120, E6 59/80, Happy Path mit Freitext 70/70, Pilot 17/17.
+Agent (Schritt 5, `qwen3.5:9b-q4_K_M`): Pilot 51/51 (T = 0, k = 3), 50/51 (T = 0,7), E6 79/80 (indirekt 31/32 vs. Baseline 11/32, Obergrenze wegen gleichem Autor). Einordnung: `out/step5_report.md`.
 Trigger auf Tagesbasis. Stichtag immer 18:00. Kein Stichtag nach dem Datenabzug 31.10.2026.
 
 ## Konventionen
