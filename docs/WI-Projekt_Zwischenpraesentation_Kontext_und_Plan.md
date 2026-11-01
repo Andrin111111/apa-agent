@@ -2,7 +2,7 @@
 
 | Feld | Wert |
 |---|---|
-| Version | 0.7 |
+| Version | 0.7.1 |
 | Stand | 01.11.2026 |
 | Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 6 erledigt (K1 bis K6). Nächster Schritt: 7 (Folien) |
 | Ziel | Vorbereitung abgeschlossen bis 01.11.2026 (Vorgabe Jan) |
@@ -35,7 +35,7 @@
 
 **Pflege:** Bei jeder Änderung Version und Stand anpassen, Entscheide in Abschnitt 14, Änderungen in Abschnitt 17 und Status in Abschnitt 12/13 nachführen. Nicht entschiedene Vorschläge als "Entwurf", "Annahme" oder "offen" kennzeichnen.
 
-**Repo-Struktur (Stand v0.7, * = noch nicht erstellt):**
+**Repo-Struktur (Stand v0.7.1, * = noch nicht erstellt):** Der Git-Root ist der Projektordner (`apa-agent`). Bis 01.11.2026 lag alles im Unterordner `wi-projekt_repo_stand_schritt4`, ältere Prompts und Konsolen-Logs nennen noch diesen Pfad.
 ```
 README.md  Bedienung und Status
 docs/      dieses Dokument, Prompts Schritt 3, 4 und 6, ANLEITUNG_lokal.md, ANLEITUNG_apromore.md,
@@ -459,6 +459,7 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 01.11.2026 | Annahmen Schritt 5: S1 venv ausserhalb des Repos (Python 3.15). S2 K5-Stichprobe geschichtet nach Typ, Kategorie und Stil, eine Vorlage höchstens einmal, Fehler als Zusatzitems ausserhalb des Mittelwerts. S3 Vergleich Agent/Baseline zusätzlich auf Vorlagenebene (Vorzeichentest). S4 Läufe nacheinander, nicht parallel | Details in `out/step5_report.md` | Annahme |
 | 01.11.2026 | K6: Demo-Fälle C0902 (E2), C0537 (E3), C0244 (E6), Reserve C0776. Ehrlichkeitspunkt: Begründung bei C0902 behauptet "automatische Weiterleitung", das System hält zur Freigabe an. Auf dem Bildschirm dauerhaft "Begründung nicht geprüft" und "Guardrails prüfen Form, nicht fachliche Richtigkeit". Vergleich mit Baseline und Soll (`--baseline --truth`). Kein simulierter Fehler (Mock) | Keine Rauchtestfälle. Fälle stabil, live 16/16 bytegleich mit der Evaluation. Grenze echt statt inszeniert | entschieden (Empfehlung Schritt 6, Probelauf von Jan freigegeben) |
 | 01.11.2026 | Annahmen Schritt 6: D6-A1 Demo-Dateien in `out/demo/`. D6-A2 Replay aus eigener Live-Aufzeichnung `demo_ref` (bytegleich mit Evaluation). D6-A3 ein `run()`-Aufruf pro Fall, Label mit Zeitstempel. D6-A4 Timeout 30 s in der Demo. D6-A5 `--truth` zeigt Ground Truth nur in der Anzeige. D6-A6 Reihenfolge E2, E3, E6. D6-A7 `--check` wärmt an C0556 auf (ohne Audit-Eintrag), Modell 90 min geladen. D6-A8 Testläufe bleiben im Demo-Audit-Log. D6-A9 `apa-agent/apa-agent` ist ein älterer Prototyp, nicht massgeblich. Dazu: optionaler Hook `on_decision` in `run_agent.run` (Standard None) | Details in `out/step6_report.md` Abschnitt 2 und 6 | Annahme |
+| 01.11.2026 | Repo vor dem Merge mit `main` umgebaut: Inhalt von `wi-projekt_repo_stand_schritt4` eine Ebene nach oben (Git-Root), früher Prototyp `apa-agent/` (agent.py, config.py, daten/) entfernt | Eine Struktur ohne Altlasten. Der Prototyp bleibt in der Git-Historie (`main`, Commit "Agent-Gerüst") | entschieden (Jan) |
 
 ## 15. Offene Punkte und Fragen an den Dozenten
 
@@ -526,3 +527,4 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 0.6 | 01.11.2026 | Schritt 5 erledigt (Läufe in Claude Code, 182/182), K5 an Claude delegiert und erledigt. Entscheide D-K5-1 bis D-K5-5, Annahmen S1 bis S4. Ergebnisse und Einordnung in Abschnitt 10, Erwartung in 9 beantwortet, Status 12/13 (AP6 erledigt, AP7 in Arbeit), offene Punkte 15, Risiken 16. Prompt Schritt 6 angelegt. `spec.yaml` unverändert (v0.5.0). |
 | 0.6.1 | 01.11.2026 | Präsentationsdauer 20 Minuten (Vorgabe) statt Annahme 15 Minuten: Abschnitte 1, 11, 14, 15. Folienzeiten unverändert (15 min), Test im Probevortrag. |
 | 0.7 | 01.11.2026 | Schritt 6 erledigt (Demo, K6). Neu: `src/demo.py`, `docs/demo_drehbuch.md`, `out/demo/`, `out/step6_report.md`, 44 Tests. Abschnitte 0 (Lesereihenfolge, Repo-Struktur), 9 (Komponente Demo), 11 (Folie 6 mit Fällen), 12/13 (Status, AP8 in Arbeit, So geht es weiter), 14 (K6, Annahmen D6-A1 bis D6-A9), 15, 16 nachgeführt. `spec.yaml` unverändert (v0.5.0). |
+| 0.7.1 | 01.11.2026 | Repo-Umbau vor dem Merge: Unterordner `wi-projekt_repo_stand_schritt4` aufgelöst (alles im Git-Root), Prototyp `apa-agent/` entfernt. Abschnitte 0 und 14. Inhalte unverändert. |

@@ -1,6 +1,6 @@
 # Drehbuch Demo, Folie 6 (4 Minuten)
 
-Stand 01.11.2026, Schritt 6 (K6 bestanden). Alle Befehle aus dem Repo-Root `wi-projekt_repo_stand_schritt4`.
+Stand 01.11.2026, Schritt 6 (K6 bestanden). Alle Befehle aus dem Repo-Root `apa-agent` (Git-Root).
 Alle Befehle zum Kopieren stehen in Abschnitt 0. Werkzeug: `src/demo.py` (Wrapper um `src/run_agent.py`, Konfiguration wie in der Evaluation: `qwen3.5:9b-q4_K_M`, Prompt v1.2a, T = 0, Seed 42).
 
 Demo-Fälle (entschieden an K6):
@@ -17,7 +17,7 @@ Alle vier sind im Evaluationslauf (`pilot_t0` bzw. `e6_t0`) so entschieden worde
 ## 0. Befehle zum Kopieren
 
 In der Terminal-App ausführen, nicht in Claude Code (die Demo braucht Tastatureingaben). Jeden Block einzeln kopieren, einfügen, Enter.
-**Wichtig:** In jedem neuen Tab zuerst den `cd`-Befehl ausführen. Sonst kommt `can't open file ... src/demo.py`. Mit `pwd` prüfen: Die Ausgabe muss auf `wi-projekt_repo_stand_schritt4` enden.
+**Wichtig:** In jedem neuen Tab zuerst den `cd`-Befehl ausführen. Sonst kommt `can't open file ... src/demo.py`. Mit `pwd` prüfen: Die Ausgabe muss auf `wi-projekt/apa-agent` enden.
 
 ### Tab 1: Ruhezustand verhindern (offen lassen bis zum Schluss, keine Ausgabe)
 
@@ -30,7 +30,7 @@ Neuer Tab: Cmd+T.
 ### Tab 2: Vorabprüfung und Demo
 
 ```
-cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4
+cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent
 ```
 
 Vorabprüfung (ca. 10 s, letzte Zeile muss `BEREIT` sein):
@@ -50,7 +50,7 @@ Neuer Tab: Cmd+T.
 ### Tab 3: Fallback ohne LLM (nur eintippen, erst im Notfall Enter)
 
 ```
-cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4
+cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent
 ```
 
 ```
