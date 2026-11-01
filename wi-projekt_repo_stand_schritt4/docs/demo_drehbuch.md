@@ -1,9 +1,9 @@
 # Drehbuch Demo, Folie 6 (4 Minuten)
 
-Stand 01.11.2026, Schritt 6 (Entwurf bis K6). Alle Befehle aus dem Repo-Root `wi-projekt_repo_stand_schritt4`.
-Kurzform: `PY=~/.venvs/apa-agent/bin/python`. Werkzeug: `src/demo.py` (Wrapper um `src/run_agent.py`, Konfiguration wie in der Evaluation: `qwen3.5:9b-q4_K_M`, Prompt v1.2a, T = 0, Seed 42).
+Stand 01.11.2026, Schritt 6 (K6 bestanden). Alle Befehle aus dem Repo-Root `wi-projekt_repo_stand_schritt4`.
+Alle Befehle zum Kopieren stehen in Abschnitt 0. Werkzeug: `src/demo.py` (Wrapper um `src/run_agent.py`, Konfiguration wie in der Evaluation: `qwen3.5:9b-q4_K_M`, Prompt v1.2a, T = 0, Seed 42).
 
-Demo-Fälle (Empfehlung, Entscheid Jan an K6):
+Demo-Fälle (entschieden an K6):
 
 | # | Fall | Typ | Was er zeigt | Agent | Regel (Baseline) |
 |---|---|---|---|---|---|
@@ -14,6 +14,96 @@ Demo-Fälle (Empfehlung, Entscheid Jan an K6):
 
 Alle vier sind im Evaluationslauf (`pilot_t0` bzw. `e6_t0`) so entschieden worden und live bytegleich reproduziert (16 von 16 Live-Aufrufen in Schritt 6). Keiner ist ein Rauchtestfall (C0317, C0067, C0880 wurden bewusst nicht gewählt).
 
+## 0. Befehle zum Kopieren
+
+In der Terminal-App ausführen, nicht in Claude Code (die Demo braucht Tastatureingaben). Jeden Block einzeln kopieren, einfügen, Enter.
+**Wichtig:** In jedem neuen Tab zuerst den `cd`-Befehl ausführen. Sonst kommt `can't open file ... src/demo.py`. Mit `pwd` prüfen: Die Ausgabe muss auf `wi-projekt_repo_stand_schritt4` enden.
+
+### Tab 1: Ruhezustand verhindern (offen lassen bis zum Schluss, keine Ausgabe)
+
+```
+caffeinate -dis
+```
+
+Neuer Tab: Cmd+T.
+
+### Tab 2: Vorabprüfung und Demo
+
+```
+cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4
+```
+
+Vorabprüfung (ca. 10 s, letzte Zeile muss `BEREIT` sein):
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --check
+```
+
+Demo live starten (wartet auf Enter, ruft das LLM erst dann auf):
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --client ollama --approver Jan --baseline --truth --clear
+```
+
+Neuer Tab: Cmd+T.
+
+### Tab 3: Fallback ohne LLM (nur eintippen, erst im Notfall Enter)
+
+```
+cd /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4
+```
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --client replay --approver Jan --baseline --truth --clear
+```
+
+Fallback ab einem bestimmten Fall (z. B. wenn Fall 1 schon gezeigt war):
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --client replay --cases C0537,C0244 --approver Jan --baseline --truth --clear
+```
+
+### Tasten während der Demo (live und Replay gleich)
+
+| Unten im Terminal steht | Du tippst |
+|---|---|
+| `[Enter] Fall 1/3: C0902` | Enter |
+| (ca. 7 s) `A6 an Credit Management freigeben? [j/n/Enter=offen]` | `j` und Enter |
+| `[Enter] Fall 2/3: C0537` | Enter |
+| (ca. 7 s, keine Freigabefrage) `[Enter] Fall 3/3: C0244` | Enter |
+| (ca. 7 s) `A5 an Kundendienst freigeben? [j/n/Enter=offen]` | `j` und Enter |
+| `ZUSAMMENFASSUNG` | fertig, nichts mehr tippen |
+
+Hängt "lokales LLM entscheidet" länger als 15 s: Ctrl+C, dann in Tab 3 Enter.
+
+### Reserve: echter Fehler C0776 (nur bei Fragen oder Zeitreserve)
+
+Live (in Tab 2, nach der Demo):
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --client ollama --cases C0776 --approver Jan --baseline --truth --clear
+```
+
+Fallback ohne LLM:
+
+```
+~/.venvs/apa-agent/bin/python src/demo.py --client replay --cases C0776 --replay-label demo_reserve_c0776 --approver Jan --baseline --truth --clear
+```
+
+| Unten im Terminal steht | Du tippst |
+|---|---|
+| `[Enter] Fall 1/1: C0776` | Enter |
+| `A6 an Credit Management freigeben? [j/n/Enter=offen]` | `n` und Enter |
+| `Grund (optional):` | `Zahlung angekuendigt` und Enter |
+
+### Nach der Demo: einen Lauf nachlesen (optional)
+
+Das Label steht in der Zusammenfassung (z. B. `demo_live_20261101T190550`):
+
+```
+~/.venvs/apa-agent/bin/python src/audit_view.py --audit out/demo/audit_log_demo.jsonl --label demo_live_20261101T190550
+```
+
 ## 1. Vorbereitung
 
 | Wann | Was | Befehl / Handgriff |
@@ -22,9 +112,9 @@ Alle vier sind im Evaluationslauf (`pilot_t0` bzw. `e6_t0`) so entschieden worde
 | T minus 30 min | Netzteil anschliessen. Fokus "Nicht stören" einschalten. Andere grosse Programme schliessen. Ollama-App nicht beenden oder aktualisieren | |
 | T minus 30 min | Terminal: Profil mit hohem Kontrast, Schrift SF Mono 20 pt (Probe an K6), Fenster mindestens 80 Spalten × 42 Zeilen, Vollbild auf dem Beamer | Terminal > Einstellungen > Profile > Text |
 | T minus 30 min | Tab 1: Ruhezustand verhindern, bis zum Ende offen lassen | `caffeinate -dis` |
-| T minus 15 min | Tab 2: Vorabprüfung und Aufwärmen (ca. 10 s). Erwartung: letzte Zeile `BEREIT`, Modell bleibt 90 min geladen | `$PY src/demo.py --check` |
-| T minus 5 min | Tab 2: Demo starten. Sie wartet auf Enter und ruft das LLM erst dann auf | `$PY src/demo.py --client ollama --approver Jan --baseline --truth --clear` |
-| T minus 5 min | Tab 3: Fallback eintippen, nicht starten | `$PY src/demo.py --client replay --approver Jan --baseline --truth --clear` |
+| T minus 15 min | Tab 2: Vorabprüfung und Aufwärmen (ca. 10 s). Erwartung: letzte Zeile `BEREIT`, Modell bleibt 90 min geladen | `~/.venvs/apa-agent/bin/python src/demo.py --check` |
+| T minus 5 min | Tab 2: Demo starten. Sie wartet auf Enter und ruft das LLM erst dann auf | `~/.venvs/apa-agent/bin/python src/demo.py --client ollama --approver Jan --baseline --truth --clear` |
+| T minus 5 min | Tab 3: Fallback eintippen, nicht starten | `~/.venvs/apa-agent/bin/python src/demo.py --client replay --approver Jan --baseline --truth --clear` |
 | T minus 5 min | Tab 2 sichtbar lassen, zurück zu den Folien | |
 
 `--check` meldet `FEHLT` bei: Ollama nicht erreichbar, anderes Modell oder anderer Digest, Prompt oder Schema geändert, Fallobjekt geändert, Modell nicht vollständig im GPU-Speicher, Aufzeichnung fehlt. Bei `FEHLT` im LLM-Teil direkt mit Tab 3 (Replay) präsentieren.
@@ -56,7 +146,7 @@ Hinweise zum Sprechen:
 Für Fragen wie "Was passiert, wenn das Modell falsch liegt?" oder wenn der Probelauf deutlich unter 3:30 bleibt. Der Fehler ist nicht inszeniert: Es ist der einzige Agentenfehler im E6-Zusatzlauf, bei T = 0 bytegleich reproduziert.
 
 ```
-$PY src/demo.py --client ollama --cases C0776 --approver Jan --baseline --truth --clear
+~/.venvs/apa-agent/bin/python src/demo.py --client ollama --cases C0776 --approver Jan --baseline --truth --clear
 ```
 
 | Bildschirm | Handlung | Sprechtext |
@@ -65,7 +155,7 @@ $PY src/demo.py --client ollama --cases C0776 --approver Jan --baseline --truth 
 | AGENT: A6 an Credit Management. Begründung: "konkrete Zahlungsvereinbarung". SOLL A0: Agent falsch, Regel falsch. GUARDRAILS bestanden | | Das Modell deutet die Ankündigung als Bitte um Aufschub und erfindet eine Vereinbarung. Die Guardrails lassen es durch, weil die Ausgabe formal korrekt ist. |
 | FREIGABE A6 | `n`, Grund "Zahlung angekündigt", Enter | Hier greift die Freigabe: Der Mensch lehnt ab, nichts wird ausgeführt. Bei einer autonomen Aktion (A0 bis A4) gäbe es diese Kontrolle nicht. |
 
-Fallback ohne LLM: `$PY src/demo.py --client replay --cases C0776 --replay-label demo_reserve_c0776 --approver Jan --baseline --truth --clear`.
+Fallback ohne LLM: `~/.venvs/apa-agent/bin/python src/demo.py --client replay --cases C0776 --replay-label demo_reserve_c0776 --approver Jan --baseline --truth --clear`.
 
 ## 4. Notfallplan
 
@@ -86,9 +176,9 @@ Rangfolge der Fallbacks: 1 live, 2 Replay (gleicher Rechner, kein LLM, Start unt
 
 ## 5. Bildschirmaufzeichnung (Jan)
 
-1. Terminal wie für den Vortrag einrichten (Schrift, Fenstergrösse, Vollbild). `$PY src/demo.py --check` ausführen.
+1. Terminal wie für den Vortrag einrichten (Schrift, Fenstergrösse, Vollbild). `~/.venvs/apa-agent/bin/python src/demo.py --check` ausführen.
 2. Cmd+Shift+5, "Ausgewählten Bereich aufnehmen" (Terminal-Fenster). Unter "Optionen": Speicherort Schreibtisch, Mikrofon "Keines" (ohne Ton kann man live darüber sprechen), Timer 5 s. "Aufnehmen". Alternativ QuickTime Player > Ablage > Neue Bildschirmaufnahme (gleicher Dialog).
-3. Im Terminal: `$PY src/demo.py --client ollama --approver Jan --baseline --truth --clear`. Zügig durchklicken: Enter, `j`, Enter, Enter, Enter, `j`, Enter. Ein Lauf dauert so etwa 1 min.
+3. Im Terminal: `~/.venvs/apa-agent/bin/python src/demo.py --client ollama --approver Jan --baseline --truth --clear`. Zügig durchklicken: Enter, `j`, Enter, Enter, Enter, `j`, Enter. Ein Lauf dauert so etwa 1 min.
 4. Stoppen: Stopp-Symbol in der Menüleiste oder Cmd+Ctrl+Esc.
 5. Datei umbenennen in `demo_folie6_live_<TT-MM>.mov`, auf dem Präsentationsrechner und einem zweiten Gerät (USB-Stick oder Cloud) ablegen und einmal abspielen. Nicht ins Git (Grösse), Einbindung in die Folien in Schritt 7.
 6. Optional ein zweites Video mit dem Reservefall C0776.
@@ -105,4 +195,4 @@ Textfassung der Bildschirmausgabe für Screenshots oder Folien: `out/demo/consol
 | `out/demo/agent_actions_demo_reserve_c0776.jsonl` | Aufzeichnung des Reservefalls |
 | `out/demo/console_*.txt` | Textfassungen von `--check`, Live-Lauf, Reservefall |
 
-Nachlesen eines Demo-Laufs: `$PY src/audit_view.py --audit out/demo/audit_log_demo.jsonl --label <label>` (Label steht in der Zusammenfassung).
+Nachlesen eines Demo-Laufs: `~/.venvs/apa-agent/bin/python src/audit_view.py --audit out/demo/audit_log_demo.jsonl --label <label>` (Label steht in der Zusammenfassung).
