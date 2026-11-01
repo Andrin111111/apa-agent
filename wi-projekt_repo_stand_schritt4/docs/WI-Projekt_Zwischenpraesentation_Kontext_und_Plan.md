@@ -2,7 +2,7 @@
 
 | Feld | Wert |
 |---|---|
-| Version | 0.6 |
+| Version | 0.6.1 |
 | Stand | 01.11.2026 |
 | Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 5 erledigt (K1 bis K5). Nächster Schritt: 6 (Demo) |
 | Ziel | Vorbereitung abgeschlossen bis 01.11.2026 (Vorgabe Jan) |
@@ -66,7 +66,7 @@ Labels der Läufe Schritt 5: `pilot_t0`, `e6_t0`, `pilot_t07` (dazu `smoke_v12`,
 |---|---|
 | Thema | 75, Agentic Process Automation: KI-gestützte Erkennung und Bearbeitung von Ausnahmefällen in Geschäftsprozessen |
 | Zwischenpräsentation | 20 % der Note. Vorgabe: bis SW 07. Genauer Termin nicht bestätigt. |
-| Dauer | Annahme: 15 Minuten (keine Vorgabe erhalten) |
+| Dauer | 20 Minuten (Vorgabe) |
 | Schlussabgabe | Januar 2027, 80 % der Note. Genaues Datum zu klären. |
 | Leistungsnachweis | Art (Artefakt, Bericht, Präsentation) schriftlich durch Dozierende. Liegt nicht vor. |
 | Methodik | Wird von Dozierenden vorgegeben. Noch unbekannt. |
@@ -316,7 +316,7 @@ E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von
 
 ## 11. Zwischenpräsentation
 
-**Termin:** offen, beim Dozenten bestätigen. **Dauer:** Annahme 15 Minuten.
+**Termin:** offen, beim Dozenten bestätigen. **Dauer:** 20 Minuten (Vorgabe). Die Folienzeiten unten ergeben 15 Minuten und bleiben vorerst so (Entscheid Jan 01.11.2026). Ob die Zeit aufgeht, zeigt der Probevortrag (K7), danach Zeiten anpassen.
 
 | Folie | Inhalt | Zeit | Quelle |
 |---|---|---|---|
@@ -329,7 +329,7 @@ E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von
 | 7 | Evaluationskonzept und Pilot-Zwischenstand | 2 min | Abschnitt 10, Formulierung `out/step5_report.md` Abschnitt 9 (D-K5-5) |
 | 8 | Plan bis Januar, offene Fragen | 1,5 min | Abschnitt 12, 15 |
 
-Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
+Summe Folienzeiten: 15 min, Rest 5 min (Puffer, Übergänge, Q&A je nach Vorgabe). Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 
 **Erwartete Fragen:**
 - Zirkularität: eigene Ausnahmen, eigene Regeln, wie ist die Evaluation aussagekräftig?
@@ -416,7 +416,8 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 31.10.2026 | D3: Ermessensrichtlinie vage, keine Schwellenwerte | E7 im Pilot nur Konzept | entschieden |
 | 31.10.2026 | D4: Kein Feld `needs_human`. Enthaltung = `unknown` + A6 | Redundanz vermeiden, Enthaltung messbar | entschieden |
 | 31.10.2026 | D5: Aktionskorrektheit mit exaktem Mengenvergleich | Teilmenge wäre zu milde | entschieden |
-| 31.10.2026 | Annahme: Präsentationsdauer 15 Minuten | Keine Vorgabe erhalten | Annahme, bei Rückmeldung anpassen |
+| 31.10.2026 | Annahme: Präsentationsdauer 15 Minuten | Keine Vorgabe erhalten | ersetzt durch Vorgabe 20 Minuten (01.11.2026) |
+| 01.11.2026 | Präsentationsdauer 20 Minuten. Folienzeiten bleiben vorerst bei 15 min, Prüfung im Probevortrag | Vorgabe; Verteilung erst nach Zeittest | entschieden |
 | 31.10.2026 | "Mahnung stoppen" ist durch A5 abgedeckt, keine eigene Aktion | Nicht im Katalog, im Prototyp nur Simulation | entschieden |
 | 31.10.2026 | Generator erzeugt alle fünf Typen inkl. E7, Pilot nur E2, E3, E6 | Verteilung aus Abschnitt 8 bleibt gültig | entschieden |
 | 31.10.2026 | Vorrangregel E7 vor E2/E3 in der Erkennung. E7-Ground-Truth bleibt bis Labeling leer. | Verhindert verfälschte Metriken zu E2 und E3 | entschieden |
@@ -455,7 +456,7 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 
 ## 15. Offene Punkte und Fragen an den Dozenten
 
-- [ ] Fragen an Winter nach der Zwischenpräsentation klären (Entscheid Jan, Mail-Entwurf nicht gesendet): Termin und Dauer, schriftlicher Leistungsnachweis, Methodik (z. B. Design Science Research), LLM lokal erlaubt und Key später, Meetingrhythmus und Sprints
+- [ ] Fragen an Winter nach der Zwischenpräsentation klären (Entscheid Jan, Mail-Entwurf nicht gesendet): Termin, schriftlicher Leistungsnachweis, Methodik (z. B. Design Science Research), LLM lokal erlaubt und Key später, Meetingrhythmus und Sprints
 - [x] Modellwahl für das lokale LLM: `qwen3.5:9b-q4_K_M` (D-K4-1)
 - [x] Spezifikation gegengelesen (K1), Go für Schritt 2 erteilt
 - [x] K2 freigegeben
@@ -513,3 +514,4 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 0.4 | 01.11.2026 | K2 und K3 freigegeben, Schritt 3 erledigt. Entscheide D-K3-1 bis D-K3-3, Bewertungsregeln M1 bis M4, Annahmen AN1 bis AN6. Baseline-Ergebnisse (10), E6-Zusatzlauf, E6-Trigger in 5.1 an spec angeglichen, E5 Zeitstempel. Neu: Prompt Schritt 4, Begriffe Baseline und Mutantenprüfung, Risiken. `spec.yaml` v0.4.0. |
 | 0.5 | 01.11.2026 | Schritt 4 erledigt, K4-Entscheide D-K4-1 bis D-K4-7 getroffen. Modell `qwen3.5:9b-q4_K_M` (MLX-Build ohne Schema-Erzwingung ausgeschlossen), Prompt v1.2, Guardrail `case_id_match`, Freigabe-Modi, Bewertung roh und strikt, Temperaturlauf T 0,7 mit Seed pro Run. Abschnitte 0, 9, 10, 12 bis 16 nachgeführt. `spec.yaml` v0.5.0. |
 | 0.6 | 01.11.2026 | Schritt 5 erledigt (Läufe in Claude Code, 182/182), K5 an Claude delegiert und erledigt. Entscheide D-K5-1 bis D-K5-5, Annahmen S1 bis S4. Ergebnisse und Einordnung in Abschnitt 10, Erwartung in 9 beantwortet, Status 12/13 (AP6 erledigt, AP7 in Arbeit), offene Punkte 15, Risiken 16. Prompt Schritt 6 angelegt. `spec.yaml` unverändert (v0.5.0). |
+| 0.6.1 | 01.11.2026 | Präsentationsdauer 20 Minuten (Vorgabe) statt Annahme 15 Minuten: Abschnitte 1, 11, 14, 15. Folienzeiten unverändert (15 min), Test im Probevortrag. |
