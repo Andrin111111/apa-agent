@@ -1,0 +1,110 @@
+==============================================================================
+ APA-Agent Demo | Order-to-Cash, Ausnahmefaelle
+ Modus LIVE: lokales LLM (Ollama), offline
+ Modell qwen3.5:9b-q4_K_M | Prompt v1.2a | T=0 | Seed 42
+ Konfiguration wie Evaluation (Prompt, Schema, Modell, T, Seed)
+ Erkennung > Fallobjekt > LLM > Guardrails > Freigabe > Aktion > Audit-Log
+==============================================================================
+
+------------------------------------------------------------------------------
+ Fall 1/3  C0902   E2 Kreditlimit ueberschritten
+------------------------------------------------------------------------------
+ FALL        was die Regel-Erkennung liefert
+    Erkennung   : E2 per Regel (deterministisch, ohne LLM)
+    Trigger     : E2 | Stichtag 02.03.2026
+    Kredit      : Limit CHF 100'000, Engagement CHF 132'431 (+32,4 %)
+    Kunde       : Zahlungshistorie schlecht, Segment B
+    Freitext    : -
+
+    ... lokales LLM entscheidet (ca. 7 s)
+ AGENT       qwen3.5:9b-q4_K_M, lokal, T=0, Seed 42                      7,0 s
+    Typ         : E2 Kreditlimit ueberschritten
+    Aktionen    : A6 Eskalieren an Credit Management  [Freigabe noetig]
+    Begruendung (Text des Modells, nicht geprueft):
+      Der Fall zeigt eine klare Überschreitung des Kreditlimits (Exposure
+      132.431 CHF vs. Limit 100.000 CHF), was den Ausnahmetyp E2 auslöst.
+      Gemäss der verbindlichen Zuordnung für E2 ist die automatische
+      Weiterleitung an das Credit Management erforderlich, um über eine
+      eventuelle Freigabe oder Sperrung zu entscheiden.
+ REGEL       A6 Eskalieren an Credit Management  -> gleich wie Agent
+ SOLL        A6 an Credit Management (Ground Truth)  -> Agent korrekt, Regel korrekt
+ GUARDRAILS  bestanden (prueft Form, nicht fachliche Richtigkeit)
+ FREIGABE    Mensch entscheidet (A6, Autonomiestufe 'Freigabe')
+    A6 an Credit Management freigeben? [j/n/Enter=offen] j
+ ERGEBNIS    executed (alles ausgefuehrt)
+    ausgefuehrt : Fall eskaliert an Credit Management (simuliert)
+    Freigabe    : A6 freigegeben von Jan um 18:45:33
+ REPRO       Ausgabe bytegleich mit Evaluationslauf pilot_t0 vom 01.11.2026
+
+------------------------------------------------------------------------------
+ Fall 2/3  C0537   E3 Lieferverzoegerung
+------------------------------------------------------------------------------
+ FALL        was die Regel-Erkennung liefert
+    Erkennung   : E3 per Regel (deterministisch, ohne LLM)
+    Trigger     : E3 | Stichtag 05.07.2026
+    Liefertermin: 06.07.2026, morgen (in 1 Tag), nicht versendet
+    Stand       : letzte Aktivitaet: Kommissionieren
+    Freitext    : -
+
+    ... lokales LLM entscheidet (ca. 7 s)
+ AGENT       qwen3.5:9b-q4_K_M, lokal, T=0, Seed 42                      6,8 s
+    Typ         : E3 Lieferverzoegerung
+    Aktionen    : A4 Priorisieren  [autonom]
+                  A2 Kunde informieren  [autonom]
+    Begruendung (Text des Modells, nicht geprueft):
+      Der Fall ist als E3 (Lieferverzögerung) markiert, da der zugesagte
+      Liefertermin in 1 Tag liegt und die Ware noch nicht versendet wurde.
+      Gemäss den verbindlichen Zuordnungen für E3 sind nur A4 (Priorisieren),
+      A2 (Kunde informieren) oder die Kombination davon zulässig. Da der
+      Termin sehr knapp ist, wird der Kunde informiert und der Fall
+      priorisiert.
+ REGEL       A4 Priorisieren, A2 Kunde informieren  -> gleich wie Agent
+ SOLL        A4 oder A2 oder A2+A4 (Ground Truth)  -> Agent korrekt, Regel korrekt
+ GUARDRAILS  bestanden (prueft Form, nicht fachliche Richtigkeit)
+ FREIGABE    nicht noetig, Aktionen sind autonom (laufen sofort)
+ ERGEBNIS    executed (alles ausgefuehrt)
+    ausgefuehrt : Fall priorisiert (sichtbar in der Arbeitsliste) (simuliert)
+    ausgefuehrt : Kundeninformation versendet (simuliert)
+ REPRO       Ausgabe bytegleich mit Evaluationslauf pilot_t0 vom 01.11.2026
+
+------------------------------------------------------------------------------
+ Fall 3/3  C0244   E6 Zahlungsverzug mit Kundenkommunikation
+------------------------------------------------------------------------------
+ FALL        was die Regel-Erkennung liefert
+    Erkennung   : E6 per Regel (deterministisch, ohne LLM)
+    Trigger     : E6 + Freitext eingegangen | Stichtag 19.05.2026
+    Rechnung    : 39 Tage ueberfaellig (faellig 10.04.2026), nicht bezahlt
+    Kunde       : Zahlungshistorie schlecht, Mahnungen bisher 0
+    Freitext    : "Von den 40 Kartons, die am 28.03.2026 bei uns eingetroffen
+                  sind, waren 12 durchnaesst. Der Inhalt ist nicht mehr
+                  brauchbar."
+
+    ... lokales LLM entscheidet (ca. 7 s)
+ AGENT       qwen3.5:9b-q4_K_M, lokal, T=0, Seed 42                      7,0 s
+    Typ         : E6 Zahlungsverzug mit Kundenkommunikation
+    Aktionen    : A5 Neu zuweisen an Kundendienst  [Freigabe noetig]
+    Begruendung (Text des Modells, nicht geprueft):
+      Der Kunde meldet einen Mangel an Ware (durchnässte, unbrauchbare Teile).
+      Gemäß der Zuordnung für Ausnahmetyp E6 hat eine Meldung auf Mängel
+      Vorrang vor Mahnprozessen. Daher ist die Überweisung an den Kundendienst
+      zur Bearbeitung der Reklamation erforderlich.
+ REGEL       A3 Naechsten Schritt empfehlen (Mahnung)  -> ANDERS als Agent
+                  Keyword-Regel ordnet den Freitext als 'irrelevant' ein
+ SOLL        A5 an Kundendienst (Ground Truth)  -> Agent korrekt, Regel FALSCH
+ GUARDRAILS  bestanden (prueft Form, nicht fachliche Richtigkeit)
+ FREIGABE    Mensch entscheidet (A5, Autonomiestufe 'Freigabe')
+    A5 an Kundendienst freigeben? [j/n/Enter=offen] j
+ ERGEBNIS    executed (alles ausgefuehrt)
+    ausgefuehrt : Fall neu zugewiesen an Kundendienst (simuliert)
+    Freigabe    : A5 freigegeben von Jan um 18:45:47
+ REPRO       Ausgabe bytegleich mit Evaluationslauf e6_t0 vom 01.11.2026
+
+==============================================================================
+ ZUSAMMENFASSUNG  3 Faelle | Label demo_snapshot2
+    C0902  E2   A6/Credit Management     freigegeben  executed
+    C0537  E3   A4+A2                    autonom      executed
+    C0244  E6   A5/Kundendienst          freigegeben  executed
+ Audit-Log: out/demo/audit_log_demo.jsonl
+ Nachlesen: python src/audit_view.py --audit out/demo/audit_log_demo.jsonl \
+            --label demo_snapshot2
+==============================================================================

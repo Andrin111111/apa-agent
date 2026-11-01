@@ -145,7 +145,9 @@ def make_client(a, spec, audit_path):
 
 # ---------------------------------------------------------------- Lauf
 
-def run(a, ask=input, show=print):
+def run(a, ask=input, show=print, on_decision=None):
+    """on_decision(entry, gr): optional, nach Guardrails und vor der Freigabe (Anzeige in src/demo.py).
+    Darf nichts veraendern. entry wird danach um Freigabe, Ausfuehrung und Disposition ergaenzt."""
     spec = load_spec()
     out_dir = Path(a.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -227,6 +229,8 @@ def run(a, ask=input, show=print):
                     stats["warnings"][x["rule"]] = stats["warnings"].get(x["rule"], 0) + 1
                 if gr.parsed is None:
                     stats["parse_errors"] += 1
+                if on_decision is not None:
+                    on_decision(entry, gr)
 
                 if not gr.passed:
                     stats["guardrail_blocked"] += 1

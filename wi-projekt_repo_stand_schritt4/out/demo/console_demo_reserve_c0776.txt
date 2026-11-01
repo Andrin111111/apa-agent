@@ -1,0 +1,47 @@
+==============================================================================
+ APA-Agent Demo | Order-to-Cash, Ausnahmefaelle
+ Modus LIVE: lokales LLM (Ollama), offline
+ Modell qwen3.5:9b-q4_K_M | Prompt v1.2a | T=0 | Seed 42
+ Konfiguration wie Evaluation (Prompt, Schema, Modell, T, Seed)
+ Erkennung > Fallobjekt > LLM > Guardrails > Freigabe > Aktion > Audit-Log
+==============================================================================
+
+------------------------------------------------------------------------------
+ Fall 1/1  C0776   E6 Zahlungsverzug mit Kundenkommunikation
+------------------------------------------------------------------------------
+ FALL        was die Regel-Erkennung liefert
+    Erkennung   : E6 per Regel (deterministisch, ohne LLM)
+    Trigger     : E6 + Freitext eingegangen | Stichtag 06.03.2026
+    Rechnung    : 28 Tage ueberfaellig (faellig 06.02.2026), nicht bezahlt
+    Kunde       : Zahlungshistorie mittel, Mahnungen bisher 0
+    Freitext    : "Wir hatten eine Systemumstellung im Kreditorenwesen. Der
+                  offene Betrag ist im naechsten Lauf am 23.03.2026 enthalten
+                  und wird Ihnen dann gutgeschrieben."
+
+    ... lokales LLM entscheidet (ca. 7 s)
+ AGENT       qwen3.5:9b-q4_K_M, lokal, T=0, Seed 42                      7,5 s
+    Typ         : E6 Zahlungsverzug mit Kundenkommunikation
+    Aktionen    : A6 Eskalieren an Credit Management  [Freigabe noetig]
+    Begruendung (Text des Modells, nicht geprueft):
+      Die Rechnung ist seit 28 Tagen faellig (E6), aber der Kunde hat in der
+      Nachricht eine konkrete Zahlungsvereinbarung getroffen, die den
+      Zahlungseingang verschiebt. Gemass der Zuordnung fuer E6 bei Hinweis auf
+      Zahlungsschwierigkeiten oder Bitte um Aufschub ist A6 an Credit
+      Management erforderlich.
+ REGEL       A3 Naechsten Schritt empfehlen (Mahnung)  -> ANDERS als Agent
+                  Keyword-Regel ordnet den Freitext als 'irrelevant' ein
+ GUARDRAILS  bestanden (prueft Form, nicht fachliche Richtigkeit)
+ FREIGABE    Mensch entscheidet (A6, Autonomiestufe 'Freigabe')
+    A6 an Credit Management freigeben? [j/n/Enter=offen] j
+ ERGEBNIS    executed (alles ausgefuehrt)
+    ausgefuehrt : Fall eskaliert an Credit Management (simuliert)
+    Freigabe    : A6 freigegeben von Jan um 18:44:03
+ REPRO       Ausgabe bytegleich mit Evaluationslauf e6_t0 vom 01.11.2026
+
+==============================================================================
+ ZUSAMMENFASSUNG  1 Faelle | Label demo_reserve_c0776
+    C0776  E6   A6/Credit Management     freigegeben  executed
+ Audit-Log: out/demo/audit_log_demo.jsonl
+ Nachlesen: python src/audit_view.py --audit out/demo/audit_log_demo.jsonl \
+            --label demo_reserve_c0776
+==============================================================================

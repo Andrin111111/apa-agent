@@ -2,9 +2,9 @@
 
 | Feld | Wert |
 |---|---|
-| Version | 0.6.1 |
+| Version | 0.7 |
 | Stand | 01.11.2026 |
-| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 5 erledigt (K1 bis K5). Nächster Schritt: 6 (Demo) |
+| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 6 erledigt (K1 bis K6). Nächster Schritt: 7 (Folien) |
 | Ziel | Vorbereitung abgeschlossen bis 01.11.2026 (Vorgabe Jan) |
 | Betreuung | Michael Winter (Thema 75); Modulverantwortung Dr. Stefan Koruna (koru@zhaw.ch) |
 | Ersetzt | `WI-Projekt_Projektkontext.md` v0.1 (inhaltlich vollständig übernommen und konsolidiert) |
@@ -17,7 +17,7 @@
 
 **Zweck:** Dieses Dokument ist die zentrale Arbeitsgrundlage, um die Zwischenpräsentation zu erstellen: Konzept, Entscheide, Plan, Artefakte und Status. Wer damit weiterarbeitet (anderer Chat im Projekt oder Claude Code), soll den aktuellen Stand ohne Rückfragen kennen.
 
-**Lesereihenfolge:** Abschnitt 12 (Plan, Status, nächster Schritt) und 14 (Entscheidungen) zuerst, dann 5 bis 10 für Inhalte. Für Schritt 6 liegt ein fertiger Prompt bereit: `docs/prompt_schritt6_demo.md`. Ergebnisse: `out/step3_report.md` (Erkennung, Baseline), `out/step4_report.md` (Agent-Kern), `out/step5_report.md` (Pilotläufe, K5). Bedienung des Repos: `README.md`.
+**Lesereihenfolge:** Abschnitt 12 (Plan, Status, nächster Schritt) und 14 (Entscheidungen) zuerst, dann 5 bis 10 für Inhalte. Für Schritt 7 (Folien) gibt es noch keinen Prompt, Grundlage sind Abschnitt 11 und `docs/briefing_folien_geruest.md`. Ergebnisse: `out/step3_report.md` (Erkennung, Baseline), `out/step4_report.md` (Agent-Kern), `out/step5_report.md` (Pilotläufe, K5), `out/step6_report.md` (Demo, K6). Demo-Ablauf: `docs/demo_drehbuch.md`. Bedienung des Repos: `README.md`.
 
 **Arbeitsmodus:**
 - Claude arbeitet als ausführender Agent und liefert Artefakte. Jan kontrolliert an definierten Kontrollpunkten (K1 bis K7). Ohne Freigabe geht Claude nicht über einen Kontrollpunkt hinaus.
@@ -35,16 +35,17 @@
 
 **Pflege:** Bei jeder Änderung Version und Stand anpassen, Entscheide in Abschnitt 14, Änderungen in Abschnitt 17 und Status in Abschnitt 12/13 nachführen. Nicht entschiedene Vorschläge als "Entwurf", "Annahme" oder "offen" kennzeichnen.
 
-**Repo-Struktur (Stand v0.6, * = noch nicht erstellt):**
+**Repo-Struktur (Stand v0.7, * = noch nicht erstellt):**
 ```
 README.md  Bedienung und Status
-docs/      dieses Dokument, Prompts Schritt 3, 4 und 6, ANLEITUNG_lokal.md, ANLEITUNG_apromore.md
-tests/     37 Unit-Tests (python -m unittest discover -s tests)
+docs/      dieses Dokument, Prompts Schritt 3, 4 und 6, ANLEITUNG_lokal.md, ANLEITUNG_apromore.md,
+           demo_drehbuch.md, briefing_folien_geruest.md
+tests/     44 Unit-Tests (python -m unittest discover -s tests)
 spec/      spec.yaml
 src/       generate_log.py, validate_log.py, make_k2.py, extern_tasks.py, keyword_labeler.py,
            detect.py, detect_checks.py, baseline.py, metrics.py, export_apromore.py
            case_object.py, llm_client.py, guardrails.py, approval.py, run_agent.py, audit_view.py,
-           step5_eval.py, *demo.py
+           step5_eval.py, demo.py
 prompts/   extern/ (Prompts für externe Modelle, Iteration 2), agent_prompt.md (v1.2)
 data/      event_log.csv, cases.csv, ground_truth.csv, freitext_vorlagen.yaml,
            pilot_sample.csv, labeling_e6_blind.csv, labeling/ (label_items, label_key)
@@ -53,10 +54,12 @@ out/       generation_report.md, labeling_report.md, k2_befunde.md, step3_report
            errors_baseline.csv, step4_report.md, audit_log.jsonl,
            agent_actions_<label>.jsonl, agent_run_<label>.json, metrics_<label>.(md|json), errors_<label>.csv,
            step5_report.md, step5_tables.md, step5_errors.csv, k5_* (Stichprobe, Prüfprotokoll),
-           console_<label>.log, apromore/ (Import für AP7)
+           console_<label>.log, apromore/ (Import für AP7), step6_report.md,
+           demo/ (audit_log_demo.jsonl, Aufzeichnungen demo_ref und demo_reserve_c0776, console_*.txt)
 slides/    *Zwischenpräsentation (.pptx), Grafiken
 ```
 Labels der Läufe Schritt 5: `pilot_t0`, `e6_t0`, `pilot_t07` (dazu `smoke_v12`, `mock`, `mock_replay`).
+Labels der Demo (nur in `out/demo/audit_log_demo.jsonl`): `demo_ref` (Quelle des Replays), `demo_reserve_c0776`, `demo_live_<Zeit>`, `demo_replay_<Zeit>`, Testläufe `demo_test_*` und `demo_snapshot*`.
 
 ---
 
@@ -243,8 +246,9 @@ Event Log → Erkennung (Regeln + Conformance, PM4Py) → Fallobjekt → Agent (
 | Erkennung | deterministisch, `evaluate(case, events, now)` (`src/detect.py`), regel- und conformance-basiert. Fristen auf Tagesbasis, Reihenfolge (E5) nach Zeitstempel. Zusätzlich weicher Trigger: Fall mit Freitext geht an den Agenten. 370 Fälle geroutet |
 | Agent | wählt nur Aktionen aus dem Katalog, Begründung und `key_evidence` als Pflichtfelder (im Schema vor der Entscheidung), JSON-Schema, Temperatur 0, fester Seed, Denkmodus aus. Fallobjekt (`src/case_object.py`) ohne Ground Truth. Prompt `prompts/agent_prompt.md` v1.2, Variante a (volle Zuordnung), Variante b (ohne Zuordnung) als spätere Ablation. Die Ermessensrichtlinie gilt nur bei E7, bei E2, E3, E5, E6 und none ist die Zuordnung bindend |
 | Guardrails | Katalogzugehörigkeit, Autonomiestufe, Rolle existiert, Schema, Begründung vorhanden, `unknown` erfordert A6, `case_id_match` (blockierend). Bei Verstoss kein Neuversuch: Ausgabe blockiert, Fall geht an einen Menschen. Fachlich falsche, aber schemakonforme Aktionen fangen die Guardrails nicht ab |
-| Human-Approval | Freigabe für A5 bis A7 und für E7 (`src/approval.py`). Modus batch (Schritt 5): nichts wird freigegeben, A5 bis A7 bleiben `pending`. Modus interaktiv (Demo): j/n/offen mit Name und Zeitstempel. Dispositionen: `executed`, `pending_approval`, `partially_executed_pending_approval`, `rejected_by_human`, `blocked_to_human`, `llm_error` |
+| Human-Approval | Freigabe für A5 bis A7 und für E7 (`src/approval.py`). Modus batch (Schritt 5): nichts wird freigegeben, A5 bis A7 bleiben `pending`. Modus interaktiv (Demo, `src/demo.py`): j/n/offen mit Name und Zeitstempel. Dispositionen: `executed`, `pending_approval`, `partially_executed_pending_approval`, `rejected_by_human`, `blocked_to_human`, `llm_error` |
 | Audit-Log | Input, Aktion, Begründung, Guardrail-Ergebnis, Freigabeentscheid, Zeitstempel (`audit_log.jsonl`) |
+| Demo | `src/demo.py`: Wrapper um `run_agent.run` (einzige Änderung dort: optionaler Hook `on_decision`), ein Aufruf pro Fall, live oder Replay einer Aufzeichnung, eigenes Audit-Log `out/demo/audit_log_demo.jsonl`. Vorabprüfung `--check` (Version, Digest, Hashes, Schema, Aufwärmen). Anzeige optional mit Baseline (`--baseline`) und Soll (`--truth`, nur Anzeige). Drehbuch `docs/demo_drehbuch.md` |
 | Baseline | `src/baseline.py`: Regelzuordnung Ausnahmetyp → Aktion, gleiche Fälle, Ausgabe im Agentenformat. E3: A4+A2. E6: Kategorie per Keyword-Klassifikator. E7: A6 Credit Management (nicht bewertet) |
 | Metriken | `src/metrics.py`: wertet jede Aktionsdatei im Agentenformat aus (alle Fälle und Pilot, k Runs, Schema-Vorprüfung) |
 
@@ -325,7 +329,7 @@ E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von
 | 3 | Referenzprozess und Ausnahmefälle (deterministisch vs. Ermessen) | 2 min | Abschnitt 4, 5, Prozessgrafik (PM4Py/Apromore) |
 | 4 | Handlungskatalog und Autonomiestufen | 1 min | Abschnitt 6 |
 | 5 | Architektur und Determinismus-Konzept | 2 min | Abschnitt 9, Architekturgrafik |
-| 6 | Demo: E2 (Eskalation mit Freigabe), E3 (autonome Priorisierung), E6 (Ermessen) | 4 min | `demo.py`, `audit_log.jsonl`. Fallback: Aufzeichnung. |
+| 6 | Demo: E2 C0902 (Eskalation mit Freigabe), E3 C0537 (autonome Priorisierung), E6 C0244 (indirekte Reklamation, Ermessen). Reserve C0776 (echter Fehler, Freigabe fängt ihn ab) | 4 min | `src/demo.py`, `docs/demo_drehbuch.md`, `out/demo/`. Fallback: Replay, dann Aufzeichnung |
 | 7 | Evaluationskonzept und Pilot-Zwischenstand | 2 min | Abschnitt 10, Formulierung `out/step5_report.md` Abschnitt 9 (D-K5-5) |
 | 8 | Plan bis Januar, offene Fragen | 1,5 min | Abschnitt 12, 15 |
 
@@ -351,9 +355,9 @@ Summe Folienzeiten: 15 min, Rest 5 min (Puffer, Übergänge, Q&A je nach Vorgabe
 | 3 | Erkennung und Baseline | AP3, AP6 | Claude | `detect.py`, `detect_checks.py`, `baseline.py`, `metrics.py`, `step3_report.md` | K3: Precision/Recall, 5 Fehlerfälle prüfen | erledigt (K3 freigegeben 01.11.2026) |
 | 4 | Agent-Kern | AP4, AP5 | Claude | `case_object.py`, `agent_prompt.md`, `llm_client.py`, `guardrails.py`, `approval.py`, `run_agent.py`, `audit_log.jsonl`, Modellvorschlag | K4: Prompt, Guardrails und Modellwahl entscheiden, 3 Audit-Einträge prüfen | erledigt (Entscheide Jan 01.11.2026, Rauchtest 6/6 bestanden mit Prompt v1.2) |
 | 5 | Pilotlauf (20 Fälle, k = 3) und E6-Zusatzlauf (80 Fälle, k = 1) | AP6 | Claude (Läufe und Auswertung in Claude Code) | `step5_eval.py`, `step5_report.md`, `k5_*` | K5: Begründungsraster stichprobenartig bewerten | erledigt (Läufe 182/182, K5 an Claude delegiert, Entscheide D-K5-1 bis D-K5-5) |
-| 6 | Demo (E2, E3, E6) | AP8 | Claude | `demo.py`, Screenshots, Aufzeichnung | K6: Probelauf bei Jan | offen |
+| 6 | Demo (E2, E3, E6) | AP8 | Claude | `demo.py`, `demo_drehbuch.md`, `out/demo/`, `step6_report.md`, Aufzeichnung (Jan) | K6: Probelauf bei Jan | erledigt (K6: Probelauf live und Replay bei Jan bestanden). Bildschirmaufzeichnung offen (Jan, wenn die Demo final ist) |
 | 7 | Folien | AP8 | Claude | `.pptx`, Sprechnotizen, Q&A | K7: inhaltlich und Probevortrag | offen |
-| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.6 nach K5) |
+| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.7 nach K6) |
 
 **Reihenfolge:** 1 → 2 → 3 → 4 → 5 → 6. Folien-Gerüst und Grafiken nach K1 parallel, Finalisierung nach dem Pilot.
 
@@ -373,15 +377,15 @@ Summe Folienzeiten: 15 min, Rest 5 min (Puffer, Übergänge, Q&A je nach Vorgabe
 | Iteration 2 (optional) | Externe Revision und externes Labeling nach `prompts/extern/ANLEITUNG.md`. Die Datei `labeling_e6_blind.csv` (15 Fälle) bleibt als Reserve für ein menschliches Labeling | Unabhängige Labels |
 | Ab K7 | Folien lesen, Rollen und Redezeiten verteilen, Probevortrag | Sprechplan, Zeitcheck |
 
-### So geht es weiter (Stand 01.11.2026, nach K5)
+### So geht es weiter (Stand 01.11.2026, nach K6)
 
 | # | Wer | Was | Dauer |
 |---|---|---|---|
-| 1 | Jan | Neuen Chat in Claude Code mit `docs/prompt_schritt6_demo.md` starten (Repo, Ollama mit `qwen3.5:9b-q4_K_M` laufend) | 5 min |
-| 2 | Claude | Schritt 6: `demo.py` (E2, E3, E6, interaktive Freigabe), Demo-Drehbuch, Fallback-Aufzeichnung vorbereiten | |
-| 3 | Jan | K6: Probelauf der Demo | 15 min |
-| 4 | Claude | Schritt 7: Folien (Folie 7 nach D-K5-5) | |
-| parallel | Gruppe | Apromore-Import nach `docs/ANLEITUNG_apromore.md` (AP7), Screenshots für Folie 3 | 45 bis 60 min |
+| 1 | Jan | Neuen Chat für Schritt 7 starten. Grundlage: Abschnitt 11, `docs/briefing_folien_geruest.md`, `out/step5_report.md` Abschnitt 9, `out/step6_report.md`. Ein Prompt für Schritt 7 fehlt noch | 5 min |
+| 2 | Claude | Schritt 7: Folien, Sprechnotizen, Q&A (Folie 6 nach `docs/demo_drehbuch.md`, Folie 7 nach D-K5-5) | |
+| 3 | Jan | Bildschirmaufzeichnung der Demo, sobald sie final ist (`docs/demo_drehbuch.md` Abschnitt 5) | 15 min |
+| 4 | Jan, Gruppe | K7: Folien prüfen, Probevortrag mit Live-Demo und Stoppuhr | |
+| parallel | Gruppe | Apromore-Import nach `docs/ANLEITUNG_apromore.md` (AP7), Screenshots für Folie 3. Folien-Gerüst nach `docs/briefing_folien_geruest.md`, falls noch offen | 45 bis 60 min |
 
 ## 13. Arbeitspakete (Übersicht)
 
@@ -394,7 +398,7 @@ Summe Folienzeiten: 15 min, Rest 5 min (Puffer, Übergänge, Q&A je nach Vorgabe
 | AP5 | Guardrails, Approval-Schritt, Audit-Log | Claude | erledigt (K4) |
 | AP6 | Baseline und Kennzahlen, Pilotauswertung | Claude | erledigt (K5) |
 | AP7 | Apromore-Visualisierung für Folien | Gruppenmitglieder 2 und 3 | in Arbeit (Export und Anleitung vorbereitet, Import durch Gruppe offen) |
-| AP8 | Demo und Folien Zwischenpräsentation | Claude erstellt, Gruppe übt | offen |
+| AP8 | Demo und Folien Zwischenpräsentation | Claude erstellt, Gruppe übt | in Arbeit (Demo erledigt, K6; Folien offen) |
 
 Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wird als Prozessgrafik umgesetzt (PM4Py oder Diagramm).
 
@@ -453,6 +457,8 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 01.11.2026 | D-K5-5: Folie 7 berichtet E6 getrennt nach direkt/indirekt mit Einschränkung (Obergrenze, gleicher Autor) | Gesamtzahl 98,8 % wäre ohne Einschränkung angreifbar | entschieden |
 | 01.11.2026 | K5-Bewertung an Claude delegiert, regelgeleitet (Prüfprotokoll Aussage für Aussage) | Tempo bis zur Zwischenpräsentation | entschieden, Limitation (nicht unabhängig) |
 | 01.11.2026 | Annahmen Schritt 5: S1 venv ausserhalb des Repos (Python 3.15). S2 K5-Stichprobe geschichtet nach Typ, Kategorie und Stil, eine Vorlage höchstens einmal, Fehler als Zusatzitems ausserhalb des Mittelwerts. S3 Vergleich Agent/Baseline zusätzlich auf Vorlagenebene (Vorzeichentest). S4 Läufe nacheinander, nicht parallel | Details in `out/step5_report.md` | Annahme |
+| 01.11.2026 | K6: Demo-Fälle C0902 (E2), C0537 (E3), C0244 (E6), Reserve C0776. Ehrlichkeitspunkt: Begründung bei C0902 behauptet "automatische Weiterleitung", das System hält zur Freigabe an. Auf dem Bildschirm dauerhaft "Begründung nicht geprüft" und "Guardrails prüfen Form, nicht fachliche Richtigkeit". Vergleich mit Baseline und Soll (`--baseline --truth`). Kein simulierter Fehler (Mock) | Keine Rauchtestfälle. Fälle stabil, live 16/16 bytegleich mit der Evaluation. Grenze echt statt inszeniert | entschieden (Empfehlung Schritt 6, Probelauf von Jan freigegeben) |
+| 01.11.2026 | Annahmen Schritt 6: D6-A1 Demo-Dateien in `out/demo/`. D6-A2 Replay aus eigener Live-Aufzeichnung `demo_ref` (bytegleich mit Evaluation). D6-A3 ein `run()`-Aufruf pro Fall, Label mit Zeitstempel. D6-A4 Timeout 30 s in der Demo. D6-A5 `--truth` zeigt Ground Truth nur in der Anzeige. D6-A6 Reihenfolge E2, E3, E6. D6-A7 `--check` wärmt an C0556 auf (ohne Audit-Eintrag), Modell 90 min geladen. D6-A8 Testläufe bleiben im Demo-Audit-Log. D6-A9 `apa-agent/apa-agent` ist ein älterer Prototyp, nicht massgeblich. Dazu: optionaler Hook `on_decision` in `run_agent.run` (Standard None) | Details in `out/step6_report.md` Abschnitt 2 und 6 | Annahme |
 
 ## 15. Offene Punkte und Fragen an den Dozenten
 
@@ -467,6 +473,8 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 - [x] Schritt 4: Zuordnungswissen Variante a, Guardrail-Verstoss ohne Neuversuch (D-K4-2, D-K4-3)
 - [x] K4: Entscheide getroffen, Rauchtest bestanden (Prompt v1.2)
 - [x] Schritt 5: Läufe, Auswertung, K5 (D-K5-1 bis D-K5-5)
+- [x] K6: Demo-Probelauf bei Jan bestanden (live und Replay)
+- [ ] Bildschirmaufzeichnung der Demo (Jan), sobald die Demo final ist
 - [ ] Labeler-Modelle für Iteration 2 dürfen nicht aus der Familie des Agentenmodells (Qwen) stammen
 - [ ] Iteration 2: Agent auf fremden Texten testen (Hold-out). Achtung: Revision nach `prompts/extern/` ändert die Vorlagen, danach alle Auswertungen neu rechnen. Ein separater Hold-out-Satz wäre weniger invasiv
 - [ ] Schlussabgabe: K5 mit mindestens einem menschlichen Rater, Treue als eigenes Kriterium
@@ -483,7 +491,7 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | LLM trotz Temperatur 0 nicht deterministisch | Deterministische Hülle, fester Seed, Reproduzierbarkeit messen |
 | Kleines lokales Modell schwach bei E6 | Als Befund ausweisen, Guardrails und Enthaltung betonen, Modellwahl nach Hardware |
 | Laufzeit auf lokaler Hardware | Pilot auf 20 Fälle begrenzen, Läufe abbrechbar und fortsetzbar |
-| Demo scheitert live | Aufzeichnung als Fallback |
+| Demo scheitert live (Ollama hängt, Modell kalt, Beamer) | `demo.py --check` vor dem Termin (Version, Digest, Hashes, Aufwärmen), Timeout 30 s, Replay ohne LLM (bytegleich, Start unter 1 s), Aufzeichnung, Notfallplan in `docs/demo_drehbuch.md` |
 | Realitätsnähe (ERP automatisiert Kreditprüfung bereits) | Fokus auf Kombination mehrerer Signale und Freitext begründen |
 | Zu viel Zeit in Apromore oder UI | Apromore nur manuell durch Gruppe, Demo minimal halten |
 | Freitext-Bias (alle Texte von Claude, Labeling durch Claude nicht unabhängig) | Als Limitation nennen. Keyword-Labeler als unabhängige Prüfung, externe Revision und Labeling in Iteration 2 |
@@ -500,6 +508,8 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | Keine Enthaltung beobachtet (0 von 182): Regel 4 wird nie über `unknown` umgesetzt | Als Befund nennen. Unsicherheitserkennung ist nicht gezeigt |
 | Autonome Fehlaktion bei T > 0 (A3 statt A0 auf Happy Path, ohne Freigabe ausgeführt) | Produktiv T = 0. Typ-Aktions-Guardrail als Ausblick (D-K5-3) |
 | Kontamination konkretisiert: Kategoriedefinitionen im Prompt treffen die indirekten Vorlagen fast wörtlich | E6-Ergebnis als Obergrenze berichten (D-K5-5), Hold-out in Iteration 2 (D-K5-4) |
+| Publikum hält die drei Demo-Fälle für Evidenz (alle zeigen "korrekt") | Ansage "Illustration, kein Beleg", Reserve C0776 (echter Fehler), Verweis auf Folie 7 |
+| Ollama-App aktualisiert sich vor dem Termin, Ausgabe nicht mehr bytegleich | `--check` vergleicht Version und Digest. Die REPRO-Zeile zeigt eine Abweichung offen an |
 
 ## 17. Änderungslog
 
@@ -515,3 +525,4 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 0.5 | 01.11.2026 | Schritt 4 erledigt, K4-Entscheide D-K4-1 bis D-K4-7 getroffen. Modell `qwen3.5:9b-q4_K_M` (MLX-Build ohne Schema-Erzwingung ausgeschlossen), Prompt v1.2, Guardrail `case_id_match`, Freigabe-Modi, Bewertung roh und strikt, Temperaturlauf T 0,7 mit Seed pro Run. Abschnitte 0, 9, 10, 12 bis 16 nachgeführt. `spec.yaml` v0.5.0. |
 | 0.6 | 01.11.2026 | Schritt 5 erledigt (Läufe in Claude Code, 182/182), K5 an Claude delegiert und erledigt. Entscheide D-K5-1 bis D-K5-5, Annahmen S1 bis S4. Ergebnisse und Einordnung in Abschnitt 10, Erwartung in 9 beantwortet, Status 12/13 (AP6 erledigt, AP7 in Arbeit), offene Punkte 15, Risiken 16. Prompt Schritt 6 angelegt. `spec.yaml` unverändert (v0.5.0). |
 | 0.6.1 | 01.11.2026 | Präsentationsdauer 20 Minuten (Vorgabe) statt Annahme 15 Minuten: Abschnitte 1, 11, 14, 15. Folienzeiten unverändert (15 min), Test im Probevortrag. |
+| 0.7 | 01.11.2026 | Schritt 6 erledigt (Demo, K6). Neu: `src/demo.py`, `docs/demo_drehbuch.md`, `out/demo/`, `out/step6_report.md`, 44 Tests. Abschnitte 0 (Lesereihenfolge, Repo-Struktur), 9 (Komponente Demo), 11 (Folie 6 mit Fällen), 12/13 (Status, AP8 in Arbeit, So geht es weiter), 14 (K6, Annahmen D6-A1 bis D6-A9), 15, 16 nachgeführt. `spec.yaml` unverändert (v0.5.0). |
