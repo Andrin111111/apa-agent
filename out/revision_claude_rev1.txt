@@ -1,0 +1,22 @@
+NEU
+id|neuer Text
+complaint_02|Wir beanstanden die Lieferung zu Rechnung {rechnungsnr}: Drei Paletten kamen mit gebrochenen Deckeln an. Bitte holen Sie die Ware ab und liefern Sie Ersatz.
+complaint_04|Mangelruege: Bei 6 von 20 Ventilen tritt nach kurzer Zeit Fluessigkeit aus. Wir erwarten Ihre Stellungnahme.
+complaint_06|Auf den Etiketten steht Artikel 2250, in den Kartons liegt aber Artikel 2205. Bei uns steht jetzt die Montage still.
+complaint_08|Hallo zusammen, die Kabelrollen vom {lieferdatum} sind 50 statt 100 Meter lang. Koennen Sie das bitte anschauen?
+complaint_10|Nach zwei Tagen im Einsatz ist bei beiden Steuergeraeten das Display ausgefallen.
+payment_announced_02|Besten Dank fuer Ihre Geduld. Die Zahlung fuer {rechnungsnr} geht mit Valuta {datum_zukunft} an Sie raus.
+payment_announced_04|Ueberweisung von {betrag} ist heute Morgen erfolgt, Referenz {rechnungsnr}.
+payment_announced_06|Wir hatten eine Systemumstellung im Kreditorenwesen. Der offene Betrag ist im naechsten Lauf am {datum_zukunft} enthalten und wird Ihnen dann gutgeschrieben.
+payment_announced_08|Kurze Rueckmeldung aus der Buchhaltung: Der Auftrag an die Bank ist am {datum} rausgegangen, der Betrag muesste bald bei Ihnen eingehen.
+payment_announced_10|Wir werden die Rechnung {rechnungsnr} noch diese Woche bezahlen, die Freigabe durch die Geschaeftsleitung liegt vor.
+payment_difficulty_02|Aufgrund eines Liquiditaetsengpasses koennen wir {betrag} nicht auf einmal ueberweisen. Waeren vier Monatsraten fuer Sie akzeptabel?
+payment_difficulty_04|Koennen Sie die Faelligkeit der Rechnung {rechnungsnr} um zwei Monate verschieben? Wir haben momentan Zahlungsschwierigkeiten.
+payment_difficulty_06|Ein Grossprojekt von uns ist geplatzt, und die Bank prueft gerade unsere Kreditlinie. Bis das geklaert ist, sind uns die Haende gebunden.
+payment_difficulty_08|Wir befinden uns in einem Nachlassverfahren. Saemtliche offenen Forderungen werden ueber den Sachwalter abgewickelt.
+payment_difficulty_10|Die Saisoneinnahmen sind dieses Jahr eingebrochen. Fuer {betrag} reicht es aktuell nicht.
+irrelevant_02|Bitte nehmen Sie zur Kenntnis, dass Herr Kaufmann per {datum_zukunft} pensioniert wird. Seine Aufgaben uebernimmt Frau Lutz.
+irrelevant_04|Haben Sie die Sicherheitsdatenblaetter zu Ihrem Reinigungsmittel auch auf Franzoesisch?
+irrelevant_06|Unser Team freut sich auf den Besuch Ihres Aussendienstes am {datum_zukunft} in Aarau.
+irrelevant_08|Die letzte Lieferung war wie immer tadellos, Kompliment an Ihr Lager-Team!
+irrelevant_10|Fuer kuenftige Bestellungen benoetigen wir auf der Auftragsbestaetigung zusaetzlich unsere Projektnummer. Fuer Auftrag {auftragsnr} ist das nicht noetig.

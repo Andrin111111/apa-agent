@@ -1,0 +1,252 @@
+# spec.yaml | v0.5.0 | Stand 01.11.2026
+# Maschinenlesbare Spezifikation (Parameter, Schemas, Katalog). Single Source of Truth fuer Code.
+# Begruendungen und Kontext stehen in WI-Projekt_Zwischenpraesentation_Kontext_und_Plan.md.
+# Bei Widerspruch: Parameter gelten laut dieser Datei, Widerspruch melden und beide Dateien korrigieren.
+# Konvention: ASCII-Schreibweise (ae, oe, ue) in Spezifikation und Daten.
+# Entscheide D1 bis D5 sind getroffen (siehe Entscheidungslog im Kontextdokument).
+# v0.3.0: Entscheide vom 01.11.2026 (Tagesbasis, weicher Trigger Freitext, Zielrolle in Ground Truth) eingearbeitet.
+# v0.4.0: K3 freigegeben (01.11.2026). Neu: detection.order_check, multi_trigger_priority, resolved_assumptions,
+#         Abschnitte baseline und evaluation_rules, pilot.extra_runs.e6_full. Keine Aenderung an generatorrelevanten
+#         Feldern, Daten bleiben bitgleich.
+# v0.5.0: K4 (01.11.2026). Neu: meta.llm (Modell mit Tag, think, endpoint, num_ctx, num_predict), Abschnitte agent,
+#         guardrail_policy und approval, Guardrail case_id_match, pilot.extra_run (T 0.7, Seed pro Run),
+#         evaluation_rules M5 und M6. Keine Aenderung an generatorrelevanten Feldern, Daten bleiben bitgleich.
+
+meta:
+  version: 0.5.0
+  status: frozen_for_pilot        # Aenderung nach Einfrieren erfordert Neugenerierung des Logs
+  seed: 42
+  pilot_scope: [E2, E3, E6]       # werden im Pilot gegen den Agenten evaluiert
+  concept_only: [E5, E7]          # werden im Log erzeugt, aber nicht im Pilot evaluiert
+  llm:
+    runtime: local                # kein API-Key vorhanden
+    hardware: "MacBook Pro M4 Pro, 24 GB RAM"
+    model: "qwen3.5:9b-q4_K_M"    # Entscheid K4. Tag zwingend: der MLX-Build von qwen3.5:9b (nvfp4) erzwingt kein Schema (HTTP 501)
+    think: "off"                  # Denkmodus aus, Begruendung und Belege stehen im Schema vor der Entscheidung
+    endpoint: chat
+    num_ctx: 8192
+    num_predict: 1024
+    temperature: 0
+    seed: 42
+    output: json_schema           # constrained decoding
+
+process:
+  happy_path:
+    - Auftrag erfassen
+    - Kreditpruefung
+    - Auftrag bestaetigen
+    - Kommissionieren
+    - Versenden
+    - Rechnung stellen
+    - Zahlungseingang
+    - Fall abschliessen
+  allowed_variants: [Auftrag aendern, Teillieferung, Zahlungserinnerung]
+  roles: [Vertrieb, Credit Management, Lager/Logistik, Buchhaltung, Kundendienst]
+
+snapshot:                         # D1
+  mode: one_snapshot_per_case     # Offline-Vereinfachung
+  attribute: snapshot_time
+  detection_interface: "evaluate(case, events, now)"   # zeitparametrisiert; Events als eigener Parameter (Schritt 3, AN6)
+  implementation: src/detect.py
+  outlook: "Tageweiser Tick mit Zustandsverwaltung (was wurde schon gemeldet) ist Ausblick, nicht Teil v1"
+
+detection:
+  granularity: day                # Entscheid 01.11.2026: Fristen (E3, E6) vergleichen Daten, Uhrzeit von snapshot_time wird ignoriert
+  order_check: timestamp          # Entscheid K3: Reihenfolge (E5) nach vollem Zeitstempel, sonst fallen 20 von 40 E5 weg
+  events_considered: "nur Events mit timestamp <= now (AN1)"
+  invoice_date: "Datum des ersten Events 'Rechnung stellen'"   # abgeleitet, kein Fallattribut
+  soft_trigger:                   # Entscheid 01.11.2026
+    name: free_text_present
+    rule: "free_text nicht leer"
+    effect: "Fall wird dem Agenten vorgelegt, auch ohne harten Trigger E2/E3/E5/E6"
+    ground_truth: "unveraendert (Happy Path mit Freitext bleibt none, Soll A0)"
+  resolved_assumptions:           # K3 freigegeben; als Annahme gefuehrt, im Log ohne Wirkung
+    - "AN2 E2: keine Stadiumsbedingung (Trigger feuert unabhaengig vom Prozessstand); open_items ist statisch"
+    - "AN3 E3: Teillieferung zaehlt nicht als Versenden (kommt im Log nicht vor)"
+  multi_trigger_priority: [E5, E6, E2, E3]   # AN5: gilt fuer Mehrfachtrigger ausser E2+E3 (dann E7); kommt im Log nicht vor
+  open_points:
+    - "E5: Rechnung wenige Stunden vor Versand am selben Tag (20 von 40 E5) ist fachlich ein schwacher Verstoss; vor Umsetzung E5 klaeren"
+    - "E5: Soll A7 (Fall sperren) auch nach Versand fragwuerdig (K2-Befund 7)"
+  precedence: "E7 vor E2/E3: Fall, bei dem E2 und E3 gleichzeitig zutreffen, gilt als E7 und nicht zusaetzlich als E2 oder E3"
+  note: "Entscheid (bestaetigt), verhindert verfaelschte Precision/Recall bei E2 und E3"
+
+case_attributes:
+  - order_value
+  - customer_segment              # A | B | C
+  - credit_limit
+  - open_items
+  - payment_history               # gut | mittel | schlecht
+  - payment_terms_days
+  - promised_delivery_date
+  - free_text                     # optional
+  - snapshot_time
+event_attributes: [activity, timestamp, resource, role]
+
+exceptions:
+  E2:
+    name: Kreditlimit ueberschritten
+    type: deterministic
+    trigger: "order_value + open_items > credit_limit"
+    allowed_action_sets: [[A6]]
+    escalation_target: Credit Management
+  E3:
+    name: Lieferverzoegerung
+    type: deterministic
+    trigger: "(promised_delivery_date - date(snapshot_time)).days < 2 AND 'Versenden' not in events"
+    params: {days_threshold: 2}
+    allowed_action_sets: [[A4], [A2], [A4, A2]]     # D2: jede Variante ist korrekt
+  E5:
+    name: Rechnung vor Versand
+    type: deterministic
+    trigger: "'Rechnung stellen' in events AND ('Versenden' not in events OR erstes 'Rechnung stellen' vor erstem 'Versenden') (Conformance)"
+    allowed_action_sets: [[A6, A7]]
+    escalation_target: Buchhaltung
+  E6:
+    name: Zahlungsverzug mit Kundenkommunikation
+    type: judgement
+    trigger: "invoice_date + payment_terms_days < date(snapshot_time) AND no 'Zahlungseingang'"   # invoice_date siehe detection; Freitext ist Kontext, nicht Trigger
+    context: free_text
+    free_text_categories:
+      complaint:          {allowed_action_sets: [[A5]], target_role: Kundendienst}
+      payment_announced:  {allowed_action_sets: [[A0]]}
+      payment_difficulty: {allowed_action_sets: [[A6]], target_role: Credit Management}
+      irrelevant:         {allowed_action_sets: [[A3]]}   # Empfehlung: Mahnung
+    # Entscheid: "Mahnung stoppen" ist durch A5 abgedeckt (kein eigener Katalogeintrag).
+  E7:
+    name: Zielkonflikt bei mehreren Signalen
+    type: judgement
+    trigger: "E2 AND E3"
+    context: [customer_segment, overshoot_ratio, payment_history]
+    approval_required: true
+    allowed_action_sets: TBD_by_labeling          # wird im Log erzeugt, ground_truth bleibt bis zum Labeling leer; nicht im Pilot evaluiert
+
+action_catalog:
+  A0: {name: Keine Massnahme / protokollieren, autonomy: autonomous}
+  A1: {name: Information anfordern,            autonomy: autonomous}
+  A2: {name: Kunde informieren,                autonomy: autonomous}
+  A3: {name: Naechsten Schritt empfehlen,      autonomy: autonomous, note: nur Empfehlung}
+  A4: {name: Priorisieren,                     autonomy: autonomous, note: nachtraeglich sichtbar}
+  A5: {name: Neu zuweisen,                     autonomy: approval, params: [target_role]}
+  A6: {name: Eskalieren,                       autonomy: approval, params: [target_role]}
+  A7: {name: Fall sperren,                     autonomy: approval}
+
+abstention:                       # D4
+  rule: "Kann der Agent den Fall nicht einordnen: exception_type = unknown und actions = [A6]"
+  no_extra_flag: true             # kein Feld needs_human
+  evaluation: "zaehlt als nicht korrekt, wird als Enthaltungsquote separat ausgewiesen"
+
+guardrails:
+  - action_in_catalog
+  - target_role_exists            # Pflicht bei A5 und A6
+  - autonomy_respected            # approval-Aktionen gehen nie direkt in Ausfuehrung
+  - rationale_present             # Begruendung ist Pflichtfeld
+  - schema_valid
+  - unknown_requires_A6           # Umsetzung von abstention.rule (nicht im JSON-Schema, da if/then bei constrained decoding unsicher)
+  - case_id_match                 # case_id der Ausgabe = case_id des Fallobjekts (K4, G1)
+
+guardrail_policy:                 # K4
+  on_violation: block_to_human    # kein automatischer Neuversuch, Fall geht an einen Menschen, alles wird protokolliert
+  retry: false
+  hints_non_blocking: [type_mismatch, duplicate_action, role_on_non_role_action, extra_field, evidence_unknown_field]   # G2
+
+judgement_policy:                 # D3: bewusst vage, keine Schwellenwerte. Wird dem Agenten als Text mitgegeben.
+  - "Die Kundenbeziehung hat Vorrang, wenn eine Kreditueberschreitung geringfuegig ist und der Kunde eine gute Zahlungshistorie hat."
+  - "Bei erheblicher Ueberschreitung oder wiederholten Zahlungsverzuegen hat die Risikobegrenzung Vorrang."
+  - "Hinweise des Kunden auf Maengel oder Reklamationen haben Vorrang vor Mahnprozessen."
+  - "Im Zweifel wird an einen Menschen uebergeben, statt autonom zu handeln."
+
+agent:                            # K4, Schritt 4
+  prompt: prompts/agent_prompt.md
+  prompt_version: "1.2"
+  prompt_variant: a               # Standard: volle Zuordnung Typ/Kategorie -> Aktionen im Prompt
+  ablation_variant: b             # ohne Zuordnung, spaeter, nicht im Pilot
+  discretion_scope: [E7]          # Ermessensrichtlinie gilt nur bei E7; bei E2, E3, E5, E6, none ist die Zuordnung bindend (v1.1)
+  e3_allowed_actions: [A4, A2]    # andere Aktionen bei E3 nicht zulaessig (v1.2)
+  schema_field_order: [case_id, key_evidence, rationale, exception_type, actions]   # G3: Belege und Begruendung vor der Entscheidung
+
+approval:                         # K4, src/approval.py
+  approval_actions: [A5, A6, A7]
+  approval_types: [E7]            # bei E7 wird keine Aktion vorab ausgefuehrt
+  modes:
+    batch: "A5 bis A7 bleiben pending, nichts wird automatisch freigegeben (alle Laeufe Schritt 5)"
+    interactive: "pro Aktion j/n/offen, mit Name und Zeitstempel im Audit-Log (Demo, Schritt 6)"
+  assumption_A1: "Autonome Aktionen eines Falls laufen sofort, auch wenn eine andere Aktion desselben Falls auf Freigabe wartet"
+  dispositions: [executed, pending_approval, partially_executed_pending_approval, rejected_by_human, blocked_to_human, llm_error]
+
+baseline:                         # Schritt 3, src/baseline.py; Ausgabe im Format agent_output_schema
+  E2: [{action_id: A6, target_role: Credit Management}]
+  E3: [{action_id: A4}, {action_id: A2}]     # B1: umfassendste autonome Variante, alle Varianten laut D2 korrekt
+  E5: [{action_id: A6, target_role: Buchhaltung}, {action_id: A7}]
+  E6: "Kategorie per src/keyword_labeler.py (nicht nachtunen), dann exceptions.E6.free_text_categories"
+  E7: [{action_id: A6, target_role: Credit Management}]   # B2: Uebergabe an Mensch, nicht bewertet
+  soft_only: [{action_id: A0}]
+  abstention: never               # B3
+
+evaluation_rules:                 # Schritt 3, src/metrics.py
+  M1_scope: "bewertet: E2, E3, E6, Happy Path mit Freitext; E5 informativ; E7 nicht (Ground Truth leer)"
+  M2_denominator: "end-to-end: bewerteter Fall ohne Ausgabe zaehlt als falsch"
+  M3_comparison: "Aktionen als Menge von action_id; jede A5/A6 muss target_role = expected_target_role haben"
+  M4_abstention: "unknown zaehlt als falsch, auch wenn A6 zulaessig waere"
+  M5_scope_agent: "Agentenlaeufe werden nur auf ihrem Umfang bewertet (pilot bzw. e6_full), nicht auf all: Faelle ohne Ausgabe zaehlen sonst als falsch"
+  M6_guardrail_scoring: "Standard: Rohentscheidung des Agenten, auch wenn ein Guardrail blockiert hat. Zusaetzlich strikt (--strict-guardrails): blockierte Ausgaben zaehlen als falsch. Beide Zahlen berichten"
+  reproducibility: "optionales Feld run; Anteil Faelle mit identischem Typ, Aktionen und Rollen ueber alle Runs"
+
+agent_output_schema:
+  type: object
+  required: [case_id, exception_type, actions, rationale, key_evidence]
+  properties:
+    case_id: {type: string}
+    exception_type: {enum: [E2, E3, E5, E6, E7, none, unknown]}
+    actions:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required: [action_id]
+        properties:
+          action_id: {enum: [A0, A1, A2, A3, A4, A5, A6, A7]}
+          target_role: {enum: [Vertrieb, Credit Management, Lager/Logistik, Buchhaltung, Kundendienst]}
+    rationale: {type: string, minLength: 20}
+    key_evidence: {type: array, items: {type: string}}   # genannte Felder/Events, Basis fuer Bewertungsraster
+
+ground_truth_schema:
+  case_id: string
+  exception_type: "E2|E3|E5|E6|E7|none"
+  free_text_category: "complaint|payment_announced|payment_difficulty|irrelevant|none"
+  allowed_action_sets: "list of sets"
+  expected_target_role: "Kundendienst|Credit Management|Buchhaltung|leer"   # Entscheid 01.11.2026
+  none_allowed_action_sets: [[A0]]  # Happy Path: jede Aktion ausser A0 ist ein Fehlalarm
+  match_rule: exact               # D5: gewaehlte Aktionsmenge muss exakt einer erlaubten Menge entsprechen
+  role_check: true                # zusaetzlich: target_role bei A5/A6 muss expected_target_role entsprechen
+
+data_generation:
+  n_cases: 1000
+  distribution: {happy_path: 0.70, E2: 0.06, E3: 0.06, E5: 0.04, E6: 0.08, E7: 0.06}
+  noise: "Teil der Happy-Path-Faelle erhaelt irrelevanten Freitext"
+  free_text: "handgeschriebene Vorlagen, ca. 10 pro Kategorie, erzeugt von Claude (Agent ist ein anderes, lokales Modell)"
+  formats: [csv]                  # XES nur bei Zeit
+  generator_config: "src/generate_log.py, Block GEN (Parameter, die hier nicht geregelt sind)"
+  start_window: ["2026-01-05", "2026-06-30"]
+  data_cutoff: "2026-10-31"       # kein Stichtag nach dem Datenabzug
+  noise_in_exception_types: "ca. 10 % irrelevanter Freitext auch in E2, E3, E5, E7 (gegen Leakage)"
+  variants_in_exception_types: "ca. 15 % Auftrag aendern (E6 auch Teillieferung); E6 ab 11 Tagen Verzug zu 50 % mit Zahlungserinnerung"
+  free_text_revision: "20 von 40 Vorlagen ueberarbeitet (source: claude-rev1), Externe Revision in spaeterer Iteration"
+  labeling_judgement_cases: "zwei Personen unabhaengig, Uebereinstimmung festhalten"   # Plan; Stand siehe labeling
+labeling:
+  e6:
+    status: done_simulated        # 01.11.2026, Einheit: 1 Beispiel pro Vorlage (40)
+    labelers: ["Claude (nicht unabhaengig)", "Keyword-Klassifikator src/keyword_labeler.py"]
+    report: out/labeling_report.md
+    next_iteration: "zwei externe Modelle (prompts/extern/), keines = Agentenmodell"
+  e7:
+    status: open
+    recommendation: "mindestens eine menschliche Person, sonst zirkulaer (LLM gegen LLM-Urteil)"
+
+pilot:
+  n_cases: 20
+  composition: {E2: 4, E3: 4, E6: 6, none: 6, none_with_free_text: 3}   # E6: alle 4 Kategorien vertreten
+  exclude_types: [E5, E7]
+  k_runs: 3
+  extra_run: {temperature: 0.7, seed_mode: per_run, seeds: [42, 43, 44], purpose: "Unterschied in der Reproduzierbarkeit zeigen (K4: bei festem Seed waere auch T 0.7 identisch)"}
+  extra_runs:                     # Entscheid K3 (D-K3-1): Baseline loest im Pilot alle 6 E6, Mehrwert dort nicht messbar
+    e6_full: {cases: "alle E6 laut Erkennung (80)", k_runs: 1, purpose: "Mehrwert Agent vs. Baseline bei E6, inkl. 32 indirekter Texte"}

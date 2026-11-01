@@ -1,0 +1,84 @@
+Lauf e6_t0_20261101T161542Z: 80 Faelle x k=1, offen 80, bereits fertig 0, uebersprungen 0
+Client ollama, Modell qwen3.5:9b-q4_K_M, Temperatur 0, Seed 42 (fixed), Prompt v1.2 Variante a 509c488c3f44
+  [run 1] C0011   E6 -> E6 A6/Credit Management | ok | pending_approval | 6761 ms
+  [run 1] C0014   E6 -> E6 A6/Credit Management | ok | pending_approval | 6466 ms
+  [run 1] C0028   E6 -> E6 A0 | ok | executed | 6729 ms
+  [run 1] C0042   E6 -> E6 A3 | ok | executed | 7601 ms
+  [run 1] C0091   E6 -> E6 A0 | ok | executed | 6693 ms
+  [run 1] C0120   E6 -> E6 A6/Credit Management | ok | pending_approval | 7171 ms
+  [run 1] C0127   E6 -> E6 A0 | ok | executed | 7007 ms
+  [run 1] C0161   E6 -> E6 A6/Credit Management | ok | pending_approval | 7020 ms
+  [run 1] C0172   E6 -> E6 A0 | ok | executed | 6062 ms
+  [run 1] C0179   E6 -> E6 A6/Credit Management | ok | pending_approval | 7673 ms
+  [run 1] C0210   E6 -> E6 A3 | ok | executed | 6586 ms
+  [run 1] C0233   E6 -> E6 A6/Credit Management | ok | pending_approval | 6909 ms
+  [run 1] C0244   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6134 ms
+  [run 1] C0253   E6 -> E6 A0 | ok | executed | 7305 ms
+  [run 1] C0260   E6 -> E6 A3 | ok | executed | 7804 ms
+  [run 1] C0263   E6 -> E6 A6/Credit Management | ok | pending_approval | 6559 ms
+  [run 1] C0267   E6 -> E6 A3 | ok | executed | 7413 ms
+  [run 1] C0270   E6 -> E6 A3 | ok | executed | 7321 ms
+  [run 1] C0298   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6600 ms
+  [run 1] C0301   E6 -> E6 A0 | ok | executed | 7256 ms
+  [run 1] C0308   E6 -> E6 A0 | ok | executed | 6873 ms
+  [run 1] C0310   E6 -> E6 A0 | ok | executed | 7082 ms
+  [run 1] C0312   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6452 ms
+  [run 1] C0315   E6 -> E6 A3 | ok | executed | 7030 ms
+  [run 1] C0321   E6 -> E6 A0 | ok | executed | 5793 ms
+  [run 1] C0327   E6 -> E6 A0 | ok | executed | 6462 ms
+  [run 1] C0334   E6 -> E6 A3 | ok | executed | 7300 ms
+  [run 1] C0351   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6885 ms
+  [run 1] C0353   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7701 ms
+  [run 1] C0368   E6 -> E6 A3 | ok | executed | 7036 ms
+  [run 1] C0375   E6 -> E6 A0 | ok | executed | 6824 ms
+  [run 1] C0406   E6 -> E6 A6/Credit Management | ok | pending_approval | 7489 ms
+  [run 1] C0427   E6 -> E6 A3 | ok | executed | 6961 ms
+  [run 1] C0447   E6 -> E6 A3 | ok | executed | 7102 ms
+  [run 1] C0481   E6 -> E6 A0 | ok | executed | 6426 ms
+  [run 1] C0492   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6707 ms
+  [run 1] C0493   E6 -> E6 A3 | ok | executed | 7898 ms
+  [run 1] C0496   E6 -> E6 A6/Credit Management | ok | pending_approval | 6672 ms
+  [run 1] C0515   E6 -> E6 A3 | ok | executed | 7366 ms
+  [run 1] C0551   E6 -> E6 A6/Credit Management | ok | pending_approval | 6256 ms
+  [run 1] C0562   E6 -> E6 A3 | ok | executed | 8088 ms
+  [run 1] C0575   E6 -> E6 A0 | ok | executed | 7247 ms
+  [run 1] C0590   E6 -> E6 A6/Credit Management | ok | pending_approval | 6774 ms
+  [run 1] C0595   E6 -> E6 A0 | ok | executed | 6210 ms
+  [run 1] C0610   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7787 ms
+  [run 1] C0612   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6289 ms
+  [run 1] C0616   E6 -> E6 A6/Credit Management | ok | pending_approval | 7590 ms
+  [run 1] C0627   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7421 ms
+  [run 1] C0644   E6 -> E6 A0 | ok | executed | 7024 ms
+  [run 1] C0652   E6 -> E6 A6/Credit Management | ok | pending_approval | 7173 ms
+  [run 1] C0669   E6 -> E6 A6/Credit Management | ok | pending_approval | 6698 ms
+  [run 1] C0670   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7629 ms
+  [run 1] C0695   E6 -> E6 A3 | ok | executed | 7518 ms
+  [run 1] C0716   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7261 ms
+  [run 1] C0732   E6 -> E6 A0 | ok | executed | 7353 ms
+  [run 1] C0733   E6 -> E6 A3 | ok | executed | 7399 ms
+  [run 1] C0756   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7297 ms
+  [run 1] C0759   E6 -> E6 A5/Kundendienst | ok | pending_approval | 8374 ms
+  [run 1] C0761   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6774 ms
+  [run 1] C0771   E6 -> E6 A6/Credit Management | ok | pending_approval | 8315 ms
+  [run 1] C0776   E6 -> E6 A6/Credit Management | ok | pending_approval | 6812 ms
+  [run 1] C0781   E6 -> E6 A3 | ok | executed | 7098 ms
+  [run 1] C0794   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7530 ms
+  [run 1] C0797   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6906 ms
+  [run 1] C0808   E6 -> E6 A6/Credit Management | ok | pending_approval | 7410 ms
+  [run 1] C0853   E6 -> E6 A6/Credit Management | ok | pending_approval | 6538 ms
+  [run 1] C0856   E6 -> E6 A0 | ok | executed | 5698 ms
+  [run 1] C0874   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7563 ms
+  [run 1] C0875   E6 -> E6 A3 | ok | executed | 8161 ms
+  [run 1] C0878   E6 -> E6 A6/Credit Management | ok | pending_approval | 7607 ms
+  [run 1] C0880   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7153 ms
+  [run 1] C0909   E6 -> E6 A3 | ok | executed | 7437 ms
+  [run 1] C0918   E6 -> E6 A6/Credit Management | ok | pending_approval | 7805 ms
+  [run 1] C0927   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7490 ms
+  [run 1] C0945   E6 -> E6 A0 | ok | executed | 8048 ms
+  [run 1] C0948   E6 -> E6 A3 | ok | executed | 7741 ms
+  [run 1] C0952   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7722 ms
+  [run 1] C0966   E6 -> E6 A3 | ok | executed | 7019 ms
+  [run 1] C0982   E6 -> E6 A6/Credit Management | ok | pending_approval | 6951 ms
+  [run 1] C0983   E6 -> E6 A0 | ok | executed | 5971 ms
+Fertig: 80/80 Paare | Parsefehler 0 | blockiert 0  | offen zur Freigabe 41 | Transportfehler 0 | mittel 7103 ms
+-> /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4/out/agent_actions_e6_t0.jsonl, /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4/out/audit_log.jsonl

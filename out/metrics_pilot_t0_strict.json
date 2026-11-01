@@ -1,0 +1,385 @@
+{
+ "Pilot (20)": {
+  "detection": {
+   "per_type": [
+    {
+     "typ": "E2",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E3",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E5",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E6",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E7",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "none",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    }
+   ],
+   "boundary_n": 0,
+   "boundary_false_alarms": 0,
+   "boundary_false_alarm_ids": [],
+   "routing_required": 17,
+   "routing_missing": 0,
+   "routed_total": 17
+  },
+  "actions": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "per_run": [
+    {
+     "run": 1,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 6
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 3
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 8,
+       "acc": 1.0
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 17,
+       "acc": 1.0
+      }
+     },
+     "outputs": 17,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 3,
+     "type_match": 17,
+     "type_n": 17
+    },
+    {
+     "run": 2,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 6
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 3
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 8,
+       "acc": 1.0
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 17,
+       "acc": 1.0
+      }
+     },
+     "outputs": 17,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 3,
+     "type_match": 17,
+     "type_n": 17
+    },
+    {
+     "run": 3,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 6
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 3
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 8,
+       "acc": 1.0
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 6,
+       "acc": 1.0
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 17,
+       "acc": 1.0
+      }
+     },
+     "outputs": 17,
+     "abstention": 0,
+     "abstention_rate": 0.0,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 3,
+     "type_match": 17,
+     "type_n": 17
+    }
+   ],
+   "schema_errors": {},
+   "outputs_checked": 51,
+   "invalid_outputs": 0,
+   "duplicates": 0,
+   "reproducibility": {
+    "cases": 17,
+    "identical": 17,
+    "rate": 1.0
+   },
+   "errors": []
+  },
+  "e5": {
+   "n": 0,
+   "ok": 0
+  }
+ }
+}

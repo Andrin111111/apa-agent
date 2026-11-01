@@ -1,0 +1,60 @@
+{
+ "config": {
+  "label": "mock_replay",
+  "client": "replay",
+  "model": "mock-1.0",
+  "temperature": 0,
+  "seed": 42,
+  "seed_mode": "fixed",
+  "prompt_variant": "a",
+  "prompt_version": "1.0",
+  "prompt_hash": "2d10fb5d529301f0d7aecd8fc9d0df0d81de60051b8ec1911b2720b350e9e13c",
+  "schema_hash": "9e9b629c7359db8b528b92a779825854a59eb613c143e43c4063c32059aef321",
+  "think": null,
+  "endpoint": null,
+  "mock_faults": null,
+  "replay_label": "mock"
+ },
+ "cases": [
+  "C0014",
+  "C0067",
+  "C0166",
+  "C0303",
+  "C0317",
+  "C0412",
+  "C0447",
+  "C0537",
+  "C0551",
+  "C0556",
+  "C0642",
+  "C0644",
+  "C0671",
+  "C0761",
+  "C0880",
+  "C0902",
+  "C0955"
+ ],
+ "k": 3,
+ "last_run_id": "mock_replay_20261101T082815Z",
+ "interrupted": false,
+ "summary_last_session": {
+  "calls": 51,
+  "transport_errors": 0,
+  "parse_errors": 2,
+  "guardrail_blocked": 11,
+  "violations": {
+   "target_role_exists": 2,
+   "schema_valid": 3,
+   "rationale_present": 2,
+   "case_id_match": 1,
+   "action_in_catalog": 1,
+   "unknown_requires_A6": 2
+  },
+  "warnings": {},
+  "pending_approval": 19,
+  "executed_actions": 30,
+  "mean_ms": 0,
+  "completed_pairs": 51,
+  "expected_pairs": 51
+ }
+}

@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# Bildschirmaufzeichnungen der Demo (nicht ins Git, siehe docs/demo_drehbuch.md)
+*.mov

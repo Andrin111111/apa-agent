@@ -1,0 +1,255 @@
+# freitext_vorlagen.yaml | v0.1 | Stand 31.10.2026
+# Freitext-Vorlagen fuer den Log-Generator (WI-Projekt Thema 75, Schritt 2).
+# Wird von src/generate_log.py gelesen. Nach Aenderungen Generator neu laufen lassen.
+#
+# Felder pro Vorlage:
+#   id              stabil, nicht aendern (Referenz fuer Auswertung)
+#   text            1 bis 3 Saetze, ASCII-Schreibweise (ae, oe, ue, ss)
+#   stil            direkt     = Thema mit Schluesselwort benannt
+#                   indirekt   = ohne Schluesselwort der Kategorie (z. B. Reklamation ohne "Reklamation")
+#                   distraktor = nur bei irrelevant: enthaelt Fachwoerter, ist aber ohne Bezug zu Zahlung oder Mangel
+#   source          claude | jan | <Modellname> (z. B. bei Ueberarbeitung durch ein anderes Modell)
+#   original_claude nur bei ueberarbeiteten Vorlagen: urspruenglicher Text (Nachvollziehbarkeit)
+#   reviewed_by_jan false | true (auf true setzen, wenn ueberarbeitet)
+#
+# Platzhalter:
+#   {rechnungsnr}    Rechnungsnummer (nur bei fakturierten Faellen)
+#   {betrag}         Rechnungsbetrag, Format "CHF 12'345.00" (nur bei fakturierten Faellen)
+#   {lieferdatum}    Eingang der Lieferung beim Kunden, TT.MM.JJJJ (nur bei versendeten Faellen)
+#   {datum}          Datum in der juengeren Vergangenheit (1 bis 7 Tage vor Stichtag)
+#   {datum_zukunft}  Datum in der Zukunft (3 bis 20 Tage nach Stichtag)
+#   {auftragsnr}     Auftragsnummer = case_id
+# Regel: Vorlagen der Kategorie irrelevant duerfen nur {datum_zukunft} und {auftragsnr} verwenden,
+# weil sie auch an nicht fakturierte Faelle gehaengt werden (Rauschen).
+#
+# Grundsatz: keine Mischformen. Jeder Text gehoert eindeutig zu genau einer Kategorie.
+
+
+categories:
+  complaint:
+    - id: complaint_01
+      text: "Die Lieferung vom {lieferdatum} ist unvollstaendig, es fehlen zwei Positionen. Wir reklamieren dies hiermit und bitten um Nachlieferung."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: complaint_02
+      text: "Wir beanstanden die Lieferung zu Rechnung {rechnungsnr}: Drei Paletten kamen mit gebrochenen Deckeln an. Bitte holen Sie die Ware ab und liefern Sie Ersatz."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Bei der Ware zu Rechnung {rechnungsnr} sind mehrere Teile beschaedigt angekommen. Fotos senden wir separat. Wir bitten um Ersatz."
+      reviewed_by_jan: false
+    - id: complaint_03
+      text: "Reklamation: Die gelieferten Artikel entsprechen nicht der bestellten Ausfuehrung."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: complaint_04
+      text: "Mangelruege: Bei 6 von 20 Ventilen tritt nach kurzer Zeit Fluessigkeit aus. Wir erwarten Ihre Stellungnahme."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Guten Tag, wir haben an der Lieferung einen Mangel festgestellt. Die Geraete lassen sich nicht in Betrieb nehmen. Wer kuemmert sich darum?"
+      reviewed_by_jan: false
+    - id: complaint_05
+      text: "Von den 40 Kartons, die am {lieferdatum} bei uns eingetroffen sind, waren 12 durchnaesst. Der Inhalt ist nicht mehr brauchbar."
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: complaint_06
+      text: "Auf den Etiketten steht Artikel 2250, in den Kartons liegt aber Artikel 2205. Bei uns steht jetzt die Montage still."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Uns wurde das Modell X200 statt X250 geliefert. Damit koennen wir nichts anfangen."
+      reviewed_by_jan: false
+    - id: complaint_07
+      text: "Seit der Inbetriebnahme laeuft die Anlage nur mit Unterbrechungen. Ihr Techniker hat sich bis heute nicht gemeldet."
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: complaint_08
+      text: "Hallo zusammen, die Kabelrollen vom {lieferdatum} sind 50 statt 100 Meter lang. Koennen Sie das bitte anschauen?"
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Die Masse stimmen nicht mit dem Datenblatt ueberein, die Teile passen nicht in unsere Halterungen."
+      reviewed_by_jan: false
+    - id: complaint_09
+      text: "Wir sind mit der Qualitaet der letzten Lieferung unzufrieden. Die Oberflaechen sind zerkratzt und so nicht verkaufbar."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: complaint_10
+      text: "Nach zwei Tagen im Einsatz ist bei beiden Steuergeraeten das Display ausgefallen."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Ware ausgepackt: Verpackung offen, zwei Stueck fehlen."
+      reviewed_by_jan: false
+
+  payment_announced:
+    - id: payment_announced_01
+      text: "Die Zahlung fuer Rechnung {rechnungsnr} ueber {betrag} wurde am {datum} ausgeloest. Sie sollte in den naechsten Tagen bei Ihnen eingehen."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_announced_02
+      text: "Besten Dank fuer Ihre Geduld. Die Zahlung fuer {rechnungsnr} geht mit Valuta {datum_zukunft} an Sie raus."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Entschuldigen Sie die Verspaetung. Die Rechnung {rechnungsnr} ist zur Zahlung freigegeben und wird bis {datum_zukunft} beglichen."
+      reviewed_by_jan: false
+    - id: payment_announced_03
+      text: "Zahlung erfolgt mit unserem naechsten Zahlungslauf am {datum_zukunft}."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_announced_04
+      text: "Ueberweisung von {betrag} ist heute Morgen erfolgt, Referenz {rechnungsnr}."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Wir haben die Ueberweisung von {betrag} heute veranlasst. Bitte betrachten Sie die Angelegenheit als erledigt."
+      reviewed_by_jan: false
+    - id: payment_announced_05
+      text: "Unsere Buchhaltung hat den Betrag gestern an Ihre Bank angewiesen."
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_announced_06
+      text: "Wir hatten eine Systemumstellung im Kreditorenwesen. Der offene Betrag ist im naechsten Lauf am {datum_zukunft} enthalten und wird Ihnen dann gutgeschrieben."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Die Rechnung {rechnungsnr} lag versehentlich bei der falschen Person zur Visierung. Sie ist jetzt freigegeben, das Geld ist diese Woche bei Ihnen."
+      reviewed_by_jan: false
+    - id: payment_announced_07
+      text: "Kurze Info: Der Betrag von {betrag} ist im E-Banking fuer den {datum_zukunft} terminiert."
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_announced_08
+      text: "Kurze Rueckmeldung aus der Buchhaltung: Der Auftrag an die Bank ist am {datum} rausgegangen, der Betrag muesste bald bei Ihnen eingehen."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Sorry, das ist bei uns untergegangen. Ist erledigt, Sie sollten es morgen auf dem Konto sehen."
+      reviewed_by_jan: false
+    - id: payment_announced_09
+      text: "Wir bestaetigen den Erhalt Ihrer Rechnung {rechnungsnr}. Die Zahlung ist veranlasst."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_announced_10
+      text: "Wir werden die Rechnung {rechnungsnr} noch diese Woche bezahlen, die Freigabe durch die Geschaeftsleitung liegt vor."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Gemaess Ruecksprache mit unserer Finanzabteilung wird die offene Rechnung bis spaetestens {datum_zukunft} vollstaendig bezahlt."
+      reviewed_by_jan: false
+
+  payment_difficulty:
+    - id: payment_difficulty_01
+      text: "Wir befinden uns derzeit in einem finanziellen Engpass und koennen die Rechnung {rechnungsnr} nicht fristgerecht begleichen. Waere eine Ratenzahlung moeglich?"
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_difficulty_02
+      text: "Aufgrund eines Liquiditaetsengpasses koennen wir {betrag} nicht auf einmal ueberweisen. Waeren vier Monatsraten fuer Sie akzeptabel?"
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Koennten wir den Betrag von {betrag} in drei Raten begleichen? Wir haben aktuell Liquiditaetsprobleme."
+      reviewed_by_jan: false
+    - id: payment_difficulty_03
+      text: "Leider ist ein grosser Kunde von uns in Konkurs gegangen. Wir brauchen mehr Zeit, um die offene Rechnung zu bezahlen."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_difficulty_04
+      text: "Koennen Sie die Faelligkeit der Rechnung {rechnungsnr} um zwei Monate verschieben? Wir haben momentan Zahlungsschwierigkeiten."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Wir bitten um einen Zahlungsaufschub von 60 Tagen fuer die Rechnung {rechnungsnr}."
+      reviewed_by_jan: false
+    - id: payment_difficulty_05
+      text: "Unser Konto ist im Moment leider ausgereizt. Sobald die Gelder aus dem laufenden Projekt eingehen, melden wir uns wieder."
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_difficulty_06
+      text: "Ein Grossprojekt von uns ist geplatzt, und die Bank prueft gerade unsere Kreditlinie. Bis das geklaert ist, sind uns die Haende gebunden."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Die Bank hat uns den Kontokorrentkredit gekuerzt. Bis Ende Quartal sieht es bei uns sehr eng aus."
+      reviewed_by_jan: false
+    - id: payment_difficulty_07
+      text: "Gibt es die Moeglichkeit, den Betrag ueber mehrere Monate verteilt abzuzahlen?"
+      stil: indirekt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_difficulty_08
+      text: "Wir befinden uns in einem Nachlassverfahren. Saemtliche offenen Forderungen werden ueber den Sachwalter abgewickelt."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Wir stecken mitten in einer Restrukturierung. Der Verwaltungsrat hat bis auf Weiteres alle Ausgaben ueber CHF 5'000 gestoppt."
+      reviewed_by_jan: false
+    - id: payment_difficulty_09
+      text: "Wegen Zahlungsausfaellen bei unseren eigenen Kunden koennen wir die Rechnung im Moment nicht bezahlen. Wir schlagen monatliche Teilzahlungen vor."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: payment_difficulty_10
+      text: "Die Saisoneinnahmen sind dieses Jahr eingebrochen. Fuer {betrag} reicht es aktuell nicht."
+      stil: indirekt
+      source: claude-rev1
+      original_claude: "Ehrlich gesagt koennen wir {betrag} derzeit nicht auf einmal aufbringen."
+      reviewed_by_jan: false
+
+  irrelevant:
+    - id: irrelevant_01
+      text: "Wir ziehen per {datum_zukunft} um. Neue Postadresse: Industriestrasse 14, 8400 Winterthur."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: irrelevant_02
+      text: "Bitte nehmen Sie zur Kenntnis, dass Herr Kaufmann per {datum_zukunft} pensioniert wird. Seine Aufgaben uebernimmt Frau Lutz."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Ab sofort ist Frau Bernasconi Ihre Ansprechpartnerin bei uns im Einkauf."
+      reviewed_by_jan: false
+    - id: irrelevant_03
+      text: "Unser Betrieb bleibt vom 22. Dezember bis 5. Januar geschlossen."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: irrelevant_04
+      text: "Haben Sie die Sicherheitsdatenblaetter zu Ihrem Reinigungsmittel auch auf Franzoesisch?"
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Koennten Sie uns den aktuellen Produktkatalog als PDF zustellen?"
+      reviewed_by_jan: false
+    - id: irrelevant_05
+      text: "Gibt es Artikel 4711 auch in einer Ausfuehrung aus Edelstahl? Wir planen eine Folgebestellung."
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: irrelevant_06
+      text: "Unser Team freut sich auf den Besuch Ihres Aussendienstes am {datum_zukunft} in Aarau."
+      stil: direkt
+      source: claude-rev1
+      original_claude: "Unser Einkaufsleiter ist bis {datum_zukunft} in den Ferien. In dringenden Faellen wenden Sie sich bitte an die Zentrale."
+      reviewed_by_jan: false
+    - id: irrelevant_07
+      text: "Bezueglich Auftrag {auftragsnr}: Koennen Sie uns fuer unser Nachhaltigkeitsreporting die CO2-Angaben zu den Produkten senden?"
+      stil: direkt
+      source: claude
+      reviewed_by_jan: false
+    - id: irrelevant_08
+      text: "Die letzte Lieferung war wie immer tadellos, Kompliment an Ihr Lager-Team!"
+      stil: distraktor
+      source: claude-rev1
+      original_claude: "Wir sind mit Ihrem Service seit Jahren sehr zufrieden und empfehlen Sie gerne weiter."
+      reviewed_by_jan: false
+    - id: irrelevant_09
+      text: "Bitte nutzen Sie fuer Anlieferungen bei uns ab sofort die Rampe 3 auf der Rueckseite des Gebaeudes."
+      stil: distraktor
+      source: claude
+      reviewed_by_jan: false
+    - id: irrelevant_10
+      text: "Fuer kuenftige Bestellungen benoetigen wir auf der Auftragsbestaetigung zusaetzlich unsere Projektnummer. Fuer Auftrag {auftragsnr} ist das nicht noetig."
+      stil: distraktor
+      source: claude-rev1
+      original_claude: "Bei uns gilt ab {datum_zukunft} ein neuer interner Freigabeprozess fuer Bestellungen. Fuer Auftrag {auftragsnr} aendert sich nichts."
+      reviewed_by_jan: false

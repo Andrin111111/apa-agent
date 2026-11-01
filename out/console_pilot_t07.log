@@ -1,0 +1,58 @@
+Lauf pilot_t07_20261101T162510Z: 17 Faelle x k=3, offen 51, bereits fertig 0, uebersprungen 3
+  uebersprungen C0197: nicht geroutet (kein Trigger)
+  uebersprungen C0325: nicht geroutet (kein Trigger)
+  uebersprungen C0352: nicht geroutet (kein Trigger)
+Client ollama, Modell qwen3.5:9b-q4_K_M, Temperatur 0.7, Seed 42 (per_run), Prompt v1.2 Variante a 509c488c3f44
+  [run 1] C0014   E6 -> E6 A6/Credit Management | ok | pending_approval | 9317 ms
+  [run 1] C0067   E3 -> E3 A4/Vertrieb | ok | executed | 7258 ms
+  [run 1] C0166   E3 -> E3 A4/Lager/Logistik;A2 | ok | executed | 8207 ms
+  [run 1] C0303 none -> none A0 | ok | executed | 6895 ms
+  [run 1] C0317   E2 -> E2 A6/Credit Management | ok | pending_approval | 7920 ms
+  [run 1] C0412 none -> none A0 | ok | executed | 6078 ms
+  [run 1] C0447   E6 -> E6 A3 | ok | executed | 7035 ms
+  [run 1] C0537   E3 -> E3 A4 | ok | executed | 7039 ms
+  [run 1] C0551   E6 -> E6 A6/Credit Management | ok | pending_approval | 8711 ms
+  [run 1] C0556   E2 -> E2 A6/Credit Management | ok | pending_approval | 6849 ms
+  [run 1] C0642   E3 -> E3 A2 | ok | executed | 6246 ms
+  [run 1] C0644   E6 -> E6 A0 | ok | executed | 7776 ms
+  [run 1] C0671   E2 -> E2 A6/Credit Management | ok | pending_approval | 7632 ms
+  [run 1] C0761   E6 -> E6 A5/Kundendienst | ok | pending_approval | 8258 ms
+  [run 1] C0880   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7708 ms
+  [run 1] C0902   E2 -> E2 A6/Credit Management | ok | pending_approval | 6554 ms
+  [run 1] C0955 none -> none A0 | ok | executed | 7799 ms
+  [run 2] C0014   E6 -> E6 A6/Credit Management | ok | pending_approval | 6024 ms
+  [run 2] C0067   E3 -> E3 A2 | ok | executed | 6093 ms
+  [run 2] C0166   E3 -> E3 A4 | ok | executed | 5824 ms
+  [run 2] C0303 none -> none A0 | ok | executed | 8409 ms
+  [run 2] C0317   E2 -> E2 A6/Credit Management | ok | pending_approval | 6192 ms
+  [run 2] C0412 none -> none A3 | ok | executed | 6003 ms
+  [run 2] C0447   E6 -> E6 A3/Vertrieb | ok | executed | 6881 ms
+  [run 2] C0537   E3 -> E3 A4 | ok | executed | 6476 ms
+  [run 2] C0551   E6 -> E6 A6/Credit Management | ok | pending_approval | 7349 ms
+  [run 2] C0556   E2 -> E2 A6/Credit Management | ok | pending_approval | 5857 ms
+  [run 2] C0642   E3 -> E3 A2 | ok | executed | 6519 ms
+  [run 2] C0644   E6 -> E6 A0 | ok | executed | 7436 ms
+  [run 2] C0671   E2 -> E2 A6/Credit Management | ok | pending_approval | 6196 ms
+  [run 2] C0761   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6916 ms
+  [run 2] C0880   E6 -> E6 A5/Kundendienst | ok | pending_approval | 7158 ms
+  [run 2] C0902   E2 -> E2 A6/Credit Management | ok | pending_approval | 6523 ms
+  [run 2] C0955 none -> none A0 | ok | executed | 6372 ms
+  [run 3] C0014   E6 -> E6 A6/Credit Management | ok | pending_approval | 6892 ms
+  [run 3] C0067   E3 -> E3 A4 | ok | executed | 5974 ms
+  [run 3] C0166   E3 -> E3 A4;A2 | ok | executed | 6040 ms
+  [run 3] C0303 none -> none A0 | ok | executed | 7357 ms
+  [run 3] C0317   E2 -> E2 A6/Credit Management | ok | pending_approval | 6124 ms
+  [run 3] C0412 none -> none A0 | ok | executed | 7393 ms
+  [run 3] C0447   E6 -> E6 A3 | ok | executed | 7609 ms
+  [run 3] C0537   E3 -> E3 A4 | ok | executed | 5903 ms
+  [run 3] C0551   E6 -> E6 A6/Credit Management | ok | pending_approval | 6405 ms
+  [run 3] C0556   E2 -> E2 A6/Credit Management | ok | pending_approval | 6415 ms
+  [run 3] C0642   E3 -> E3 A4;A2 | ok | executed | 7042 ms
+  [run 3] C0644   E6 -> E6 A0 | ok | executed | 5838 ms
+  [run 3] C0671   E2 -> E2 A6/Credit Management | ok | pending_approval | 4862 ms
+  [run 3] C0761   E6 -> E6 A5/Kundendienst | ok | pending_approval | 8410 ms
+  [run 3] C0880   E6 -> E6 A5/Kundendienst | ok | pending_approval | 6627 ms
+  [run 3] C0902   E2 -> E2 A6/Credit Management | ok | pending_approval | 6304 ms
+  [run 3] C0955 none -> none A0 | ok | executed | 6723 ms
+Fertig: 51/51 Paare | Parsefehler 0 | blockiert 0  | offen zur Freigabe 24 | Transportfehler 0 | mittel 6890 ms
+-> /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4/out/agent_actions_pilot_t07.jsonl, /Users/jansamueltkac/00_WI_Bachelor/wi-projekt/apa-agent/wi-projekt_repo_stand_schritt4/out/audit_log.jsonl

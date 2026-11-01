@@ -1,0 +1,511 @@
+{
+ "Pilot (20)": {
+  "detection": {
+   "per_type": [
+    {
+     "typ": "E2",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E3",
+     "n_gt": 4,
+     "tp": 4,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E5",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "E6",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    },
+    {
+     "typ": "E7",
+     "n_gt": 0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 0,
+     "precision": null,
+     "recall": null
+    },
+    {
+     "typ": "none",
+     "n_gt": 6,
+     "tp": 6,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0
+    }
+   ],
+   "boundary_n": 0,
+   "boundary_false_alarms": 0,
+   "boundary_false_alarm_ids": [],
+   "routing_required": 17,
+   "routing_missing": 0,
+   "routed_total": 17
+  },
+  "actions": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "per_run": [
+    {
+     "run": 1,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 3,
+       "acc": 0.75,
+       "reasons": {
+        "rolle": 1,
+        "ok": 3
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 5,
+       "acc": 0.8333333333333334,
+       "reasons": {
+        "ok": 5,
+        "enthaltung": 1
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "enthaltung": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 2,
+        "aktionsmenge": 1
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 7,
+       "acc": 0.875
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 5,
+       "acc": 0.8333333333333334
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 14,
+       "acc": 0.8235294117647058
+      }
+     },
+     "outputs": 17,
+     "abstention": 1,
+     "abstention_rate": 0.058823529411764705,
+     "agent_false_alarms": 1,
+     "agent_false_alarm_n": 3,
+     "type_match": 15,
+     "type_n": 17
+    },
+    {
+     "run": 2,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 3,
+       "acc": 0.75,
+       "reasons": {
+        "ok": 3,
+        "rolle": 1
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 4,
+        "enthaltung": 2
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "enthaltung": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 1,
+       "acc": 0.5,
+       "reasons": {
+        "ok": 1,
+        "enthaltung": 1
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 2,
+        "aktionsmenge": 1
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 7,
+       "acc": 0.875
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 2,
+       "acc": 0.6666666666666666
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 13,
+       "acc": 0.7647058823529411
+      }
+     },
+     "outputs": 17,
+     "abstention": 2,
+     "abstention_rate": 0.11764705882352941,
+     "agent_false_alarms": 1,
+     "agent_false_alarm_n": 3,
+     "type_match": 15,
+     "type_n": 17
+    },
+    {
+     "run": 3,
+     "groups": {
+      "E2": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E3": {
+       "n": 4,
+       "ok": 4,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 4
+       }
+      },
+      "E6": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666,
+       "reasons": {
+        "ok": 4,
+        "enthaltung": 1,
+        "aktionsmenge": 1
+       }
+      },
+      "E6:complaint": {
+       "n": 2,
+       "ok": 2,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 2
+       }
+      },
+      "E6:irrelevant": {
+       "n": 1,
+       "ok": 0,
+       "acc": 0.0,
+       "reasons": {
+        "enthaltung": 1
+       }
+      },
+      "E6:payment_announced": {
+       "n": 1,
+       "ok": 1,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 1
+       }
+      },
+      "E6:payment_difficulty": {
+       "n": 2,
+       "ok": 1,
+       "acc": 0.5,
+       "reasons": {
+        "ok": 1,
+        "aktionsmenge": 1
+       }
+      },
+      "none_text": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0,
+       "reasons": {
+        "ok": 3
+       }
+      }
+     },
+     "aggregate": {
+      "deterministisch (E2, E3)": {
+       "n": 8,
+       "ok": 8,
+       "acc": 1.0
+      },
+      "Ermessen (E6)": {
+       "n": 6,
+       "ok": 4,
+       "acc": 0.6666666666666666
+      },
+      "Happy Path mit Freitext": {
+       "n": 3,
+       "ok": 3,
+       "acc": 1.0
+      },
+      "bewertet gesamt": {
+       "n": 17,
+       "ok": 15,
+       "acc": 0.8823529411764706
+      }
+     },
+     "outputs": 17,
+     "abstention": 1,
+     "abstention_rate": 0.058823529411764705,
+     "agent_false_alarms": 0,
+     "agent_false_alarm_n": 3,
+     "type_match": 15,
+     "type_n": 17
+    }
+   ],
+   "schema_errors": {
+    "target_role_missing": 2,
+    "json_parse": 2,
+    "rationale_short": 2,
+    "action_not_in_catalog": 1,
+    "unknown_requires_A6": 2,
+    "missing:key_evidence": 1
+   },
+   "outputs_checked": 51,
+   "invalid_outputs": 10,
+   "duplicates": 0,
+   "reproducibility": {
+    "cases": 17,
+    "identical": 10,
+    "rate": 0.5882352941176471
+   },
+   "errors": [
+    {
+     "run": 1,
+     "case_id": "C0317",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "rolle",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E2",
+     "out_actions": "A6",
+     "baseline_category": ""
+    },
+    {
+     "run": 1,
+     "case_id": "C0412",
+     "gt_type": "none",
+     "gt_category": "irrelevant",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    },
+    {
+     "run": 1,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "enthaltung",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": "unknown",
+     "out_actions": "A6/Buchhaltung",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0412",
+     "gt_type": "none",
+     "gt_category": "irrelevant",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A0\"]]",
+     "gt_role": "",
+     "out_type": "none",
+     "out_actions": "A9",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "enthaltung",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": "unknown",
+     "out_actions": "A0",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0551",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "enthaltung",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "unknown",
+     "out_actions": "A0",
+     "baseline_category": ""
+    },
+    {
+     "run": 2,
+     "case_id": "C0671",
+     "gt_type": "E2",
+     "gt_category": "none",
+     "grund": "rolle",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": "E2",
+     "out_actions": "A6",
+     "baseline_category": ""
+    },
+    {
+     "run": 3,
+     "case_id": "C0447",
+     "gt_type": "E6",
+     "gt_category": "irrelevant",
+     "grund": "enthaltung",
+     "gt_allowed": "[[\"A3\"]]",
+     "gt_role": "",
+     "out_type": "unknown",
+     "out_actions": "A6/Buchhaltung",
+     "baseline_category": ""
+    },
+    {
+     "run": 3,
+     "case_id": "C0551",
+     "gt_type": "E6",
+     "gt_category": "payment_difficulty",
+     "grund": "aktionsmenge",
+     "gt_allowed": "[[\"A6\"]]",
+     "gt_role": "Credit Management",
+     "out_type": null,
+     "out_actions": "",
+     "baseline_category": ""
+    }
+   ]
+  },
+  "e5": {
+   "n": 0,
+   "ok": 0
+  }
+ }
+}

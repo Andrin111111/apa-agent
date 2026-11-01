@@ -1,0 +1,21 @@
+item,case_id,lauf,run,score_protokoll,score_urteil,abzug,kommentar_claude
+K5-01,C0537,pilot_t0,1,2,2,,"Termin in 1 Tag, nicht versendet, korrekt; Zuordnung E3 korrekt zitiert; Aktion mit Lage begruendet"
+K5-02,C0317,pilot_t0,1,1,1,Nebenaussage falsch,"Ueberschreitung mit korrekten Zahlen; 'automatische Weiterleitung' falsch, A6 braucht Freigabe"
+K5-03,C0028,e6_t0,1,2,2,,Zahlungsauftrag an Bank korrekt erfasst; Zuordnung E6 korrekt
+K5-04,C0327,e6_t0,1,1,1,Nebenaussage falsch,"Anweisung korrekt erfasst; 'abgeschlossener Vorgang' falsch, Zahlung noch nicht eingegangen, A0 ist Wiedervorlage. Grenzfall 1/2"
+K5-05,C0945,e6_t0,1,2,2,,Zahlung ausgeloest korrekt; nennt Wiedervorlage A0 und Zuordnung
+K5-06,C0179,e6_t0,1,1,2,Nebenaussage falsch,Zahlungsschwierigkeit korrekt; 'explizit' (Text indirekt) und 'Zahlungsunfaehigkeit aufgrund einer Bankpruefung' (Ursache: geplatztes Projekt) nicht gedeckt
+K5-07,C0797,e6_t0,1,1,1,falscher Regelbezug,Reklamation korrekt; begruendet mit Ermessensrichtlinie statt Zuordnung
+K5-08,C0982,e6_t0,1,2,2,,Zahlungsprobleme und Teilzahlungswunsch korrekt; Zuordnung zitiert
+K5-09,C0493,e6_t0,1,2,2,,"Besuch ohne Bezug korrekt; Zuordnung zitiert. 'keine Kuendigung' ueberfluessig, nicht falsch"
+K5-10,C0955,pilot_t0,1,2,2,,"kein harter Trigger, keine Rechnung, Personalie ohne Bezug korrekt"
+K5-11,C0042,e6_t0,1,2,2,,Personalie ohne Bezug korrekt; Zuordnung zitiert
+K5-12,C0067,pilot_t0,1,2,2,,"Termin 4 Tage verpasst, nicht versendet korrekt; Zuordnung E3 korrekt"
+K5-13,C0853,e6_t0,1,1,1,Nebenaussage falsch,Zahlungsschwierigkeit korrekt; 'bittet um Aufschub' steht nicht im Text
+K5-14,C0303,pilot_t0,1,2,2,,"kein Trigger, bezahlt, Adressaenderung korrekt"
+K5-15,C0880,e6_t0,1,1,1,falscher Regelbezug,Mangel korrekt erfasst; begruendet mit Ermessensrichtlinie (gilt nur bei E7)
+K5-16,C0695,e6_t0,1,2,2,,Anfrage ohne Bezug korrekt; Zuordnung zitiert. Tippfehler 'Kundigung' unerheblich
+K5-17,C0902,pilot_t0,1,1,1,Nebenaussage falsch,Ueberschreitung mit korrekten Zahlen; 'automatische Weiterleitung' falsch (Freigabe)
+K5-18,C0298,e6_t0,1,1,1,Nebenaussage falsch,falscher Artikel korrekt erfasst; 'Lieferstopp' falsch (Text: Montage steht still); Regel 3 der Richtlinie als Zuordnung ausgegeben. Grenzfall 1/2
+K5-Z1,C0776,e6_t0,1,0,0,Kern falsch,"Ankuendigung als Aufschub gedeutet; erfundene 'Zahlungsvereinbarung'; zitiert 'Bitte um Aufschub', die es nicht gibt"
+K5-Z2,C0412,pilot_t07,2,1,1,falscher Regelbezug,"Information korrekt (kein Trigger, Betriebsferien ohne Bezug); zitiert erfundene Zuordnung none -> A3, die zur falschen Aktion fuehrt. Raster-Schwaeche: nach Anker 1, inhaltlich naeher bei 0"

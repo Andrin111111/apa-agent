@@ -1,0 +1,41 @@
+item_id|label|unsicher|begruendung
+L01|irrelevant|nein|Produktanfrage fuer Folgebestellung
+L02|payment_difficulty|nein|Engpass, bittet um Ratenzahlung
+L03|irrelevant|nein|Adressaenderung
+L04|complaint|nein|falsche Laenge geliefert
+L05|payment_difficulty|nein|will Betrag verteilt abzahlen
+L06|irrelevant|nein|Hinweis zur Anlieferrampe
+L07|payment_announced|nein|Betrag im naechsten Lauf enthalten
+L08|complaint|nein|falscher Artikel geliefert
+L09|payment_announced|nein|Betrag an Bank angewiesen
+L10|irrelevant|nein|Frage nach Datenblaettern
+L11|payment_announced|nein|Zahlung mit Valuta angekuendigt
+L12|complaint|nein|Ware durchnaesst, unbrauchbar
+L13|complaint|nein|Mangelruege undichte Ventile
+L14|complaint|nein|unvollstaendige Lieferung reklamiert
+L15|irrelevant|nein|Betriebsferien
+L16|irrelevant|nein|Wechsel Ansprechperson
+L17|payment_announced|nein|Zahlung im E-Banking terminiert
+L18|payment_announced|nein|Zahlung im naechsten Lauf
+L19|payment_difficulty|nein|Kunde in Konkurs, braucht Zeit
+L20|payment_announced|nein|Zahlung veranlasst
+L21|irrelevant|nein|Lob fuer Lieferung
+L22|payment_difficulty|nein|Geld reicht aktuell nicht
+L23|payment_announced|nein|Ueberweisung erfolgt
+L24|payment_difficulty|nein|Kreditlinie unsicher, kann nicht zahlen
+L25|complaint|nein|Display ausgefallen
+L26|payment_difficulty|nein|kann nicht zahlen, Teilzahlungen
+L27|payment_announced|nein|Zahlung diese Woche zugesagt
+L28|complaint|nein|falsche Ausfuehrung reklamiert
+L29|payment_difficulty|nein|Nachlassverfahren
+L30|complaint|nein|Anlage laeuft nicht stabil
+L31|payment_announced|nein|Zahlung ausgeloest
+L32|payment_difficulty|nein|Liquiditaetsengpass, Ratenwunsch
+L33|irrelevant|nein|Besuchstermin Aussendienst
+L34|irrelevant|nein|Projektnummer fuer kuenftige Bestellungen
+L35|irrelevant|nein|Anfrage CO2-Angaben
+L36|complaint|nein|zerkratzte Oberflaechen
+L37|payment_difficulty|nein|Konto ausgereizt
+L38|complaint|nein|beschaedigte Paletten beanstandet
+L39|payment_announced|nein|Bankauftrag ausgefuehrt
+L40|payment_difficulty|nein|Aufschub wegen Zahlungsschwierigkeiten

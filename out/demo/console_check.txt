@@ -1,0 +1,11 @@
+Vorabpruefung Demo
+  OK   Ollama erreichbar      Version 0.40.13 (Evaluation: 0.40.13)
+  OK   Modell-Digest          qwen3.5:9b-q4_K_M 56671c2ab938
+  OK   Prompt und Schema      v1.2a 509c488c3f44, Schema 9e9b629c7359 wie Evaluation
+  OK   Fallobjekte            C0902 (pilot_t0), C0537 (pilot_t0), C0244 (e6_t0)
+  OK   Schema erzwungen       Probeaufruf 0,8 s (laedt das Modell)
+  OK   Aufwaermen Agent       C0556, 6,6 s (nicht im Audit-Log)
+  OK   Modell geladen (GPU)   100,0 % GPU, Kontext 8192, bleibt geladen bis 20:15 (keep_alive 90m)
+  OK   Replay-Fallback        Aufzeichnung 'demo_ref': 3/3 Faelle, bytegleich mit Evaluation
+  INFO  Stromversorgung        Akku (Netzteil anschliessen)
+BEREIT
