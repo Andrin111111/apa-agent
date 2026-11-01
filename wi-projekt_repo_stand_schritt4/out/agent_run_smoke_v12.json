@@ -1,0 +1,39 @@
+{
+ "config": {
+  "label": "smoke_v12",
+  "client": "ollama",
+  "model": "qwen3.5:9b-q4_K_M",
+  "temperature": 0,
+  "seed": 42,
+  "seed_mode": "fixed",
+  "prompt_variant": "a",
+  "prompt_version": "1.2",
+  "prompt_hash": "509c488c3f44a62c1fac62e8189e38ee43c57594fa402817214d5b13e14aba34",
+  "schema_hash": "9e9b629c7359db8b528b92a779825854a59eb613c143e43c4063c32059aef321",
+  "think": "off",
+  "endpoint": "chat",
+  "mock_faults": null,
+  "replay_label": null
+ },
+ "cases": [
+  "C0317",
+  "C0067",
+  "C0880"
+ ],
+ "k": 2,
+ "last_run_id": "smoke_v12_20261101T155637Z",
+ "interrupted": false,
+ "summary_last_session": {
+  "calls": 6,
+  "transport_errors": 0,
+  "parse_errors": 0,
+  "guardrail_blocked": 0,
+  "violations": {},
+  "warnings": {},
+  "pending_approval": 4,
+  "executed_actions": 4,
+  "mean_ms": 7130,
+  "completed_pairs": 6,
+  "expected_pairs": 6
+ }
+}

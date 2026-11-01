@@ -16,7 +16,7 @@ Fehlerklassen:
                      Aktionszeile, der Fall wird beim Fortsetzen erneut versucht.
 
 Pruefung der lokalen Installation (Jan, vor dem Rauchtest):
-  python src/llm_client.py check --model qwen3.5:9b --think off
+  python src/llm_client.py check --model qwen3.5:9b-q4_K_M --think off
   -> Server-Version, Digest, Fallentest: wird das Schema auch gegen eine Prosa-Aufforderung erzwungen?
 """
 

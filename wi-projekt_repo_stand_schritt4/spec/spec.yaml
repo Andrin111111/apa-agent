@@ -1,4 +1,4 @@
-# spec.yaml | v0.4.0 | Stand 01.11.2026
+# spec.yaml | v0.5.0 | Stand 01.11.2026
 # Maschinenlesbare Spezifikation (Parameter, Schemas, Katalog). Single Source of Truth fuer Code.
 # Begruendungen und Kontext stehen in WI-Projekt_Zwischenpraesentation_Kontext_und_Plan.md.
 # Bei Widerspruch: Parameter gelten laut dieser Datei, Widerspruch melden und beide Dateien korrigieren.
@@ -8,9 +8,12 @@
 # v0.4.0: K3 freigegeben (01.11.2026). Neu: detection.order_check, multi_trigger_priority, resolved_assumptions,
 #         Abschnitte baseline und evaluation_rules, pilot.extra_runs.e6_full. Keine Aenderung an generatorrelevanten
 #         Feldern, Daten bleiben bitgleich.
+# v0.5.0: K4 (01.11.2026). Neu: meta.llm (Modell mit Tag, think, endpoint, num_ctx, num_predict), Abschnitte agent,
+#         guardrail_policy und approval, Guardrail case_id_match, pilot.extra_run (T 0.7, Seed pro Run),
+#         evaluation_rules M5 und M6. Keine Aenderung an generatorrelevanten Feldern, Daten bleiben bitgleich.
 
 meta:
-  version: 0.4.0
+  version: 0.5.0
   status: frozen_for_pilot        # Aenderung nach Einfrieren erfordert Neugenerierung des Logs
   seed: 42
   pilot_scope: [E2, E3, E6]       # werden im Pilot gegen den Agenten evaluiert
@@ -18,7 +21,11 @@ meta:
   llm:
     runtime: local                # kein API-Key vorhanden
     hardware: "MacBook Pro M4 Pro, 24 GB RAM"
-    model: TBD                    # Vorschlag in Schritt 4, Entscheid Jan an K4
+    model: "qwen3.5:9b-q4_K_M"    # Entscheid K4. Tag zwingend: der MLX-Build von qwen3.5:9b (nvfp4) erzwingt kein Schema (HTTP 501)
+    think: "off"                  # Denkmodus aus, Begruendung und Belege stehen im Schema vor der Entscheidung
+    endpoint: chat
+    num_ctx: 8192
+    num_predict: 1024
     temperature: 0
     seed: 42
     output: json_schema           # constrained decoding
@@ -135,12 +142,36 @@ guardrails:
   - rationale_present             # Begruendung ist Pflichtfeld
   - schema_valid
   - unknown_requires_A6           # Umsetzung von abstention.rule (nicht im JSON-Schema, da if/then bei constrained decoding unsicher)
+  - case_id_match                 # case_id der Ausgabe = case_id des Fallobjekts (K4, G1)
+
+guardrail_policy:                 # K4
+  on_violation: block_to_human    # kein automatischer Neuversuch, Fall geht an einen Menschen, alles wird protokolliert
+  retry: false
+  hints_non_blocking: [type_mismatch, duplicate_action, role_on_non_role_action, extra_field, evidence_unknown_field]   # G2
 
 judgement_policy:                 # D3: bewusst vage, keine Schwellenwerte. Wird dem Agenten als Text mitgegeben.
   - "Die Kundenbeziehung hat Vorrang, wenn eine Kreditueberschreitung geringfuegig ist und der Kunde eine gute Zahlungshistorie hat."
   - "Bei erheblicher Ueberschreitung oder wiederholten Zahlungsverzuegen hat die Risikobegrenzung Vorrang."
   - "Hinweise des Kunden auf Maengel oder Reklamationen haben Vorrang vor Mahnprozessen."
   - "Im Zweifel wird an einen Menschen uebergeben, statt autonom zu handeln."
+
+agent:                            # K4, Schritt 4
+  prompt: prompts/agent_prompt.md
+  prompt_version: "1.2"
+  prompt_variant: a               # Standard: volle Zuordnung Typ/Kategorie -> Aktionen im Prompt
+  ablation_variant: b             # ohne Zuordnung, spaeter, nicht im Pilot
+  discretion_scope: [E7]          # Ermessensrichtlinie gilt nur bei E7; bei E2, E3, E5, E6, none ist die Zuordnung bindend (v1.1)
+  e3_allowed_actions: [A4, A2]    # andere Aktionen bei E3 nicht zulaessig (v1.2)
+  schema_field_order: [case_id, key_evidence, rationale, exception_type, actions]   # G3: Belege und Begruendung vor der Entscheidung
+
+approval:                         # K4, src/approval.py
+  approval_actions: [A5, A6, A7]
+  approval_types: [E7]            # bei E7 wird keine Aktion vorab ausgefuehrt
+  modes:
+    batch: "A5 bis A7 bleiben pending, nichts wird automatisch freigegeben (alle Laeufe Schritt 5)"
+    interactive: "pro Aktion j/n/offen, mit Name und Zeitstempel im Audit-Log (Demo, Schritt 6)"
+  assumption_A1: "Autonome Aktionen eines Falls laufen sofort, auch wenn eine andere Aktion desselben Falls auf Freigabe wartet"
+  dispositions: [executed, pending_approval, partially_executed_pending_approval, rejected_by_human, blocked_to_human, llm_error]
 
 baseline:                         # Schritt 3, src/baseline.py; Ausgabe im Format agent_output_schema
   E2: [{action_id: A6, target_role: Credit Management}]
@@ -156,6 +187,8 @@ evaluation_rules:                 # Schritt 3, src/metrics.py
   M2_denominator: "end-to-end: bewerteter Fall ohne Ausgabe zaehlt als falsch"
   M3_comparison: "Aktionen als Menge von action_id; jede A5/A6 muss target_role = expected_target_role haben"
   M4_abstention: "unknown zaehlt als falsch, auch wenn A6 zulaessig waere"
+  M5_scope_agent: "Agentenlaeufe werden nur auf ihrem Umfang bewertet (pilot bzw. e6_full), nicht auf all: Faelle ohne Ausgabe zaehlen sonst als falsch"
+  M6_guardrail_scoring: "Standard: Rohentscheidung des Agenten, auch wenn ein Guardrail blockiert hat. Zusaetzlich strikt (--strict-guardrails): blockierte Ausgaben zaehlen als falsch. Beide Zahlen berichten"
   reproducibility: "optionales Feld run; Anteil Faelle mit identischem Typ, Aktionen und Rollen ueber alle Runs"
 
 agent_output_schema:
@@ -214,6 +247,6 @@ pilot:
   composition: {E2: 4, E3: 4, E6: 6, none: 6, none_with_free_text: 3}   # E6: alle 4 Kategorien vertreten
   exclude_types: [E5, E7]
   k_runs: 3
-  extra_run: {temperature: ">0", purpose: "Unterschied in der Reproduzierbarkeit zeigen"}
+  extra_run: {temperature: 0.7, seed_mode: per_run, seeds: [42, 43, 44], purpose: "Unterschied in der Reproduzierbarkeit zeigen (K4: bei festem Seed waere auch T 0.7 identisch)"}
   extra_runs:                     # Entscheid K3 (D-K3-1): Baseline loest im Pilot alle 6 E6, Mehrwert dort nicht messbar
     e6_full: {cases: "alle E6 laut Erkennung (80)", k_runs: 1, purpose: "Mehrwert Agent vs. Baseline bei E6, inkl. 32 indirekter Texte"}

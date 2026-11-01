@@ -1,16 +1,17 @@
 # Anleitung: Agent lokal ausführen (Rauchtest K4 und Läufe Schritt 5)
 
 Stand 01.11.2026, Schritt 4. Alle Befehle aus dem Repo-Root. Python 3 mit pandas, numpy, PyYAML (keine weiteren Pakete).
-Modell in den Beispielen: `qwen3.5:9b` (Empfehlung, Entscheid an K4). Bei anderem Modell überall `--model` und das Label anpassen.
+Modell in den Beispielen: `qwen3.5:9b-q4_K_M` (Empfehlung, Entscheid an K4). Bei anderem Modell überall `--model` und das Label anpassen.
+Wichtig: Nicht `qwen3.5:9b` ziehen. Dieser Tag lädt auf dem Mac einen MLX-Build, der kein Schema erzwingt (HTTP 501). Immer `qwen3.5:9b-q4_K_M`.
 
 ## 1. Vorbereitung (einmalig, ca. 15 min)
 
 | # | Befehl | Erwartung |
 |---|---|---|
 | 1 | `ollama --version` | ≥ 0.31.2 (gemeldet: 0.40.13). Ältere Versionen ignorieren bei Qwen 3.5 mit `think=false` das Schema (Ollama-Issue 14645). |
-| 2 | `ollama pull qwen3.5:9b` | Download ca. 6,6 GB |
+| 2 | `ollama pull qwen3.5:9b-q4_K_M` | Download ca. 6,6 GB |
 | 3 | `python -m unittest discover -s tests` | `Ran 37 tests ... OK` |
-| 4 | `python src/llm_client.py check --model qwen3.5:9b --think off` | letzte Zeile `ERGEBNIS: OK, Schema wird erzwungen` |
+| 4 | `python src/llm_client.py check --model qwen3.5:9b-q4_K_M --think off` | letzte Zeile `ERGEBNIS: OK, Schema wird erzwungen` |
 
 Zu 4: Der Check verlangt vom Modell Prosa, gibt aber ein fremdes Schema vor. Nur wenn das Decoding das Schema erzwingt, kommt JSON zurück.
 Bei `FEHLER`: erneut mit `--endpoint generate` prüfen. Ist das OK, alle folgenden Läufe mit `--endpoint generate` starten (für alle Läufe gleich, im Bericht notieren).
@@ -22,7 +23,7 @@ Während der Läufe: Netzteil anschliessen, andere grosse Programme schliessen. 
 Je ein Pilotfall E2 (C0317), E3 (C0067), E6 (C0880, indirekte Reklamation), k = 2:
 
 ```
-caffeinate -i python src/run_agent.py --cases C0317,C0067,C0880 --k 2 --client ollama --model qwen3.5:9b --think off --label smoke
+caffeinate -i python src/run_agent.py --cases C0317,C0067,C0880 --k 2 --client ollama --model qwen3.5:9b-q4_K_M --think off --label smoke
 python src/audit_view.py --label smoke
 ```
 
@@ -38,9 +39,9 @@ Prüfen:
 
 | Lauf | Befehl | Aufrufe |
 |---|---|---|
-| Pilot, T = 0 | `caffeinate -i python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b --think off --label pilot_t0` | 51 |
-| E6-Zusatzlauf, T = 0 | `caffeinate -i python src/run_agent.py --cases e6_full --k 1 --client ollama --model qwen3.5:9b --think off --label e6_t0` | 80 |
-| Pilot, T = 0,7 | `caffeinate -i python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b --think off --temperature 0.7 --seed-mode per_run --label pilot_t07` | 51 |
+| Pilot, T = 0 | `caffeinate -i python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b-q4_K_M --think off --label pilot_t0` | 51 |
+| E6-Zusatzlauf, T = 0 | `caffeinate -i python src/run_agent.py --cases e6_full --k 1 --client ollama --model qwen3.5:9b-q4_K_M --think off --label e6_t0` | 80 |
+| Pilot, T = 0,7 | `caffeinate -i python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b-q4_K_M --think off --temperature 0.7 --seed-mode per_run --label pilot_t07` | 51 |
 
 - `--seed-mode per_run` (Seed 42, 43, 44) ist beim Temperaturlauf nötig: Mit festem Seed wäre auch bei T > 0 jeder Run gleich, und der Lauf zeigte keine Streuung.
 - Abbrechen mit Ctrl+C ist jederzeit möglich. Derselbe Befehl setzt fort und überspringt fertige Fall/Run-Paare.

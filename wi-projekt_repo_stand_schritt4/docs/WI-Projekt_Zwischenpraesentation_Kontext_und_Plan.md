@@ -2,13 +2,13 @@
 
 | Feld | Wert |
 |---|---|
-| Version | 0.4 |
+| Version | 0.5 |
 | Stand | 01.11.2026 |
-| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 3 erledigt (K1 bis K3 freigegeben). Nächster Schritt: 4 (Agent-Kern) |
+| Phase | Vorbereitung Zwischenpräsentation. Schritte 1 bis 4 erledigt (K1 bis K3 freigegeben, K4 Entscheide getroffen, Rauchtest bestanden). Nächster Schritt: 5 (Pilotläufe) |
 | Ziel | Vorbereitung abgeschlossen bis 01.11.2026 (Vorgabe Jan) |
 | Betreuung | Michael Winter (Thema 75); Modulverantwortung Dr. Stefan Koruna (koru@zhaw.ch) |
 | Ersetzt | `WI-Projekt_Projektkontext.md` v0.1 (inhaltlich vollständig übernommen und konsolidiert) |
-| Begleitdatei | `spec.yaml` v0.4.0 (maschinenlesbare Parameter, Schemas, Katalog) |
+| Begleitdatei | `spec.yaml` v0.5.0 (maschinenlesbare Parameter, Schemas, Katalog) |
 | Quellen | `Projektausschreibung`, `WI-Projekt_Termine_und_Vorgaben.md`, `WI-Projekt_Onboarding_Protokoll_21-09-2026.md` |
 
 ---
@@ -35,20 +35,21 @@
 
 **Pflege:** Bei jeder Änderung Version und Stand anpassen, Entscheide in Abschnitt 14, Änderungen in Abschnitt 17 und Status in Abschnitt 12/13 nachführen. Nicht entschiedene Vorschläge als "Entwurf", "Annahme" oder "offen" kennzeichnen.
 
-**Repo-Struktur (Stand v0.4, * = noch nicht erstellt):**
+**Repo-Struktur (Stand v0.5, * = noch nicht erstellt):**
 ```
 README.md  Bedienung und Status
-docs/      dieses Dokument, Prompts Schritt 3 und 4
+docs/      dieses Dokument, Prompts Schritt 3 und 4, ANLEITUNG_lokal.md
+tests/     37 Unit-Tests (python -m unittest discover -s tests)
 spec/      spec.yaml
 src/       generate_log.py, validate_log.py, make_k2.py, extern_tasks.py, keyword_labeler.py,
            detect.py, detect_checks.py, baseline.py, metrics.py
-           *case_object.py, *llm_client.py, *guardrails.py, *approval.py, *run_agent.py, *demo.py
-prompts/   extern/ (Prompts für externe Modelle, Iteration 2), *agent_prompt.md
+           case_object.py, llm_client.py, guardrails.py, approval.py, run_agent.py, audit_view.py, *demo.py
+prompts/   extern/ (Prompts für externe Modelle, Iteration 2), agent_prompt.md (v1.2)
 data/      event_log.csv, cases.csv, ground_truth.csv, freitext_vorlagen.yaml,
            pilot_sample.csv, labeling_e6_blind.csv, labeling/ (label_items, label_key)
 out/       generation_report.md, labeling_report.md, k2_befunde.md, step3_report.md,
            detections.csv, detect_checks.md, baseline_actions.jsonl, metrics_baseline.(md|json),
-           errors_baseline.csv, *agent_actions_<label>.jsonl, *audit_log.jsonl
+           errors_baseline.csv, step4_report.md, agent_actions_<label>.jsonl, audit_log.jsonl
 slides/    *Zwischenpräsentation (.pptx), Grafiken
 ```
 
@@ -235,14 +236,16 @@ Event Log → Erkennung (Regeln + Conformance, PM4Py) → Fallobjekt → Agent (
 | Komponente | Verhalten |
 |---|---|
 | Erkennung | deterministisch, `evaluate(case, events, now)` (`src/detect.py`), regel- und conformance-basiert. Fristen auf Tagesbasis, Reihenfolge (E5) nach Zeitstempel. Zusätzlich weicher Trigger: Fall mit Freitext geht an den Agenten. 370 Fälle geroutet |
-| Agent | wählt nur Aktionen aus dem Katalog, Begründung und `key_evidence` als Pflichtfelder, JSON-Schema, Temperatur 0, fester Seed |
-| Guardrails | Katalogzugehörigkeit, Autonomiestufe, Rolle existiert, Schema, Begründung vorhanden, `unknown` erfordert A6 |
-| Human-Approval | Freigabe für A5 bis A7 und für E7 (CLI im Prototyp) |
+| Agent | wählt nur Aktionen aus dem Katalog, Begründung und `key_evidence` als Pflichtfelder (im Schema vor der Entscheidung), JSON-Schema, Temperatur 0, fester Seed, Denkmodus aus. Fallobjekt (`src/case_object.py`) ohne Ground Truth. Prompt `prompts/agent_prompt.md` v1.2, Variante a (volle Zuordnung), Variante b (ohne Zuordnung) als spätere Ablation. Die Ermessensrichtlinie gilt nur bei E7, bei E2, E3, E5, E6 und none ist die Zuordnung bindend |
+| Guardrails | Katalogzugehörigkeit, Autonomiestufe, Rolle existiert, Schema, Begründung vorhanden, `unknown` erfordert A6, `case_id_match` (blockierend). Bei Verstoss kein Neuversuch: Ausgabe blockiert, Fall geht an einen Menschen. Fachlich falsche, aber schemakonforme Aktionen fangen die Guardrails nicht ab |
+| Human-Approval | Freigabe für A5 bis A7 und für E7 (`src/approval.py`). Modus batch (Schritt 5): nichts wird freigegeben, A5 bis A7 bleiben `pending`. Modus interaktiv (Demo): j/n/offen mit Name und Zeitstempel. Dispositionen: `executed`, `pending_approval`, `partially_executed_pending_approval`, `rejected_by_human`, `blocked_to_human`, `llm_error` |
 | Audit-Log | Input, Aktion, Begründung, Guardrail-Ergebnis, Freigabeentscheid, Zeitstempel (`audit_log.jsonl`) |
 | Baseline | `src/baseline.py`: Regelzuordnung Ausnahmetyp → Aktion, gleiche Fälle, Ausgabe im Agentenformat. E3: A4+A2. E6: Kategorie per Keyword-Klassifikator. E7: A6 Credit Management (nicht bewertet) |
 | Metriken | `src/metrics.py`: wertet jede Aktionsdatei im Agentenformat aus (alle Fälle und Pilot, k Runs, Schema-Vorprüfung) |
 
-**Technik:** Python, PM4Py, lokales LLM (Ollama-kompatible Schnittstelle, Modell offen, Hardware: MacBook Pro M4 Pro, 24 GB RAM), austauschbarer LLM-Client mit Replay-Modus, Git-Repository. Streamlit nur bei Zeit. Apromore für Prozesslandkarte (manuell durch Gruppe).
+**Technik:** Python, PM4Py, lokales LLM (Ollama, Modell `qwen3.5:9b-q4_K_M`, Denkmodus aus, Hardware: MacBook Pro M4 Pro, 24 GB RAM), austauschbarer LLM-Client (Ollama, Replay, Mock), Git-Repository. Streamlit nur bei Zeit. Apromore für Prozesslandkarte (manuell durch Gruppe).
+
+**Modellhinweis:** Der Tag `qwen3.5:9b` lädt auf Apple Silicon einen MLX-Build (nvfp4, 7,6 GB), der strukturierte Ausgabe nicht unterstützt (HTTP 501 "structured output is unavailable", auch mit `--endpoint generate`). Der Build `qwen3.5:9b-q4_K_M` (6,6 GB) erzwingt das Schema (Check bestanden, Ollama 0.40.13). Alle Läufe verwenden den Q4_K_M-Tag.
 
 **Erwartung zum lokalen Modell:** Ein kleines Modell wird bei E6 vermutlich schwächer sein. Das ist ein Befund, die Guardrails gewinnen dadurch an Gewicht.
 
@@ -273,6 +276,10 @@ Event Log → Erkennung (Regeln + Conformance, PM4Py) → Fallobjekt → Agent (
 | Happy Path mit Freitext | 70/70 | 3/3 |
 
 E6-Fehler der Baseline nur bei indirekten Texten (21 von 32 falsch, direkt 0 von 43). Erkennung 100 % ist zirkulär (gleiche Spezifikation, gleiches Modell) und kein Erfolgsnachweis.
+
+**Agentenlauf (K4):** Bewertet wird die Rohentscheidung des Agenten, auch wenn ein Guardrail sie blockiert hat. Zusätzlich wird strikt gerechnet (blockierte Ausgabe zählt als falsch). Beide Zahlen werden berichtet. Agentenläufe werden nur auf ihrem Umfang bewertet (Pilot bzw. E6-Zusatzlauf, nicht auf allen Fällen).
+
+**Aussagekraft der Reproduzierbarkeit:** Bei Temperatur 0 und festem Seed ist nahezu 100 % zu erwarten und misst nur technischen Nichtdeterminismus (Batching, Cache). Aussagekräftig ist erst der Lauf mit T = 0,7 und Seed pro Run (42, 43, 44). E2, E3 und Happy Path sind durch Fallobjekt und Variante a vorgegeben, ein Agent mit 100 % dort ist kein Befund. Mehrwert ist nur bei E6 messbar.
 
 **Vorrangregel:** E7-Fälle zählen bei der Erkennungsgüte als E7 (E7 vor E2/E3), damit Precision/Recall von E2 und E3 nicht verfälscht werden.
 
@@ -313,11 +320,11 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | 1 | Spezifikation einfrieren | AP1 | Claude | `spec.yaml` v0.2.3, dieses Dokument | K1: Entscheide D1 bis D5 getroffen, Spezifikation gegenlesen | erledigt (Freigabe Jan, Go für Schritt 2) |
 | 2 | Log-Generator | AP2 | Claude | `generate_log.py`, `event_log.csv`, `cases.csv`, `ground_truth.csv`, `freitext_vorlagen.yaml` | K2: Stichprobe 10 Fälle pro Typ (bei E7 nur Plausibilität der Attribute, keine Ground Truth), Verteilung prüfen, Teil der Freitexte überarbeiten | erledigt. Stichprobe, Freitext-Revision und Labeling durch Claude (Entscheid Jan). K2 freigegeben |
 | 3 | Erkennung und Baseline | AP3, AP6 | Claude | `detect.py`, `detect_checks.py`, `baseline.py`, `metrics.py`, `step3_report.md` | K3: Precision/Recall, 5 Fehlerfälle prüfen | erledigt (K3 freigegeben 01.11.2026) |
-| 4 | Agent-Kern | AP4, AP5 | Claude | `case_object.py`, `agent_prompt.md`, `llm_client.py`, `guardrails.py`, `approval.py`, `run_agent.py`, `audit_log.jsonl`, Modellvorschlag | K4: Prompt, Guardrails und Modellwahl entscheiden, 3 Audit-Einträge prüfen | offen, Prompt bereit (`prompt_schritt4_agent_kern.md`) |
+| 4 | Agent-Kern | AP4, AP5 | Claude | `case_object.py`, `agent_prompt.md`, `llm_client.py`, `guardrails.py`, `approval.py`, `run_agent.py`, `audit_log.jsonl`, Modellvorschlag | K4: Prompt, Guardrails und Modellwahl entscheiden, 3 Audit-Einträge prüfen | erledigt (Entscheide Jan 01.11.2026, Rauchtest 6/6 bestanden mit Prompt v1.2) |
 | 5 | Pilotlauf (20 Fälle, k = 3) und E6-Zusatzlauf (80 Fälle, k = 1) | AP6 | Jan fährt lokal (im Chat), Claude wertet aus | Auswertung | K5: Begründungsraster stichprobenartig selbst bewerten | offen |
 | 6 | Demo (E2, E3, E6) | AP8 | Claude | `demo.py`, Screenshots, Aufzeichnung | K6: Probelauf bei Jan | offen |
 | 7 | Folien | AP8 | Claude | `.pptx`, Sprechnotizen, Q&A | K7: inhaltlich und Probevortrag | offen |
-| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.4 nach K3) |
+| 8 | Dieses Dokument nachführen (AP-Status, Logs) | - | Claude | aktualisierte Datei | kurz gegenlesen | laufend (v0.5 nach K4) |
 
 **Reihenfolge:** 1 → 2 → 3 → 4 → 5 → 6. Folien-Gerüst und Grafiken nach K1 parallel, Finalisierung nach dem Pilot.
 
@@ -337,15 +344,15 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | Iteration 2 (optional) | Externe Revision und externes Labeling nach `prompts/extern/ANLEITUNG.md`. Die Datei `labeling_e6_blind.csv` (15 Fälle) bleibt als Reserve für ein menschliches Labeling | Unabhängige Labels |
 | Ab K7 | Folien lesen, Rollen und Redezeiten verteilen, Probevortrag | Sprechplan, Zeitcheck |
 
-### So geht es weiter (Stand 01.11.2026, nach K3)
+### So geht es weiter (Stand 01.11.2026, nach K4)
 
 | # | Wer | Was | Dauer |
 |---|---|---|---|
-| 1 | Jan | Projektdateien ersetzen: dieses Dokument (v0.4) und `spec.yaml` (v0.4.0). `prompt_schritt4_agent_kern.md` als Projektdatei ergänzen. Repo-Stand (`wi-projekt_repo_stand_schritt3.zip`) in Git übernehmen | 10 min |
-| 2 | Jan | Neuen Chat im Projekt öffnen, `prompt_schritt4_agent_kern.md` einfügen, Repo-Zip hochladen. Dazu angeben, ob Ollama schon läuft und welche Version | 5 min |
-| 3 | Claude | Schritt 4 bis K4 (Agent-Kern, Modellvorschlag, Testlauf mit Mock-Client) | |
-| 4 | Jan | An K4: Modell wählen, Prompt und Guardrails freigeben, Rauchtest mit 3 Fällen lokal | 30 min |
-| parallel | Gruppe | Ollama installieren (falls offen), Apromore-Import von `data/event_log.csv` (AP7) | |
+| 1 | Jan | Projektdateien ersetzen: dieses Dokument (v0.5) und `spec.yaml` (v0.5.0). Repo-Stand in Git übernehmen | 10 min |
+| 2 | Jan | Läufe Schritt 5 nach `docs/ANLEITUNG_lokal.md`, Abschnitt 3 (Pilot T = 0, E6-Zusatzlauf, Pilot T = 0,7), immer mit `--model qwen3.5:9b-q4_K_M --think off`. 182 Aufrufe, geschätzt rund 20 bis 25 Minuten (Rauchtest: rund 7 s pro Aufruf) | 25 min |
+| 3 | Jan | Audit-Log und Aktionsdateien (`out/agent_actions_<label>.jsonl`) im Chat zurückmelden | 5 min |
+| 4 | Claude | Auswertung mit `metrics.py` (roh und strikt), Vergleich mit Baseline | |
+| parallel | Gruppe | Apromore-Import von `data/event_log.csv` (AP7) | |
 
 ## 13. Arbeitspakete (Übersicht)
 
@@ -354,8 +361,8 @@ Plus Titelfolie. Sprechnotizen und Q&A-Liste gehören zum Folienartefakt.
 | AP1 | Referenz-BPMN, Ausnahmetypen, Katalog, Richtlinie finalisieren | Jan + Claude | erledigt (Spezifikation v0.2.3) |
 | AP2 | Log-Generator mit Labels und Freitext-Vorlagen | Claude, Review Jan | erledigt (K2) |
 | AP3 | Erkennungsmodul (Trigger E2, E3, E6, Conformance) | Claude | erledigt (K3) |
-| AP4 | Agent: Prompt, Tool-Schema, Fallobjekt-Format | Claude | offen |
-| AP5 | Guardrails, Approval-Schritt, Audit-Log | Claude | offen |
+| AP4 | Agent: Prompt, Tool-Schema, Fallobjekt-Format | Claude | erledigt (K4) |
+| AP5 | Guardrails, Approval-Schritt, Audit-Log | Claude | erledigt (K4) |
 | AP6 | Baseline und Kennzahlen, Pilotauswertung | Claude (Läufe: Jan) | in Arbeit (Baseline und Kennzahlen erledigt, Pilotauswertung offen) |
 | AP7 | Apromore-Visualisierung für Folien | Gruppenmitglieder 2 und 3 | offen |
 | AP8 | Demo und Folien Zwischenpräsentation | Claude erstellt, Gruppe übt | offen |
@@ -401,19 +408,28 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 01.11.2026 | D-K3-3: Baseline E3 = A4+A2 (B1), Baseline E7 = A6 Credit Management (B2), Baseline enthält sich nie (B3) | Feste Regel kennt Grund der Verzögerung nicht; E7 ohne Abwägungslogik an Mensch | entschieden |
 | 01.11.2026 | Bewertungsregeln M1 bis M4 (Umfang, Nenner end-to-end, Mengenvergleich mit Rolle, `unknown` falsch) | Konsistente Auswertung für Baseline und Agent | entschieden (K3) |
 | 01.11.2026 | AN1: nur Events bis `now`. AN2: E2 ohne Stadiumsbedingung. AN3: Teillieferung ≠ Versenden. AN5: Mehrfachtrigger-Priorität E5 > E6 > E2 > E3. AN6: `evaluate(case, events, now)` | Spec-Lücken nicht still lösen; im Log ohne Wirkung | Annahme (K3 akzeptiert) |
+| 01.11.2026 | D-K4-1: Modell `qwen3.5:9b`, lokal als Build `qwen3.5:9b-q4_K_M` | Der Standard-Tag lädt einen MLX-Build ohne Schema-Erzwingung (HTTP 501). Gleiches Modell, anderer Build. Familie Qwen lässt ChatGPT, Gemini, Mistral als Labeler frei | entschieden |
+| 01.11.2026 | D-K4-2: Prompt-Variante a im Pilot, b als spätere Ablation | Vergleich mit Baseline misst nur Textverständnis | entschieden |
+| 01.11.2026 | D-K4-3: Bei Guardrail-Verstoss kein Neuversuch, blockiert, an Mensch. Bewertung roh und strikt | Neuversuch bei T = 0 liefert dieselbe Ausgabe, mit Hinweis bräuchte es einen anderen Prompt pro Fall | entschieden |
+| 01.11.2026 | D-K4-4: Denkmodus aus | Begründung und Belege stehen im Schema vor der Entscheidung (G3) | entschieden |
+| 01.11.2026 | D-K4-5: Temperaturlauf T = 0,7 mit Seed pro Run (42, 43, 44) | Bei festem Seed wäre auch T = 0,7 identisch | entschieden |
+| 01.11.2026 | D-K4-6: `case_id_match` als blockierender Guardrail | Verwechslungen abfangen | entschieden |
+| 01.11.2026 | D-K4-7: Prompt v1.1 und v1.2: Ermessensrichtlinie gilt nur bei E7, bei E3 sind nur A4 und A2 zulässig | Rauchtest mit v1.0: C0317 (E2) A0 statt A6, C0067 (E3) A3 statt A4/A2. Mit v1.1 eskaliert das Modell bei C0067 zu A6, mit v1.2 stimmen alle drei Fälle in beiden Runs. Die Rauchtestfälle sind Pilotfälle: der Prompt wurde an ihnen nachgeschärft, Limitation | entschieden |
+| 01.11.2026 | Annahmen K4: CO1 bis CO4 (Fallobjekt), G1 bis G3 (Guardrail `case_id_match`, nicht blockierende Hinweise, Schema-Reihenfolge), A1 (autonome Aktionen laufen sofort), R1 bis R4 (Läufe, ein Label pro Konfiguration), M5, M6 (Bewertung) | Details in `out/step4_report.md` | Annahme |
 
 ## 15. Offene Punkte und Fragen an den Dozenten
 
 - [ ] Fragen an Winter nach der Zwischenpräsentation klären (Entscheid Jan, Mail-Entwurf nicht gesendet): Termin und Dauer, schriftlicher Leistungsnachweis, Methodik (z. B. Design Science Research), LLM lokal erlaubt und Key später, Meetingrhythmus und Sprints
-- [ ] Modellwahl für das lokale LLM (Hardware bekannt: MacBook Pro M4 Pro, 24 GB RAM)
+- [x] Modellwahl für das lokale LLM: `qwen3.5:9b-q4_K_M` (D-K4-1)
 - [x] Spezifikation gegengelesen (K1), Go für Schritt 2 erteilt
 - [x] K2 freigegeben
 - [x] K3 freigegeben (Erkennung, Baseline, Metriken)
 - [ ] E7-Labeling: Methode festlegen (Empfehlung: mindestens eine menschliche Person)
 - [x] Spec: E2 ohne Stadiumsbedingung, E3 bei Teillieferung als Annahme gelöst (AN2, AN3)
 - [ ] E5 vor Umsetzung klären: Soll A7 nach Versand, Rechnung wenige Stunden vor Versand am selben Tag (`spec.yaml`, `detection.open_points`)
-- [ ] Schritt 4: Umfang des Zuordnungswissens im Agenten-Prompt (volle Tabelle vs. nur Katalog und Richtlinie), Verhalten bei Guardrail-Verstoss
-- [ ] Modellwahl Agent (Schritt 4): nicht aus der Familie späterer externer Labeler
+- [x] Schritt 4: Zuordnungswissen Variante a, Guardrail-Verstoss ohne Neuversuch (D-K4-2, D-K4-3)
+- [x] K4: Entscheide getroffen, Rauchtest bestanden (Prompt v1.2)
+- [ ] Labeler-Modelle für Iteration 2 dürfen nicht aus der Familie des Agentenmodells (Qwen) stammen
 - [ ] Genaues Datum Schlussabgabe Januar 2027
 - [ ] Namen der anderen zwei Gruppenmitglieder und Verteilung der Aufgaben ab K7
 - [ ] Datenschutz: bei synthetischen Daten voraussichtlich unkritisch, bei Dozent bestätigen
@@ -436,6 +452,10 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | Pilot bei E6 nicht repräsentativ (Baseline 6/6) | Zusatzlauf auf allen 80 E6 (D-K3-1) |
 | Baseline zu stark (Keyword-Liste in Kenntnis der Vorlagen) | Als Limitation nennen; Vergleich wird eher konservativ |
 | E6-Fälle teilen Vorlagen (80 Fälle aus 34 Vorlagen) | Auswertung zusätzlich pro Vorlage bzw. Stil, als Limitation nennen |
+| Ollama erzwingt das Schema nicht (MLX-Build: HTTP 501) | `llm_client.py check` vor jedem Lauf, Tag `qwen3.5:9b-q4_K_M` verwenden |
+| Kontamination: Prompt an Pilotfällen nachgeschärft (v1.0 bis v1.2) | Als Limitation nennen. Auswertung zusätzlich auf dem E6-Zusatzlauf (80 Fälle), der nicht zum Tuning diente |
+| Guardrails ohne semantische Prüfung: schemakonforme, aber falsche Aktionen passieren | Roh und strikt berichten, Fehler nach Typ auswerten. Policy-Guardrail wäre zirkulär (Baseline-Logik) |
+| Kleines Modell ignoriert Zuordnung und zitiert die Ermessensrichtlinie falsch (v1.0, v1.1 beobachtet) | Geltungsregel im Prompt, Befund berichten |
 
 ## 17. Änderungslog
 
@@ -448,3 +468,4 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 | 0.2.3 | 31.10.2026 | Hardware (MacBook Pro M4 Pro, 24 GB RAM) ergänzt. Mail an Winter entfällt, Fragen nach der Zwischenpräsentation. K1 erledigt, Schritt 2 (Log-Generator) in separatem Chat gestartet. |
 | 0.3 | 01.11.2026 | Schritt 2 erledigt (K2 offen). Entscheide 01.11.2026 (Tagesbasis, weicher Trigger, Zielrolle, A0 für Happy Path, Revision und Labeling durch Claude). Datenkonzept, Begriffe, Evaluation, Repo-Struktur, Risiken und offene Punkte nachgeführt. Neu: Abschnitt 12 "So geht es weiter". `spec.yaml` v0.3.0. |
 | 0.4 | 01.11.2026 | K2 und K3 freigegeben, Schritt 3 erledigt. Entscheide D-K3-1 bis D-K3-3, Bewertungsregeln M1 bis M4, Annahmen AN1 bis AN6. Baseline-Ergebnisse (10), E6-Zusatzlauf, E6-Trigger in 5.1 an spec angeglichen, E5 Zeitstempel. Neu: Prompt Schritt 4, Begriffe Baseline und Mutantenprüfung, Risiken. `spec.yaml` v0.4.0. |
+| 0.5 | 01.11.2026 | Schritt 4 erledigt, K4-Entscheide D-K4-1 bis D-K4-7 getroffen. Modell `qwen3.5:9b-q4_K_M` (MLX-Build ohne Schema-Erzwingung ausgeschlossen), Prompt v1.2, Guardrail `case_id_match`, Freigabe-Modi, Bewertung roh und strikt, Temperaturlauf T 0,7 mit Seed pro Run. Abschnitte 0, 9, 10, 12 bis 16 nachgeführt. `spec.yaml` v0.5.0. |

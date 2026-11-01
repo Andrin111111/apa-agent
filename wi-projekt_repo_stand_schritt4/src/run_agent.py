@@ -22,10 +22,10 @@ an einen Menschen (Disposition blocked_to_human), nichts wird ausgefuehrt.
 Beispiele (aus dem Repo-Root):
   python src/run_agent.py --cases pilot --k 3 --client mock --mock-faults mixed --label mock
   python src/run_agent.py --cases pilot --k 3 --client replay --replay-label mock --label mock_replay
-  python src/run_agent.py --cases C0317,C0067,C0880 --k 2 --client ollama --model qwen3.5:9b --think off --label smoke
-  python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b --think off --label pilot_t0
-  python src/run_agent.py --cases e6_full --k 1 --client ollama --model qwen3.5:9b --think off --label e6_t0
-  python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b --think off \\
+  python src/run_agent.py --cases C0317,C0067,C0880 --k 2 --client ollama --model qwen3.5:9b-q4_K_M --think off --label smoke
+  python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b-q4_K_M --think off --label pilot_t0
+  python src/run_agent.py --cases e6_full --k 1 --client ollama --model qwen3.5:9b-q4_K_M --think off --label e6_t0
+  python src/run_agent.py --cases pilot --k 3 --client ollama --model qwen3.5:9b-q4_K_M --think off \\
          --temperature 0.7 --seed-mode per_run --label pilot_t07
 """
 

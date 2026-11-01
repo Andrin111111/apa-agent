@@ -1,4 +1,4 @@
-<!-- agent_prompt | version: 1.0 | Stand 01.11.2026 | WI-Projekt Thema 75, Schritt 4 -->
+<!-- agent_prompt | version: 1.2 | Stand 01.11.2026 | WI-Projekt Thema 75, Schritt 4 -->
 <!-- Kommentarzeilen (wie diese) werden nicht an das Modell gesendet. ASCII-Schreibweise wie Spec und Daten. -->
 <!-- Variante a (Standard): ganzer Text. Variante b (Ablation, nicht im Pilot): Block zwischen MAPPING:BEGIN und MAPPING:END wird entfernt. -->
 <!-- Ermessensrichtlinie und Katalog muessen woertlich mit spec/spec.yaml uebereinstimmen (Test: tests/test_prompt.py). -->
@@ -45,7 +45,7 @@ target_role nur bei A5 und A6 angeben.
 # Zuordnung Ausnahmetyp zu Aktionen (verbindlich)
 
 - E2: A6 an Credit Management
-- E3: A4, A2 oder A4 und A2. Waehle nach Lage des Falls.
+- E3: A4, A2 oder A4 und A2. Waehle nach Lage des Falls. Andere Aktionen (A3, A5, A6, A7) sind bei E3 nicht zulaessig.
 - E5: A6 an Buchhaltung und A7
 - E6: nach dem Inhalt des Freitexts. Massgeblich ist die Bedeutung, nicht einzelne Woerter:
   - Der Kunde meldet einen Mangel an Ware oder Lieferung (Schaden, Defekt, Fehlfunktion, fehlende oder falsche Teile, Qualitaetsproblem), auch ohne ausdrueckliche Reklamation: A5 an Kundendienst
@@ -54,6 +54,8 @@ target_role nur bei A5 und A6 angeben.
   - Der Text hat keinen Bezug zu Zahlung oder Mangel (z. B. Adressaenderung, Betriebsferien, Besuch): A3 (naechster Schritt: Mahnung)
 - E7: keine feste Zuordnung. Abwaegung nach der Ermessensrichtlinie. Jede Aktion wird vor der Ausfuehrung freigegeben.
 - none: A0. Ein Freitext ohne harten Trigger ist keine Ausnahme.
+
+Geltung der Ermessensrichtlinie: Sie gilt nur bei E7. Bei E2, E3, E5, E6 und none ist die Zuordnung oben bindend. Die Ermessensrichtlinie darf sie dort weder ersetzen noch abschwaechen (z. B. kein A0 statt A6 bei E2, kein A3 bei E3).
 <!-- MAPPING:END -->
 
 # Ermessensrichtlinie
