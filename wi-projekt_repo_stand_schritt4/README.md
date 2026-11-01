@@ -27,6 +27,7 @@ Kontext, Entscheide und Plan: `docs/WI-Projekt_Zwischenpraesentation_Kontext_und
 | Sensitivität der Erkennung (Mutanten) | `python src/detect_checks.py` |
 | Baseline | `python src/baseline.py` |
 | Metriken für eine Aktionsdatei | `python src/metrics.py --actions out/baseline_actions.jsonl --label baseline` |
+| Apromore-Import vorbereiten (AP7) | `python src/export_apromore.py` (Anleitung: `docs/ANLEITUNG_apromore.md`) |
 | Externe Modelle (Iteration 2) | siehe `prompts/extern/ANLEITUNG.md` und `src/extern_tasks.py` |
 | Tests Agent-Kern | `python -m unittest discover -s tests` |
 | Ollama prüfen | `python src/llm_client.py check --model qwen3.5:9b --think off` |
