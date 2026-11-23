@@ -60,13 +60,13 @@ C0058,none,,False,False
 C0059,none,,False,False
 C0060,none,,False,False
 C0061,none,,False,False
-C0062,E11,E6;E11,False,True
+C0062,E11,E11,False,True
 C0063,none,,True,True
-C0064,E11,E11,False,True
+C0064,E11,E11,True,True
 C0065,none,,False,False
 C0066,none,,False,False
 C0067,none,,True,True
-C0068,E11,E6;E11,False,True
+C0068,E11,E6;E11,True,True
 C0069,E7,E2;E3,False,True
 C0070,none,,True,True
 C0071,E6,E6,True,True
@@ -170,7 +170,7 @@ C0168,none,,False,False
 C0169,none,,False,False
 C0170,none,,True,True
 C0171,none,,False,False
-C0172,E11,E11,False,True
+C0172,E11,E6;E11,False,True
 C0173,none,,False,False
 C0174,E12,E12,False,True
 C0175,none,,False,False
@@ -342,7 +342,7 @@ C0340,none,,False,False
 C0341,none,,False,False
 C0342,none,,False,False
 C0343,none,,False,False
-C0344,E11,E11,False,True
+C0344,E11,E6;E11,False,True
 C0345,none,,False,False
 C0346,E2,E2,False,True
 C0347,E12,E12,False,True
@@ -516,7 +516,7 @@ C0514,none,,False,False
 C0515,none,,False,False
 C0516,E6,E6,True,True
 C0517,none,,True,True
-C0518,E11,E11,False,True
+C0518,E11,E6;E11,False,True
 C0519,none,,True,True
 C0520,none,,False,False
 C0521,none,,False,False
@@ -711,7 +711,7 @@ C0709,none,,False,False
 C0710,none,,False,False
 C0711,none,,False,False
 C0712,none,,False,False
-C0713,E11,E11,False,True
+C0713,E11,E11,True,True
 C0714,E10,E10,False,True
 C0715,none,,False,False
 C0716,E3,E3,False,True
@@ -925,7 +925,7 @@ C0923,none,,True,True
 C0924,none,,False,False
 C0925,none,,True,True
 C0926,E2,E2,False,True
-C0927,E11,E11,False,True
+C0927,E11,E6;E11,False,True
 C0928,none,,False,False
 C0929,none,,False,False
 C0930,none,,False,False
@@ -938,7 +938,7 @@ C0936,E10,E10,False,True
 C0937,none,,True,True
 C0938,none,,False,False
 C0939,E10,E10,False,True
-C0940,E11,E11,False,True
+C0940,E11,E6;E11,False,True
 C0941,none,,False,False
 C0942,none,,False,False
 C0943,none,,False,False
@@ -1008,7 +1008,7 @@ C1006,none,,False,False
 C1007,none,,False,False
 C1008,none,,True,True
 C1009,none,,True,True
-C1010,E11,E11,False,True
+C1010,E11,E6;E11,False,True
 C1011,none,,False,False
 C1012,E3,E3,True,True
 C1013,none,,False,False
@@ -1530,7 +1530,7 @@ C1528,none,,False,False
 C1529,none,,False,False
 C1530,none,,False,False
 C1531,none,,False,False
-C1532,E11,E11,False,True
+C1532,E11,E6;E11,False,True
 C1533,none,,False,False
 C1534,none,,False,False
 C1535,E8,E8,False,True
@@ -1553,7 +1553,7 @@ C1551,none,,False,False
 C1552,none,,False,False
 C1553,none,,False,False
 C1554,none,,False,False
-C1555,E11,E11,False,True
+C1555,E11,E6;E11,False,True
 C1556,none,,False,False
 C1557,none,,False,False
 C1558,E3,E3,False,True
@@ -1902,7 +1902,7 @@ C1900,none,,False,False
 C1901,none,,False,False
 C1902,none,,False,False
 C1903,none,,True,True
-C1904,E11,E11,False,True
+C1904,E11,E6;E11,False,True
 C1905,none,,False,False
 C1906,none,,False,False
 C1907,none,,True,True
@@ -1966,7 +1966,7 @@ C1964,E8,E8,True,True
 C1965,none,,False,False
 C1966,none,,False,False
 C1967,none,,False,False
-C1968,E11,E11,False,True
+C1968,E11,E6;E11,False,True
 C1969,E6,E6,True,True
 C1970,E6,E6,True,True
 C1971,E3,E3,False,True

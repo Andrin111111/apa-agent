@@ -1,4 +1,4 @@
-# spec_v2.yaml | v2.0.0 | Stand 22.11.2026 | ENTWURF (Freigabe durch Jan offen)
+# spec_v2.yaml | v2.1.0 | Stand 23.11.2026 | ENTWURF (Freigabe durch Jan offen)
 # Erweiterter Order-to-Cash-Prozess fuer die Schlussabgabe. Parallel zu spec.yaml v0.5.0, ersetzt sie nicht:
 # Pilot, Demo und Folien der Zwischenpraesentation bleiben auf v1 (data/, bytegleich).
 # Daten v2: data/v2/ (src/generate_log_v2.py), Pruefung: src/validate_log_v2.py, Erkennung: src/detect_v2.py.
@@ -13,9 +13,15 @@
 #   - Kausale Ketten: E8, E9 und E11 treten teils zusammen mit E6 auf (Ursache vor Symptom)
 #   - 2000 Faelle, Ausnahmequote 18.5 % statt 30 % (naeher an der Praxis)
 #   - Noch nicht in v2: Pilot-Stichprobe, Labeling, Baseline, Agent (folgt nach Freigabe)
+#
+# Aenderungen v2.1.0 gegenueber v2.0.0 (Praezisierung E8, E11, E12):
+#   - E8: auch 'Teillieferung' vor der Stornierung zaehlt als Versand
+#   - E11: nur wenn vor der Retoure eine Rechnung gestellt wurde (Gutschrift setzt Rechnung voraus);
+#     Generator erzeugt alle E11-Faelle mit Reklamation nach der Rechnung
+#   - E12: nicht mehr nach 'Wareneingang Lager' (Ware da, kein Engpass) und nicht bei stornierten Auftraegen
 
 meta:
-  version: 2.0.0
+  version: 2.1.0
   status: draft
   seed: 42
   based_on: spec.yaml v0.5.0
@@ -145,7 +151,8 @@ exceptions:
   E8:
     name: Stornierung nach Versand
     type: judgement               # Backlog-Fall "unbekannte Abweichung": Ware ist unterwegs, Auftrag storniert
-    trigger: "'Auftrag stornieren' in events AND erstes 'Versenden' vor 'Auftrag stornieren'"
+    trigger: "'Auftrag stornieren' in events AND erstes 'Versenden' oder erste 'Teillieferung' vor dem ersten 'Auftrag stornieren'"
+    note: "Teillieferung zaehlt als Versand: auch dann ist bereits Ware beim Kunden"
     allowed_action_sets: [[A6]]
     escalation_target: Vertrieb   # klaert mit dem Kunden Ruecksendung oder Ruecknahme der Stornierung
   E9:
@@ -164,13 +171,14 @@ exceptions:
   E11:
     name: Retoure ohne Gutschrift
     type: deterministic
-    trigger: "'Retoure erfassen' in events AND kein 'Gutschrift erstellen' nach der letzten Retoure AND (date(now) - date(letzte Retoure)).days > days_threshold"
+    trigger: "'Retoure erfassen' in events AND erstes 'Rechnung stellen' vor der letzten Retoure AND kein 'Gutschrift erstellen' nach der letzten Retoure AND (date(now) - date(letzte Retoure)).days > days_threshold"
     params: {days_threshold: 10}
+    note: "Gutschrift setzt eine Rechnung voraus. Retoure vor der Rechnung ist kein E11 (dort ist die Rechnung anzupassen)"
     allowed_action_sets: [[A4], [A4, A2]]
   E12:
     name: Verfuegbarkeitsengpass
     type: deterministic
-    trigger: "'Ware nachbestellen' in events AND 'Versenden' not in events AND restock_date >= promised_delivery_date"
+    trigger: "'Ware nachbestellen' in events AND 'Wareneingang Lager' not in events AND 'Versenden' not in events AND 'Auftrag stornieren' not in events AND restock_date >= promised_delivery_date"
     allowed_action_sets: [[A2], [A2, A4]]   # Kunde vorab informieren, bevor E3 eintritt
     note: "Fruehwarnung: erkennt die Verspaetung, bevor der Liefertermin in die E3-Schwelle faellt"
 

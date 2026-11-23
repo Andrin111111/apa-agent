@@ -60,9 +60,9 @@ Neu in `spec/spec_v2.yaml`:
 - **Happy Path mit 10 Schritten:** neu sind Verfügbarkeitsprüfung und Zahlung zuordnen.
 - **11 Varianten:** Mahnung Stufe 2, Ware nachbestellen, Wareneingang Lager, Reklamation, Retoure, Gutschrift, Rechnung korrigieren, Auftrag stornieren.
 - **Neue Attribute:** `restock_date`, `invoice_amount`, `credit_note_amount`, `paid_amount`.
-- **Neue Ausnahmen:** E8 Stornierung nach Versand, E9 Preisabweichung, E10 Unterzahlung, E11 Retoure ohne Gutschrift, E12 Verfügbarkeitsengpass. E3 schliesst stornierte Aufträge aus.
+- **Neue Ausnahmen:** E8 Stornierung nach Versand, E9 Preisabweichung, E10 Unterzahlung, E11 Retoure ohne Gutschrift, E12 Verfügbarkeitsengpass. E3 schliesst stornierte Aufträge aus. Seit v2.1.0 genauer: E8 zählt auch eine Teillieferung als Versand, E11 nur nach einer Rechnung, E12 nicht nach dem Wareneingang und nicht bei Stornierung.
 - **Kausale Ketten:** E8, E9 und E11 kommen teils zusammen mit E6 vor. Die Erkennung wählt die Ursache (Priorität E8 > E5 > E11 > E9 > E10 > E6 > E2 > E3 > E12).
-- **Umfang:** 2000 Fälle, 16'102 Events, Ausnahmequote 18,5 %. Validierung: 32 von 32 Prüfungen bestanden.
+- **Umfang:** 2000 Fälle, 16'110 Events, Ausnahmequote 18,5 %. Validierung: 32 von 32 Prüfungen bestanden.
 - **Noch offen für v2:** Pilot-Stichprobe, Baseline, Agent-Prompt und Schema (neue Typen), Metriken.
 
 ## Daten in Kürze

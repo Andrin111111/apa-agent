@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-detect_v2.py | WI-Projekt Thema 75 | Prozess v2 (Entwurf) | v0.1
+detect_v2.py | WI-Projekt Thema 75 | Prozess v2 (Entwurf) | v0.2
 
 Deterministische Erkennung gemaess spec/spec_v2.yaml. Wie v1 unabhaengig vom Generator
 implementiert: kein Import aus generate_log*.py, liest nur data/v2/event_log.csv und
@@ -14,11 +14,13 @@ Regeln (Tagesbasis, nur Events mit timestamp <= now):
   E5   'Rechnung stellen' AND ('Versenden' fehlt OR erstes 'Rechnung stellen' vor erstem 'Versenden')
   E6   invoice_date + payment_terms_days < date(now) AND kein 'Zahlungseingang'
   E7   E2 AND E3 (Vorrang, wie v1)
-  E8   'Auftrag stornieren' nach dem ersten 'Versenden'
+  E8   erstes 'Auftrag stornieren' nach dem ersten 'Versenden' oder 'Teillieferung'
   E9   invoice_amount > 0 AND |invoice_amount - order_value| > 1
   E10  'Zahlungseingang' AND invoice_amount - credit_note_amount - paid_amount > 1
-  E11  'Retoure erfassen' ohne spaeteres 'Gutschrift erstellen' AND (date(now) - date(letzte Retoure)).days > 10
-  E12  'Ware nachbestellen' AND kein 'Versenden' AND restock_date >= promised_delivery_date
+  E11  erstes 'Rechnung stellen' vor der letzten 'Retoure erfassen' AND kein 'Gutschrift erstellen' danach
+       AND (date(now) - date(letzte Retoure)).days > 10
+  E12  'Ware nachbestellen' AND kein 'Wareneingang Lager' AND kein 'Versenden' AND kein 'Auftrag stornieren'
+       AND restock_date >= promised_delivery_date
 Mehrfachtrigger: Ursache vor Symptom, Prioritaet E8 > E5 > E11 > E9 > E10 > E6 > E2 > E3 > E12.
 
 Aufruf:
@@ -94,20 +96,21 @@ def evaluate(case, events, now):
     if first_inv is not None and not _has(ev, "Zahlungseingang"):
         if first_inv.date() + pd.Timedelta(days=_num(case, "payment_terms_days")) < today:
             hard.append("E6")
-    if storno is not None and first_ship is not None and first_ship < storno:
+    shipped = [t for t in (first_ship, _first(ev, "Teillieferung")) if t is not None]
+    if storno is not None and shipped and min(shipped) < storno:
         hard.append("E8")
     if invoice > 0 and abs(invoice - order_value) > TOLERANCE_CHF:
         hard.append("E9")
     if _has(ev, "Zahlungseingang") and invoice - _num(case, "credit_note_amount") - _num(case, "paid_amount") > TOLERANCE_CHF:
         hard.append("E10")
     ret = _last(ev, "Retoure erfassen")
-    if ret is not None:
+    if ret is not None and first_inv is not None and first_inv < ret:
         credited = any(e["activity"] == "Gutschrift erstellen" and e["timestamp"] > ret for e in ev)
         if not credited and (today - ret.date()).days > E11_DAYS_THRESHOLD:
             hard.append("E11")
     restock = _date(case, "restock_date")
-    if _has(ev, "Ware nachbestellen") and first_ship is None and restock is not None and promised is not None \
-            and restock >= promised:
+    if _has(ev, "Ware nachbestellen") and not _has(ev, "Wareneingang Lager") and first_ship is None \
+            and storno is None and restock is not None and promised is not None and restock >= promised:
         hard.append("E12")
 
     if "E2" in hard and "E3" in hard:

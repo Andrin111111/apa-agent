@@ -99,15 +99,15 @@ C0011,Rechnung stellen,2026-02-03 14:41:00,Zimmermann B.,Buchhaltung
 C0011,Zahlungseingang,2026-03-17 13:44:00,Zimmermann B.,Buchhaltung
 C0011,Zahlung zuordnen,2026-03-17 16:36:00,Fischer E.,Buchhaltung
 C0011,Fall abschliessen,2026-03-18 13:03:00,Zimmermann B.,Buchhaltung
-C0012,Auftrag erfassen,2026-02-24 13:17:00,Keller M.,Vertrieb
-C0012,Kreditpruefung,2026-02-24 15:22:00,Schmid N.,Credit Management
-C0012,Verfuegbarkeitspruefung,2026-02-24 16:59:00,Widmer T.,Lager/Logistik
-C0012,Auftrag bestaetigen,2026-02-25 09:30:00,Keller M.,Vertrieb
-C0012,Kommissionieren,2026-02-26 15:19:00,Baumann P.,Lager/Logistik
-C0012,Versenden,2026-02-27 12:50:00,Moser K.,Lager/Logistik
-C0012,Rechnung stellen,2026-03-02 13:57:00,Fischer E.,Buchhaltung
-C0012,Reklamation erfassen,2026-03-11 08:24:00,Ammann H.,Kundendienst
-C0012,Retoure erfassen,2026-03-11 14:48:00,Baumann P.,Lager/Logistik
+C0012,Auftrag erfassen,2026-03-03 10:53:00,Keller M.,Vertrieb
+C0012,Kreditpruefung,2026-03-03 12:58:00,Schmid N.,Credit Management
+C0012,Verfuegbarkeitspruefung,2026-03-03 14:35:00,Widmer T.,Lager/Logistik
+C0012,Auftrag bestaetigen,2026-03-03 16:06:00,Keller M.,Vertrieb
+C0012,Kommissionieren,2026-03-05 12:55:00,Baumann P.,Lager/Logistik
+C0012,Versenden,2026-03-06 10:26:00,Moser K.,Lager/Logistik
+C0012,Rechnung stellen,2026-03-09 11:33:00,Fischer E.,Buchhaltung
+C0012,Reklamation erfassen,2026-03-18 08:24:00,Ammann H.,Kundendienst
+C0012,Retoure erfassen,2026-03-18 14:48:00,Baumann P.,Lager/Logistik
 C0013,Auftrag erfassen,2026-04-02 11:03:00,Keller M.,Vertrieb
 C0013,Kreditpruefung,2026-04-02 12:37:00,Frei D.,Credit Management
 C0013,Verfuegbarkeitspruefung,2026-04-02 13:13:00,Steiner J.,Lager/Logistik
@@ -507,15 +507,15 @@ C0061,Rechnung stellen,2026-06-16 12:47:00,Weber C.,Buchhaltung
 C0061,Zahlungseingang,2026-06-29 15:11:00,Weber C.,Buchhaltung
 C0061,Zahlung zuordnen,2026-06-30 08:41:00,Zimmermann B.,Buchhaltung
 C0061,Fall abschliessen,2026-06-30 09:53:00,Fischer E.,Buchhaltung
-C0062,Auftrag erfassen,2026-05-22 08:03:00,Keller M.,Vertrieb
-C0062,Kreditpruefung,2026-05-22 09:22:00,Huber A.,Credit Management
-C0062,Verfuegbarkeitspruefung,2026-05-22 10:00:00,Baumann P.,Lager/Logistik
-C0062,Auftrag bestaetigen,2026-05-22 13:46:00,Meier L.,Vertrieb
-C0062,Kommissionieren,2026-05-27 12:33:00,Baumann P.,Lager/Logistik
-C0062,Versenden,2026-05-27 14:26:00,Moser K.,Lager/Logistik
-C0062,Rechnung stellen,2026-05-28 09:16:00,Zimmermann B.,Buchhaltung
-C0062,Reklamation erfassen,2026-06-01 12:48:00,Roth I.,Kundendienst
-C0062,Retoure erfassen,2026-06-02 16:44:00,Widmer T.,Lager/Logistik
+C0062,Auftrag erfassen,2026-01-05 08:58:00,Gerber R.,Vertrieb
+C0062,Kreditpruefung,2026-01-05 10:14:00,Huber A.,Credit Management
+C0062,Verfuegbarkeitspruefung,2026-01-05 11:55:00,Moser K.,Lager/Logistik
+C0062,Auftrag bestaetigen,2026-01-05 14:03:00,Gerber R.,Vertrieb
+C0062,Kommissionieren,2026-01-06 14:01:00,Moser K.,Lager/Logistik
+C0062,Versenden,2026-01-07 08:30:00,Steiner J.,Lager/Logistik
+C0062,Rechnung stellen,2026-01-07 16:15:00,Fischer E.,Buchhaltung
+C0062,Reklamation erfassen,2026-01-12 14:56:00,Kaufmann V.,Kundendienst
+C0062,Retoure erfassen,2026-01-13 11:54:00,Widmer T.,Lager/Logistik
 C0063,Auftrag erfassen,2026-03-03 16:16:00,Meier L.,Vertrieb
 C0063,Kreditpruefung,2026-03-04 08:36:00,Schmid N.,Credit Management
 C0063,Verfuegbarkeitspruefung,2026-03-04 09:03:00,Widmer T.,Lager/Logistik
@@ -527,15 +527,15 @@ C0063,Rechnung stellen,2026-03-09 13:15:00,Weber C.,Buchhaltung
 C0063,Zahlungseingang,2026-03-23 08:53:00,Fischer E.,Buchhaltung
 C0063,Zahlung zuordnen,2026-03-23 12:43:00,Weber C.,Buchhaltung
 C0063,Fall abschliessen,2026-03-24 10:15:00,Weber C.,Buchhaltung
-C0064,Auftrag erfassen,2026-05-15 10:00:00,Brunner S.,Vertrieb
-C0064,Kreditpruefung,2026-05-18 08:01:00,Huber A.,Credit Management
-C0064,Verfuegbarkeitspruefung,2026-05-18 08:42:00,Widmer T.,Lager/Logistik
-C0064,Auftrag bestaetigen,2026-05-18 13:42:00,Keller M.,Vertrieb
-C0064,Kommissionieren,2026-05-19 09:48:00,Baumann P.,Lager/Logistik
-C0064,Versenden,2026-05-19 13:28:00,Moser K.,Lager/Logistik
-C0064,Rechnung stellen,2026-05-20 09:35:00,Zimmermann B.,Buchhaltung
-C0064,Reklamation erfassen,2026-05-25 10:58:00,Ammann H.,Kundendienst
-C0064,Retoure erfassen,2026-05-26 08:10:00,Steiner J.,Lager/Logistik
+C0064,Auftrag erfassen,2026-03-18 14:23:00,Brunner S.,Vertrieb
+C0064,Kreditpruefung,2026-03-18 16:45:00,Huber A.,Credit Management
+C0064,Verfuegbarkeitspruefung,2026-03-19 09:21:00,Widmer T.,Lager/Logistik
+C0064,Auftrag bestaetigen,2026-03-20 10:52:00,Brunner S.,Vertrieb
+C0064,Kommissionieren,2026-03-23 10:58:00,Widmer T.,Lager/Logistik
+C0064,Versenden,2026-03-24 10:18:00,Steiner J.,Lager/Logistik
+C0064,Rechnung stellen,2026-03-24 13:50:00,Weber C.,Buchhaltung
+C0064,Reklamation erfassen,2026-03-25 16:18:00,Roth I.,Kundendienst
+C0064,Retoure erfassen,2026-03-27 11:16:00,Moser K.,Lager/Logistik
 C0065,Auftrag erfassen,2026-06-02 10:09:00,Gerber R.,Vertrieb
 C0065,Kreditpruefung,2026-06-02 11:17:00,Huber A.,Credit Management
 C0065,Verfuegbarkeitspruefung,2026-06-02 12:17:00,Baumann P.,Lager/Logistik
@@ -565,15 +565,15 @@ C0067,Rechnung stellen,2026-03-11 15:11:00,Zimmermann B.,Buchhaltung
 C0067,Zahlungseingang,2026-04-20 11:09:00,Zimmermann B.,Buchhaltung
 C0067,Zahlung zuordnen,2026-04-20 12:54:00,Weber C.,Buchhaltung
 C0067,Fall abschliessen,2026-04-21 11:06:00,Zimmermann B.,Buchhaltung
-C0068,Auftrag erfassen,2026-06-10 13:39:00,Gerber R.,Vertrieb
-C0068,Kreditpruefung,2026-06-10 15:15:00,Frei D.,Credit Management
-C0068,Verfuegbarkeitspruefung,2026-06-10 15:54:00,Steiner J.,Lager/Logistik
-C0068,Auftrag bestaetigen,2026-06-11 09:16:00,Brunner S.,Vertrieb
-C0068,Kommissionieren,2026-06-16 08:08:00,Widmer T.,Lager/Logistik
-C0068,Versenden,2026-06-16 13:17:00,Moser K.,Lager/Logistik
-C0068,Rechnung stellen,2026-06-17 14:10:00,Weber C.,Buchhaltung
-C0068,Reklamation erfassen,2026-06-23 16:22:00,Kaufmann V.,Kundendienst
-C0068,Retoure erfassen,2026-06-24 12:28:00,Steiner J.,Lager/Logistik
+C0068,Auftrag erfassen,2026-06-03 15:31:00,Brunner S.,Vertrieb
+C0068,Kreditpruefung,2026-06-04 09:54:00,Schmid N.,Credit Management
+C0068,Verfuegbarkeitspruefung,2026-06-04 10:18:00,Baumann P.,Lager/Logistik
+C0068,Auftrag bestaetigen,2026-06-04 14:54:00,Gerber R.,Vertrieb
+C0068,Kommissionieren,2026-06-09 16:49:00,Moser K.,Lager/Logistik
+C0068,Versenden,2026-06-10 10:37:00,Steiner J.,Lager/Logistik
+C0068,Rechnung stellen,2026-06-11 08:08:00,Zimmermann B.,Buchhaltung
+C0068,Reklamation erfassen,2026-06-15 10:42:00,Kaufmann V.,Kundendienst
+C0068,Retoure erfassen,2026-06-16 10:38:00,Steiner J.,Lager/Logistik
 C0069,Auftrag erfassen,2026-03-03 16:20:00,Brunner S.,Vertrieb
 C0069,Kreditpruefung,2026-03-04 09:20:00,Frei D.,Credit Management
 C0070,Auftrag erfassen,2026-03-23 11:54:00,Meier L.,Vertrieb
@@ -1156,14 +1156,15 @@ C0144,Rechnung stellen,2026-06-25 12:56:00,Fischer E.,Buchhaltung
 C0144,Zahlungseingang,2026-06-29 10:55:00,Fischer E.,Buchhaltung
 C0144,Zahlung zuordnen,2026-06-29 12:24:00,Zimmermann B.,Buchhaltung
 C0144,Fall abschliessen,2026-06-30 13:34:00,Weber C.,Buchhaltung
-C0145,Auftrag erfassen,2026-03-11 14:03:00,Meier L.,Vertrieb
-C0145,Kreditpruefung,2026-03-12 08:59:00,Schmid N.,Credit Management
-C0145,Verfuegbarkeitspruefung,2026-03-12 09:36:00,Steiner J.,Lager/Logistik
-C0145,Auftrag bestaetigen,2026-03-12 12:53:00,Keller M.,Vertrieb
-C0145,Kommissionieren,2026-03-13 16:09:00,Steiner J.,Lager/Logistik
-C0145,Versenden,2026-03-16 11:32:00,Baumann P.,Lager/Logistik
-C0145,Reklamation erfassen,2026-03-17 08:31:00,Ammann H.,Kundendienst
-C0145,Retoure erfassen,2026-03-18 08:40:00,Steiner J.,Lager/Logistik
+C0145,Auftrag erfassen,2026-02-10 08:38:00,Gerber R.,Vertrieb
+C0145,Kreditpruefung,2026-02-10 11:37:00,Schmid N.,Credit Management
+C0145,Verfuegbarkeitspruefung,2026-02-10 12:14:00,Widmer T.,Lager/Logistik
+C0145,Auftrag bestaetigen,2026-02-10 15:05:00,Meier L.,Vertrieb
+C0145,Kommissionieren,2026-02-12 09:21:00,Moser K.,Lager/Logistik
+C0145,Versenden,2026-02-12 13:07:00,Widmer T.,Lager/Logistik
+C0145,Rechnung stellen,2026-02-13 14:08:00,Weber C.,Buchhaltung
+C0145,Reklamation erfassen,2026-02-23 12:43:00,Roth I.,Kundendienst
+C0145,Retoure erfassen,2026-02-24 11:36:00,Widmer T.,Lager/Logistik
 C0146,Auftrag erfassen,2026-03-04 08:51:00,Gerber R.,Vertrieb
 C0146,Kreditpruefung,2026-03-04 11:27:00,Schmid N.,Credit Management
 C0146,Verfuegbarkeitspruefung,2026-03-04 12:14:00,Widmer T.,Lager/Logistik
@@ -1376,15 +1377,15 @@ C0171,Rechnung stellen,2026-04-17 10:48:00,Fischer E.,Buchhaltung
 C0171,Zahlungseingang,2026-06-15 12:10:00,Weber C.,Buchhaltung
 C0171,Zahlung zuordnen,2026-06-15 14:50:00,Fischer E.,Buchhaltung
 C0171,Fall abschliessen,2026-06-16 10:08:00,Weber C.,Buchhaltung
-C0172,Auftrag erfassen,2026-04-03 12:55:00,Gerber R.,Vertrieb
-C0172,Kreditpruefung,2026-04-03 13:57:00,Frei D.,Credit Management
-C0172,Verfuegbarkeitspruefung,2026-04-03 15:52:00,Moser K.,Lager/Logistik
-C0172,Auftrag bestaetigen,2026-04-06 12:48:00,Meier L.,Vertrieb
-C0172,Kommissionieren,2026-04-08 15:40:00,Steiner J.,Lager/Logistik
-C0172,Versenden,2026-04-09 13:38:00,Moser K.,Lager/Logistik
-C0172,Rechnung stellen,2026-04-10 12:33:00,Weber C.,Buchhaltung
-C0172,Reklamation erfassen,2026-04-14 10:23:00,Roth I.,Kundendienst
-C0172,Retoure erfassen,2026-04-15 16:10:00,Steiner J.,Lager/Logistik
+C0172,Auftrag erfassen,2026-06-05 15:55:00,Gerber R.,Vertrieb
+C0172,Kreditpruefung,2026-06-08 10:52:00,Frei D.,Credit Management
+C0172,Verfuegbarkeitspruefung,2026-06-08 12:16:00,Steiner J.,Lager/Logistik
+C0172,Auftrag bestaetigen,2026-06-08 16:27:00,Gerber R.,Vertrieb
+C0172,Kommissionieren,2026-06-10 16:56:00,Widmer T.,Lager/Logistik
+C0172,Versenden,2026-06-11 13:25:00,Widmer T.,Lager/Logistik
+C0172,Rechnung stellen,2026-06-12 08:37:00,Fischer E.,Buchhaltung
+C0172,Reklamation erfassen,2026-06-22 09:20:00,Kaufmann V.,Kundendienst
+C0172,Retoure erfassen,2026-06-22 12:54:00,Widmer T.,Lager/Logistik
 C0173,Auftrag erfassen,2026-05-19 12:56:00,Keller M.,Vertrieb
 C0173,Kreditpruefung,2026-05-19 14:06:00,Schmid N.,Credit Management
 C0173,Verfuegbarkeitspruefung,2026-05-19 16:49:00,Steiner J.,Lager/Logistik
@@ -1565,15 +1566,15 @@ C0196,Rechnung stellen,2026-04-17 15:22:00,Weber C.,Buchhaltung
 C0196,Zahlungseingang,2026-05-01 10:27:00,Zimmermann B.,Buchhaltung
 C0196,Zahlung zuordnen,2026-05-01 15:28:00,Fischer E.,Buchhaltung
 C0196,Fall abschliessen,2026-05-04 08:41:00,Fischer E.,Buchhaltung
-C0197,Auftrag erfassen,2026-05-29 16:11:00,Brunner S.,Vertrieb
-C0197,Kreditpruefung,2026-06-01 09:43:00,Schmid N.,Credit Management
-C0197,Verfuegbarkeitspruefung,2026-06-01 11:38:00,Moser K.,Lager/Logistik
-C0197,Auftrag bestaetigen,2026-06-02 08:06:00,Brunner S.,Vertrieb
-C0197,Kommissionieren,2026-06-03 10:39:00,Baumann P.,Lager/Logistik
-C0197,Versenden,2026-06-04 08:40:00,Baumann P.,Lager/Logistik
-C0197,Rechnung stellen,2026-06-05 08:33:00,Zimmermann B.,Buchhaltung
-C0197,Reklamation erfassen,2026-06-09 11:44:00,Roth I.,Kundendienst
-C0197,Retoure erfassen,2026-06-09 13:57:00,Baumann P.,Lager/Logistik
+C0197,Auftrag erfassen,2026-06-24 11:29:00,Gerber R.,Vertrieb
+C0197,Kreditpruefung,2026-06-24 14:01:00,Schmid N.,Credit Management
+C0197,Verfuegbarkeitspruefung,2026-06-24 14:58:00,Steiner J.,Lager/Logistik
+C0197,Auftrag bestaetigen,2026-06-25 11:26:00,Keller M.,Vertrieb
+C0197,Kommissionieren,2026-07-01 09:16:00,Steiner J.,Lager/Logistik
+C0197,Versenden,2026-07-02 08:21:00,Steiner J.,Lager/Logistik
+C0197,Rechnung stellen,2026-07-03 08:14:00,Weber C.,Buchhaltung
+C0197,Reklamation erfassen,2026-07-08 08:22:00,Roth I.,Kundendienst
+C0197,Retoure erfassen,2026-07-08 10:35:00,Baumann P.,Lager/Logistik
 C0198,Auftrag erfassen,2026-04-14 09:49:00,Keller M.,Vertrieb
 C0198,Kreditpruefung,2026-04-14 11:30:00,Schmid N.,Credit Management
 C0198,Verfuegbarkeitspruefung,2026-04-14 12:29:00,Steiner J.,Lager/Logistik
@@ -2122,15 +2123,15 @@ C0263,Rechnung stellen,2026-03-26 14:42:00,Fischer E.,Buchhaltung
 C0263,Zahlungseingang,2026-05-05 15:04:00,Weber C.,Buchhaltung
 C0263,Zahlung zuordnen,2026-05-06 09:03:00,Zimmermann B.,Buchhaltung
 C0263,Fall abschliessen,2026-05-06 12:51:00,Fischer E.,Buchhaltung
-C0264,Auftrag erfassen,2026-04-06 16:11:00,Brunner S.,Vertrieb
-C0264,Kreditpruefung,2026-04-07 08:21:00,Frei D.,Credit Management
-C0264,Verfuegbarkeitspruefung,2026-04-07 09:13:00,Baumann P.,Lager/Logistik
-C0264,Auftrag bestaetigen,2026-04-07 12:23:00,Brunner S.,Vertrieb
-C0264,Kommissionieren,2026-04-08 13:34:00,Moser K.,Lager/Logistik
-C0264,Versenden,2026-04-09 10:38:00,Moser K.,Lager/Logistik
-C0264,Rechnung stellen,2026-04-10 08:49:00,Zimmermann B.,Buchhaltung
-C0264,Reklamation erfassen,2026-04-14 13:33:00,Ammann H.,Kundendienst
-C0264,Retoure erfassen,2026-04-22 12:42:00,Moser K.,Lager/Logistik
+C0264,Auftrag erfassen,2026-03-25 10:28:00,Meier L.,Vertrieb
+C0264,Kreditpruefung,2026-03-25 11:59:00,Schmid N.,Credit Management
+C0264,Verfuegbarkeitspruefung,2026-03-25 13:12:00,Moser K.,Lager/Logistik
+C0264,Auftrag bestaetigen,2026-03-25 16:42:00,Gerber R.,Vertrieb
+C0264,Kommissionieren,2026-04-01 08:46:00,Widmer T.,Lager/Logistik
+C0264,Versenden,2026-04-03 11:42:00,Moser K.,Lager/Logistik
+C0264,Rechnung stellen,2026-04-03 12:52:00,Fischer E.,Buchhaltung
+C0264,Reklamation erfassen,2026-04-06 09:46:00,Roth I.,Kundendienst
+C0264,Retoure erfassen,2026-04-08 12:26:00,Moser K.,Lager/Logistik
 C0265,Auftrag erfassen,2026-04-07 08:38:00,Keller M.,Vertrieb
 C0265,Kreditpruefung,2026-04-07 10:22:00,Frei D.,Credit Management
 C0265,Verfuegbarkeitspruefung,2026-04-07 11:35:00,Moser K.,Lager/Logistik
@@ -2208,15 +2209,15 @@ C0273,Zahlungserinnerung,2026-04-03 10:11:00,Fischer E.,Buchhaltung
 C0273,Zahlungseingang,2026-04-13 08:41:00,Weber C.,Buchhaltung
 C0273,Zahlung zuordnen,2026-04-13 11:03:00,Weber C.,Buchhaltung
 C0273,Fall abschliessen,2026-04-13 14:16:00,Weber C.,Buchhaltung
-C0274,Auftrag erfassen,2026-02-24 10:18:00,Meier L.,Vertrieb
-C0274,Kreditpruefung,2026-02-24 11:11:00,Schmid N.,Credit Management
-C0274,Verfuegbarkeitspruefung,2026-02-24 11:48:00,Moser K.,Lager/Logistik
-C0274,Auftrag bestaetigen,2026-02-25 08:42:00,Keller M.,Vertrieb
-C0274,Kommissionieren,2026-02-27 15:01:00,Moser K.,Lager/Logistik
-C0274,Versenden,2026-03-02 15:05:00,Baumann P.,Lager/Logistik
-C0274,Rechnung stellen,2026-03-05 13:11:00,Fischer E.,Buchhaltung
-C0274,Reklamation erfassen,2026-03-09 11:47:00,Ammann H.,Kundendienst
-C0274,Retoure erfassen,2026-03-10 12:41:00,Baumann P.,Lager/Logistik
+C0274,Auftrag erfassen,2026-02-16 10:26:00,Brunner S.,Vertrieb
+C0274,Kreditpruefung,2026-02-16 14:26:00,Frei D.,Credit Management
+C0274,Verfuegbarkeitspruefung,2026-02-16 14:53:00,Steiner J.,Lager/Logistik
+C0274,Auftrag bestaetigen,2026-02-16 16:43:00,Gerber R.,Vertrieb
+C0274,Kommissionieren,2026-02-20 11:32:00,Baumann P.,Lager/Logistik
+C0274,Versenden,2026-02-23 10:34:00,Moser K.,Lager/Logistik
+C0274,Rechnung stellen,2026-02-24 13:36:00,Fischer E.,Buchhaltung
+C0274,Reklamation erfassen,2026-03-02 11:02:00,Roth I.,Kundendienst
+C0274,Retoure erfassen,2026-03-05 14:18:00,Baumann P.,Lager/Logistik
 C0275,Auftrag erfassen,2026-04-29 14:30:00,Keller M.,Vertrieb
 C0275,Kreditpruefung,2026-04-30 08:34:00,Huber A.,Credit Management
 C0275,Verfuegbarkeitspruefung,2026-04-30 08:56:00,Steiner J.,Lager/Logistik
@@ -2767,15 +2768,15 @@ C0342,Fall abschliessen,2026-06-02 08:37:00,Fischer E.,Buchhaltung
 C0343,Auftrag erfassen,2026-01-15 08:22:00,Keller M.,Vertrieb
 C0343,Kreditpruefung,2026-01-15 10:30:00,Huber A.,Credit Management
 C0343,Verfuegbarkeitspruefung,2026-01-15 12:45:00,Baumann P.,Lager/Logistik
-C0344,Auftrag erfassen,2026-02-26 14:31:00,Keller M.,Vertrieb
-C0344,Kreditpruefung,2026-02-27 12:26:00,Frei D.,Credit Management
-C0344,Verfuegbarkeitspruefung,2026-02-27 13:36:00,Moser K.,Lager/Logistik
-C0344,Auftrag bestaetigen,2026-03-02 13:34:00,Gerber R.,Vertrieb
-C0344,Kommissionieren,2026-03-09 11:14:00,Widmer T.,Lager/Logistik
-C0344,Versenden,2026-03-10 14:54:00,Moser K.,Lager/Logistik
-C0344,Rechnung stellen,2026-03-12 09:15:00,Weber C.,Buchhaltung
-C0344,Reklamation erfassen,2026-03-13 08:17:00,Roth I.,Kundendienst
-C0344,Retoure erfassen,2026-03-16 08:41:00,Baumann P.,Lager/Logistik
+C0344,Auftrag erfassen,2026-05-01 08:51:00,Brunner S.,Vertrieb
+C0344,Kreditpruefung,2026-05-01 14:03:00,Frei D.,Credit Management
+C0344,Verfuegbarkeitspruefung,2026-05-01 16:35:00,Moser K.,Lager/Logistik
+C0344,Auftrag bestaetigen,2026-05-04 13:09:00,Brunner S.,Vertrieb
+C0344,Kommissionieren,2026-05-05 15:18:00,Baumann P.,Lager/Logistik
+C0344,Versenden,2026-05-06 11:03:00,Baumann P.,Lager/Logistik
+C0344,Rechnung stellen,2026-05-07 15:32:00,Fischer E.,Buchhaltung
+C0344,Reklamation erfassen,2026-05-18 13:05:00,Kaufmann V.,Kundendienst
+C0344,Retoure erfassen,2026-05-22 12:14:00,Steiner J.,Lager/Logistik
 C0345,Auftrag erfassen,2026-04-01 15:41:00,Keller M.,Vertrieb
 C0345,Kreditpruefung,2026-04-02 08:49:00,Schmid N.,Credit Management
 C0345,Verfuegbarkeitspruefung,2026-04-02 10:32:00,Moser K.,Lager/Logistik
@@ -3466,14 +3467,14 @@ C0431,Zahlungseingang,2026-06-04 14:13:00,Fischer E.,Buchhaltung
 C0431,Zahlung zuordnen,2026-06-04 16:10:00,Weber C.,Buchhaltung
 C0431,Fall abschliessen,2026-06-05 11:09:00,Fischer E.,Buchhaltung
 C0432,Auftrag erfassen,2026-02-26 14:45:00,Meier L.,Vertrieb
-C0432,Kreditpruefung,2026-02-26 16:02:00,Huber A.,Credit Management
-C0432,Verfuegbarkeitspruefung,2026-02-27 08:08:00,Steiner J.,Lager/Logistik
-C0432,Auftrag bestaetigen,2026-02-27 11:11:00,Keller M.,Vertrieb
-C0432,Kommissionieren,2026-03-03 12:34:00,Widmer T.,Lager/Logistik
-C0432,Versenden,2026-03-04 08:05:00,Steiner J.,Lager/Logistik
-C0432,Rechnung stellen,2026-03-04 14:43:00,Fischer E.,Buchhaltung
-C0432,Reklamation erfassen,2026-03-06 13:08:00,Roth I.,Kundendienst
-C0432,Retoure erfassen,2026-03-10 12:33:00,Moser K.,Lager/Logistik
+C0432,Kreditpruefung,2026-02-27 08:28:00,Schmid N.,Credit Management
+C0432,Verfuegbarkeitspruefung,2026-02-27 09:33:00,Moser K.,Lager/Logistik
+C0432,Auftrag bestaetigen,2026-02-27 12:51:00,Meier L.,Vertrieb
+C0432,Kommissionieren,2026-03-02 15:47:00,Widmer T.,Lager/Logistik
+C0432,Versenden,2026-03-03 13:23:00,Baumann P.,Lager/Logistik
+C0432,Rechnung stellen,2026-03-04 08:24:00,Weber C.,Buchhaltung
+C0432,Reklamation erfassen,2026-03-05 13:27:00,Roth I.,Kundendienst
+C0432,Retoure erfassen,2026-03-06 15:39:00,Steiner J.,Lager/Logistik
 C0433,Auftrag erfassen,2026-06-09 10:03:00,Meier L.,Vertrieb
 C0433,Kreditpruefung,2026-06-09 11:17:00,Frei D.,Credit Management
 C0433,Verfuegbarkeitspruefung,2026-06-09 12:35:00,Moser K.,Lager/Logistik
@@ -4153,14 +4154,15 @@ C0517,Rechnung stellen,2026-04-16 14:32:00,Weber C.,Buchhaltung
 C0517,Zahlungseingang,2026-04-27 11:50:00,Weber C.,Buchhaltung
 C0517,Zahlung zuordnen,2026-04-27 13:36:00,Zimmermann B.,Buchhaltung
 C0517,Fall abschliessen,2026-04-28 08:17:00,Zimmermann B.,Buchhaltung
-C0518,Auftrag erfassen,2026-02-20 09:55:00,Brunner S.,Vertrieb
-C0518,Kreditpruefung,2026-02-20 10:34:00,Huber A.,Credit Management
-C0518,Verfuegbarkeitspruefung,2026-02-20 11:31:00,Widmer T.,Lager/Logistik
-C0518,Auftrag bestaetigen,2026-02-20 14:20:00,Gerber R.,Vertrieb
-C0518,Kommissionieren,2026-02-26 14:47:00,Baumann P.,Lager/Logistik
-C0518,Versenden,2026-02-27 10:24:00,Steiner J.,Lager/Logistik
-C0518,Reklamation erfassen,2026-03-09 12:56:00,Kaufmann V.,Kundendienst
-C0518,Retoure erfassen,2026-03-10 16:45:00,Steiner J.,Lager/Logistik
+C0518,Auftrag erfassen,2026-06-16 08:25:00,Keller M.,Vertrieb
+C0518,Kreditpruefung,2026-06-16 10:17:00,Schmid N.,Credit Management
+C0518,Verfuegbarkeitspruefung,2026-06-16 11:04:00,Widmer T.,Lager/Logistik
+C0518,Auftrag bestaetigen,2026-06-16 13:50:00,Gerber R.,Vertrieb
+C0518,Kommissionieren,2026-06-17 15:38:00,Steiner J.,Lager/Logistik
+C0518,Versenden,2026-06-18 12:49:00,Widmer T.,Lager/Logistik
+C0518,Rechnung stellen,2026-06-18 16:50:00,Fischer E.,Buchhaltung
+C0518,Reklamation erfassen,2026-06-25 09:44:00,Kaufmann V.,Kundendienst
+C0518,Retoure erfassen,2026-06-26 14:25:00,Widmer T.,Lager/Logistik
 C0519,Auftrag erfassen,2026-06-15 15:02:00,Meier L.,Vertrieb
 C0519,Kreditpruefung,2026-06-16 08:11:00,Huber A.,Credit Management
 C0519,Verfuegbarkeitspruefung,2026-06-16 09:09:00,Widmer T.,Lager/Logistik
@@ -5591,15 +5593,15 @@ C0693,Verfuegbarkeitspruefung,2026-06-02 14:02:00,Baumann P.,Lager/Logistik
 C0693,Auftrag bestaetigen,2026-06-04 08:28:00,Gerber R.,Vertrieb
 C0693,Kommissionieren,2026-06-05 09:42:00,Widmer T.,Lager/Logistik
 C0693,Versenden,2026-06-05 13:59:00,Baumann P.,Lager/Logistik
-C0694,Auftrag erfassen,2026-04-02 11:36:00,Gerber R.,Vertrieb
-C0694,Kreditpruefung,2026-04-02 13:33:00,Huber A.,Credit Management
-C0694,Verfuegbarkeitspruefung,2026-04-02 15:02:00,Moser K.,Lager/Logistik
-C0694,Auftrag bestaetigen,2026-04-03 08:31:00,Keller M.,Vertrieb
-C0694,Kommissionieren,2026-04-06 12:54:00,Widmer T.,Lager/Logistik
-C0694,Versenden,2026-04-06 16:01:00,Moser K.,Lager/Logistik
-C0694,Rechnung stellen,2026-04-07 12:35:00,Weber C.,Buchhaltung
-C0694,Reklamation erfassen,2026-04-13 15:51:00,Ammann H.,Kundendienst
-C0694,Retoure erfassen,2026-04-17 15:49:00,Widmer T.,Lager/Logistik
+C0694,Auftrag erfassen,2026-03-19 14:58:00,Brunner S.,Vertrieb
+C0694,Kreditpruefung,2026-03-19 16:55:00,Frei D.,Credit Management
+C0694,Verfuegbarkeitspruefung,2026-03-20 12:14:00,Baumann P.,Lager/Logistik
+C0694,Auftrag bestaetigen,2026-03-20 14:43:00,Gerber R.,Vertrieb
+C0694,Kommissionieren,2026-03-31 12:41:00,Widmer T.,Lager/Logistik
+C0694,Versenden,2026-03-31 15:48:00,Baumann P.,Lager/Logistik
+C0694,Rechnung stellen,2026-04-01 14:44:00,Weber C.,Buchhaltung
+C0694,Reklamation erfassen,2026-04-02 11:21:00,Ammann H.,Kundendienst
+C0694,Retoure erfassen,2026-04-06 16:27:00,Baumann P.,Lager/Logistik
 C0695,Auftrag erfassen,2026-01-20 11:24:00,Keller M.,Vertrieb
 C0695,Kreditpruefung,2026-01-20 13:41:00,Frei D.,Credit Management
 C0695,Verfuegbarkeitspruefung,2026-01-20 14:14:00,Moser K.,Lager/Logistik
@@ -5739,15 +5741,15 @@ C0710,Versenden,2026-04-29 14:52:00,Moser K.,Lager/Logistik
 C0711,Auftrag erfassen,2026-04-15 08:33:00,Gerber R.,Vertrieb
 C0712,Auftrag erfassen,2026-06-04 16:22:00,Brunner S.,Vertrieb
 C0712,Kreditpruefung,2026-06-05 08:41:00,Frei D.,Credit Management
-C0713,Auftrag erfassen,2026-02-05 16:23:00,Gerber R.,Vertrieb
-C0713,Kreditpruefung,2026-02-06 08:42:00,Huber A.,Credit Management
-C0713,Verfuegbarkeitspruefung,2026-02-06 09:17:00,Baumann P.,Lager/Logistik
-C0713,Auftrag bestaetigen,2026-02-06 11:52:00,Gerber R.,Vertrieb
-C0713,Kommissionieren,2026-02-10 09:05:00,Steiner J.,Lager/Logistik
-C0713,Versenden,2026-02-10 11:17:00,Baumann P.,Lager/Logistik
-C0713,Rechnung stellen,2026-02-10 15:50:00,Fischer E.,Buchhaltung
-C0713,Reklamation erfassen,2026-02-13 11:46:00,Roth I.,Kundendienst
-C0713,Retoure erfassen,2026-02-17 09:53:00,Baumann P.,Lager/Logistik
+C0713,Auftrag erfassen,2026-05-22 13:38:00,Brunner S.,Vertrieb
+C0713,Kreditpruefung,2026-05-22 15:21:00,Schmid N.,Credit Management
+C0713,Verfuegbarkeitspruefung,2026-05-25 08:25:00,Steiner J.,Lager/Logistik
+C0713,Auftrag bestaetigen,2026-05-25 09:44:00,Keller M.,Vertrieb
+C0713,Kommissionieren,2026-05-26 13:08:00,Steiner J.,Lager/Logistik
+C0713,Versenden,2026-05-28 16:40:00,Moser K.,Lager/Logistik
+C0713,Rechnung stellen,2026-05-29 14:38:00,Weber C.,Buchhaltung
+C0713,Reklamation erfassen,2026-06-04 16:09:00,Roth I.,Kundendienst
+C0713,Retoure erfassen,2026-06-08 08:31:00,Widmer T.,Lager/Logistik
 C0714,Auftrag erfassen,2026-01-22 12:55:00,Brunner S.,Vertrieb
 C0714,Kreditpruefung,2026-01-22 14:46:00,Frei D.,Credit Management
 C0714,Verfuegbarkeitspruefung,2026-01-22 15:48:00,Steiner J.,Lager/Logistik
@@ -6539,15 +6541,15 @@ C0818,Auftrag bestaetigen,2026-01-29 10:56:00,Gerber R.,Vertrieb
 C0818,Kommissionieren,2026-01-29 14:50:00,Moser K.,Lager/Logistik
 C0818,Versenden,2026-01-30 11:24:00,Baumann P.,Lager/Logistik
 C0818,Rechnung stellen,2026-01-30 15:03:00,Fischer E.,Buchhaltung
-C0819,Auftrag erfassen,2026-03-20 09:16:00,Keller M.,Vertrieb
-C0819,Kreditpruefung,2026-03-20 12:08:00,Huber A.,Credit Management
-C0819,Verfuegbarkeitspruefung,2026-03-20 13:54:00,Moser K.,Lager/Logistik
-C0819,Auftrag bestaetigen,2026-03-20 15:25:00,Meier L.,Vertrieb
-C0819,Kommissionieren,2026-03-27 09:35:00,Moser K.,Lager/Logistik
-C0819,Versenden,2026-03-27 11:38:00,Baumann P.,Lager/Logistik
-C0819,Rechnung stellen,2026-03-27 15:11:00,Weber C.,Buchhaltung
-C0819,Reklamation erfassen,2026-04-01 13:45:00,Kaufmann V.,Kundendienst
-C0819,Retoure erfassen,2026-04-02 14:29:00,Moser K.,Lager/Logistik
+C0819,Auftrag erfassen,2026-03-20 09:16:00,Meier L.,Vertrieb
+C0819,Kreditpruefung,2026-03-20 10:25:00,Frei D.,Credit Management
+C0819,Verfuegbarkeitspruefung,2026-03-20 11:51:00,Moser K.,Lager/Logistik
+C0819,Auftrag bestaetigen,2026-03-20 14:06:00,Meier L.,Vertrieb
+C0819,Kommissionieren,2026-03-23 11:26:00,Widmer T.,Lager/Logistik
+C0819,Versenden,2026-03-24 15:57:00,Baumann P.,Lager/Logistik
+C0819,Rechnung stellen,2026-03-25 09:04:00,Weber C.,Buchhaltung
+C0819,Reklamation erfassen,2026-03-26 12:30:00,Kaufmann V.,Kundendienst
+C0819,Retoure erfassen,2026-03-27 13:32:00,Moser K.,Lager/Logistik
 C0820,Auftrag erfassen,2026-06-08 14:48:00,Meier L.,Vertrieb
 C0820,Kreditpruefung,2026-06-08 15:52:00,Schmid N.,Credit Management
 C0820,Verfuegbarkeitspruefung,2026-06-08 16:35:00,Moser K.,Lager/Logistik
@@ -6765,14 +6767,15 @@ C0844,Mahnung Stufe 2,2026-08-18 09:39:00,Weber C.,Buchhaltung
 C0844,Zahlungseingang,2026-08-26 10:39:00,Weber C.,Buchhaltung
 C0844,Zahlung zuordnen,2026-08-26 13:39:00,Zimmermann B.,Buchhaltung
 C0844,Fall abschliessen,2026-08-27 08:29:00,Weber C.,Buchhaltung
-C0845,Auftrag erfassen,2026-05-22 12:49:00,Gerber R.,Vertrieb
-C0845,Kreditpruefung,2026-05-22 14:19:00,Huber A.,Credit Management
-C0845,Verfuegbarkeitspruefung,2026-05-22 15:37:00,Steiner J.,Lager/Logistik
-C0845,Auftrag bestaetigen,2026-05-25 12:01:00,Gerber R.,Vertrieb
-C0845,Kommissionieren,2026-05-26 09:57:00,Moser K.,Lager/Logistik
-C0845,Versenden,2026-05-26 15:00:00,Moser K.,Lager/Logistik
-C0845,Reklamation erfassen,2026-06-01 09:19:00,Roth I.,Kundendienst
-C0845,Retoure erfassen,2026-06-02 15:28:00,Moser K.,Lager/Logistik
+C0845,Auftrag erfassen,2026-05-07 14:43:00,Brunner S.,Vertrieb
+C0845,Kreditpruefung,2026-05-08 08:20:00,Schmid N.,Credit Management
+C0845,Verfuegbarkeitspruefung,2026-05-08 10:08:00,Moser K.,Lager/Logistik
+C0845,Auftrag bestaetigen,2026-05-08 11:47:00,Gerber R.,Vertrieb
+C0845,Kommissionieren,2026-05-11 16:57:00,Moser K.,Lager/Logistik
+C0845,Versenden,2026-05-12 14:42:00,Widmer T.,Lager/Logistik
+C0845,Rechnung stellen,2026-05-13 14:47:00,Zimmermann B.,Buchhaltung
+C0845,Reklamation erfassen,2026-05-21 16:16:00,Roth I.,Kundendienst
+C0845,Retoure erfassen,2026-05-26 11:33:00,Widmer T.,Lager/Logistik
 C0846,Auftrag erfassen,2026-01-23 16:26:00,Meier L.,Vertrieb
 C0846,Kreditpruefung,2026-01-26 09:01:00,Schmid N.,Credit Management
 C0846,Verfuegbarkeitspruefung,2026-01-26 09:36:00,Steiner J.,Lager/Logistik
@@ -7392,14 +7395,15 @@ C0925,Wareneingang Lager,2026-05-28 14:10:00,Baumann P.,Lager/Logistik
 C0925,Kommissionieren,2026-06-08 12:12:00,Baumann P.,Lager/Logistik
 C0926,Auftrag erfassen,2026-01-12 13:31:00,Gerber R.,Vertrieb
 C0926,Kreditpruefung,2026-01-12 16:42:00,Schmid N.,Credit Management
-C0927,Auftrag erfassen,2026-02-25 09:00:00,Brunner S.,Vertrieb
-C0927,Kreditpruefung,2026-02-25 11:46:00,Huber A.,Credit Management
-C0927,Verfuegbarkeitspruefung,2026-02-25 12:07:00,Steiner J.,Lager/Logistik
-C0927,Auftrag bestaetigen,2026-02-25 15:09:00,Brunner S.,Vertrieb
-C0927,Kommissionieren,2026-03-03 14:08:00,Baumann P.,Lager/Logistik
-C0927,Versenden,2026-03-04 10:39:00,Steiner J.,Lager/Logistik
-C0927,Reklamation erfassen,2026-03-06 12:03:00,Roth I.,Kundendienst
-C0927,Retoure erfassen,2026-03-12 11:46:00,Baumann P.,Lager/Logistik
+C0927,Auftrag erfassen,2026-02-27 12:45:00,Meier L.,Vertrieb
+C0927,Kreditpruefung,2026-02-27 14:39:00,Huber A.,Credit Management
+C0927,Verfuegbarkeitspruefung,2026-02-27 16:02:00,Widmer T.,Lager/Logistik
+C0927,Auftrag bestaetigen,2026-03-02 08:06:00,Meier L.,Vertrieb
+C0927,Kommissionieren,2026-03-03 13:14:00,Widmer T.,Lager/Logistik
+C0927,Versenden,2026-03-04 15:12:00,Baumann P.,Lager/Logistik
+C0927,Rechnung stellen,2026-03-05 12:56:00,Weber C.,Buchhaltung
+C0927,Reklamation erfassen,2026-03-09 12:03:00,Roth I.,Kundendienst
+C0927,Retoure erfassen,2026-03-13 11:46:00,Baumann P.,Lager/Logistik
 C0928,Auftrag erfassen,2026-01-22 15:01:00,Gerber R.,Vertrieb
 C0928,Kreditpruefung,2026-01-22 16:31:00,Schmid N.,Credit Management
 C0928,Verfuegbarkeitspruefung,2026-01-23 09:05:00,Moser K.,Lager/Logistik
@@ -7496,15 +7500,15 @@ C0939,Versenden,2026-05-29 11:01:00,Steiner J.,Lager/Logistik
 C0939,Rechnung stellen,2026-06-01 14:01:00,Zimmermann B.,Buchhaltung
 C0939,Zahlungseingang,2026-07-08 15:01:00,Zimmermann B.,Buchhaltung
 C0939,Zahlung zuordnen,2026-07-09 09:16:00,Weber C.,Buchhaltung
-C0940,Auftrag erfassen,2026-04-01 10:09:00,Brunner S.,Vertrieb
-C0940,Kreditpruefung,2026-04-01 10:46:00,Huber A.,Credit Management
-C0940,Verfuegbarkeitspruefung,2026-04-01 11:37:00,Moser K.,Lager/Logistik
-C0940,Auftrag bestaetigen,2026-04-01 14:59:00,Keller M.,Vertrieb
-C0940,Kommissionieren,2026-04-02 16:01:00,Steiner J.,Lager/Logistik
-C0940,Versenden,2026-04-03 12:51:00,Moser K.,Lager/Logistik
-C0940,Rechnung stellen,2026-04-06 09:28:00,Zimmermann B.,Buchhaltung
-C0940,Reklamation erfassen,2026-04-07 12:03:00,Roth I.,Kundendienst
-C0940,Retoure erfassen,2026-04-10 16:30:00,Moser K.,Lager/Logistik
+C0940,Auftrag erfassen,2026-01-13 13:24:00,Meier L.,Vertrieb
+C0940,Kreditpruefung,2026-01-13 14:54:00,Frei D.,Credit Management
+C0940,Verfuegbarkeitspruefung,2026-01-13 16:55:00,Baumann P.,Lager/Logistik
+C0940,Auftrag bestaetigen,2026-01-14 10:45:00,Gerber R.,Vertrieb
+C0940,Kommissionieren,2026-01-15 11:50:00,Widmer T.,Lager/Logistik
+C0940,Versenden,2026-01-16 16:11:00,Baumann P.,Lager/Logistik
+C0940,Rechnung stellen,2026-01-19 13:07:00,Zimmermann B.,Buchhaltung
+C0940,Reklamation erfassen,2026-01-23 13:58:00,Roth I.,Kundendienst
+C0940,Retoure erfassen,2026-01-26 15:33:00,Widmer T.,Lager/Logistik
 C0941,Auftrag erfassen,2026-03-20 09:22:00,Keller M.,Vertrieb
 C0941,Kreditpruefung,2026-03-20 13:00:00,Schmid N.,Credit Management
 C0941,Verfuegbarkeitspruefung,2026-03-20 14:26:00,Baumann P.,Lager/Logistik
@@ -7748,13 +7752,14 @@ C0975,Zahlungseingang,2026-01-26 08:37:00,Fischer E.,Buchhaltung
 C0975,Zahlung zuordnen,2026-01-26 13:45:00,Fischer E.,Buchhaltung
 C0975,Fall abschliessen,2026-01-26 16:29:00,Weber C.,Buchhaltung
 C0976,Auftrag erfassen,2026-04-16 08:38:00,Brunner S.,Vertrieb
-C0976,Kreditpruefung,2026-04-16 09:21:00,Frei D.,Credit Management
-C0976,Verfuegbarkeitspruefung,2026-04-16 10:12:00,Steiner J.,Lager/Logistik
-C0976,Auftrag bestaetigen,2026-04-16 12:29:00,Gerber R.,Vertrieb
-C0976,Kommissionieren,2026-04-24 12:50:00,Moser K.,Lager/Logistik
-C0976,Versenden,2026-04-27 10:12:00,Steiner J.,Lager/Logistik
-C0976,Reklamation erfassen,2026-05-04 11:26:00,Roth I.,Kundendienst
-C0976,Retoure erfassen,2026-05-05 10:14:00,Steiner J.,Lager/Logistik
+C0976,Kreditpruefung,2026-04-16 11:38:00,Frei D.,Credit Management
+C0976,Verfuegbarkeitspruefung,2026-04-16 12:11:00,Steiner J.,Lager/Logistik
+C0976,Auftrag bestaetigen,2026-04-16 14:43:00,Brunner S.,Vertrieb
+C0976,Kommissionieren,2026-04-20 09:56:00,Moser K.,Lager/Logistik
+C0976,Versenden,2026-04-21 16:56:00,Baumann P.,Lager/Logistik
+C0976,Rechnung stellen,2026-04-22 15:23:00,Weber C.,Buchhaltung
+C0976,Reklamation erfassen,2026-04-27 08:55:00,Kaufmann V.,Kundendienst
+C0976,Retoure erfassen,2026-04-30 11:33:00,Widmer T.,Lager/Logistik
 C0977,Auftrag erfassen,2026-02-19 14:22:00,Keller M.,Vertrieb
 C0977,Kreditpruefung,2026-02-19 15:22:00,Huber A.,Credit Management
 C0977,Verfuegbarkeitspruefung,2026-02-19 16:47:00,Moser K.,Lager/Logistik
@@ -8000,15 +8005,15 @@ C1009,Rechnung stellen,2026-06-09 14:32:00,Weber C.,Buchhaltung
 C1009,Zahlungseingang,2026-06-30 14:23:00,Zimmermann B.,Buchhaltung
 C1009,Zahlung zuordnen,2026-06-30 15:17:00,Zimmermann B.,Buchhaltung
 C1009,Fall abschliessen,2026-07-01 14:33:00,Weber C.,Buchhaltung
-C1010,Auftrag erfassen,2026-03-16 12:42:00,Keller M.,Vertrieb
-C1010,Kreditpruefung,2026-03-16 13:41:00,Frei D.,Credit Management
-C1010,Verfuegbarkeitspruefung,2026-03-16 15:36:00,Baumann P.,Lager/Logistik
-C1010,Auftrag bestaetigen,2026-03-17 10:24:00,Meier L.,Vertrieb
-C1010,Kommissionieren,2026-03-19 08:09:00,Widmer T.,Lager/Logistik
-C1010,Versenden,2026-03-19 12:49:00,Baumann P.,Lager/Logistik
-C1010,Rechnung stellen,2026-03-19 14:43:00,Fischer E.,Buchhaltung
-C1010,Reklamation erfassen,2026-03-23 12:54:00,Kaufmann V.,Kundendienst
-C1010,Retoure erfassen,2026-03-25 09:08:00,Moser K.,Lager/Logistik
+C1010,Auftrag erfassen,2026-05-18 10:05:00,Brunner S.,Vertrieb
+C1010,Kreditpruefung,2026-05-18 12:18:00,Frei D.,Credit Management
+C1010,Verfuegbarkeitspruefung,2026-05-18 13:14:00,Baumann P.,Lager/Logistik
+C1010,Auftrag bestaetigen,2026-05-18 14:21:00,Keller M.,Vertrieb
+C1010,Kommissionieren,2026-05-20 08:57:00,Baumann P.,Lager/Logistik
+C1010,Versenden,2026-05-20 15:43:00,Moser K.,Lager/Logistik
+C1010,Rechnung stellen,2026-05-21 11:57:00,Fischer E.,Buchhaltung
+C1010,Reklamation erfassen,2026-05-28 11:18:00,Roth I.,Kundendienst
+C1010,Retoure erfassen,2026-05-29 09:25:00,Moser K.,Lager/Logistik
 C1011,Auftrag erfassen,2026-02-23 15:53:00,Keller M.,Vertrieb
 C1011,Kreditpruefung,2026-02-24 11:13:00,Schmid N.,Credit Management
 C1011,Verfuegbarkeitspruefung,2026-02-24 12:04:00,Steiner J.,Lager/Logistik
@@ -9941,15 +9946,15 @@ C1248,Zahlungserinnerung,2026-04-09 12:42:00,Weber C.,Buchhaltung
 C1248,Mahnung Stufe 2,2026-04-23 15:56:00,Fischer E.,Buchhaltung
 C1249,Auftrag erfassen,2026-05-21 11:00:00,Brunner S.,Vertrieb
 C1249,Kreditpruefung,2026-05-21 12:47:00,Huber A.,Credit Management
-C1250,Auftrag erfassen,2026-03-24 12:49:00,Gerber R.,Vertrieb
-C1250,Kreditpruefung,2026-03-24 15:14:00,Schmid N.,Credit Management
-C1250,Verfuegbarkeitspruefung,2026-03-24 16:38:00,Moser K.,Lager/Logistik
-C1250,Auftrag bestaetigen,2026-03-25 09:46:00,Brunner S.,Vertrieb
-C1250,Kommissionieren,2026-04-08 12:02:00,Baumann P.,Lager/Logistik
-C1250,Versenden,2026-04-08 15:25:00,Baumann P.,Lager/Logistik
-C1250,Rechnung stellen,2026-04-09 10:38:00,Weber C.,Buchhaltung
-C1250,Reklamation erfassen,2026-04-17 10:35:00,Roth I.,Kundendienst
-C1250,Retoure erfassen,2026-04-17 13:58:00,Steiner J.,Lager/Logistik
+C1250,Auftrag erfassen,2026-04-29 11:37:00,Gerber R.,Vertrieb
+C1250,Kreditpruefung,2026-04-30 12:41:00,Frei D.,Credit Management
+C1250,Verfuegbarkeitspruefung,2026-04-30 15:28:00,Steiner J.,Lager/Logistik
+C1250,Auftrag bestaetigen,2026-05-01 08:41:00,Gerber R.,Vertrieb
+C1250,Kommissionieren,2026-05-06 15:31:00,Widmer T.,Lager/Logistik
+C1250,Versenden,2026-05-07 08:29:00,Baumann P.,Lager/Logistik
+C1250,Rechnung stellen,2026-05-07 13:01:00,Zimmermann B.,Buchhaltung
+C1250,Reklamation erfassen,2026-05-11 16:25:00,Ammann H.,Kundendienst
+C1250,Retoure erfassen,2026-05-12 12:39:00,Widmer T.,Lager/Logistik
 C1251,Auftrag erfassen,2026-02-03 09:26:00,Keller M.,Vertrieb
 C1251,Kreditpruefung,2026-02-03 11:39:00,Frei D.,Credit Management
 C1251,Verfuegbarkeitspruefung,2026-02-03 14:14:00,Moser K.,Lager/Logistik
@@ -10364,15 +10369,15 @@ C1300,Auftrag aendern,2026-02-19 08:42:00,Keller M.,Vertrieb
 C1300,Auftrag aendern,2026-02-19 10:41:00,Keller M.,Vertrieb
 C1300,Kreditpruefung,2026-02-19 12:20:00,Huber A.,Credit Management
 C1300,Verfuegbarkeitspruefung,2026-02-19 13:51:00,Baumann P.,Lager/Logistik
-C1301,Auftrag erfassen,2026-02-06 12:02:00,Keller M.,Vertrieb
-C1301,Kreditpruefung,2026-02-06 13:02:00,Huber A.,Credit Management
-C1301,Verfuegbarkeitspruefung,2026-02-06 14:53:00,Widmer T.,Lager/Logistik
-C1301,Auftrag bestaetigen,2026-02-09 09:42:00,Keller M.,Vertrieb
-C1301,Kommissionieren,2026-02-12 13:21:00,Steiner J.,Lager/Logistik
-C1301,Versenden,2026-02-12 15:51:00,Steiner J.,Lager/Logistik
-C1301,Rechnung stellen,2026-02-16 09:00:00,Zimmermann B.,Buchhaltung
-C1301,Reklamation erfassen,2026-02-23 15:27:00,Kaufmann V.,Kundendienst
-C1301,Retoure erfassen,2026-02-25 09:08:00,Steiner J.,Lager/Logistik
+C1301,Auftrag erfassen,2026-01-30 12:45:00,Brunner S.,Vertrieb
+C1301,Kreditpruefung,2026-01-30 15:18:00,Schmid N.,Credit Management
+C1301,Verfuegbarkeitspruefung,2026-01-30 15:54:00,Baumann P.,Lager/Logistik
+C1301,Auftrag bestaetigen,2026-02-02 08:24:00,Gerber R.,Vertrieb
+C1301,Kommissionieren,2026-02-03 12:57:00,Baumann P.,Lager/Logistik
+C1301,Versenden,2026-02-04 09:21:00,Baumann P.,Lager/Logistik
+C1301,Rechnung stellen,2026-02-05 10:10:00,Weber C.,Buchhaltung
+C1301,Reklamation erfassen,2026-02-13 12:12:00,Roth I.,Kundendienst
+C1301,Retoure erfassen,2026-02-13 12:34:00,Moser K.,Lager/Logistik
 C1302,Auftrag erfassen,2026-03-04 08:46:00,Keller M.,Vertrieb
 C1303,Auftrag erfassen,2026-01-19 09:53:00,Keller M.,Vertrieb
 C1303,Kreditpruefung,2026-01-19 10:55:00,Huber A.,Credit Management
@@ -11425,15 +11430,15 @@ C1425,Rechnung stellen,2026-05-13 10:43:00,Zimmermann B.,Buchhaltung
 C1425,Zahlungseingang,2026-06-25 12:58:00,Zimmermann B.,Buchhaltung
 C1425,Zahlung zuordnen,2026-06-25 14:05:00,Zimmermann B.,Buchhaltung
 C1425,Fall abschliessen,2026-06-26 10:18:00,Weber C.,Buchhaltung
-C1426,Auftrag erfassen,2026-02-16 09:34:00,Gerber R.,Vertrieb
-C1426,Kreditpruefung,2026-02-17 11:33:00,Schmid N.,Credit Management
-C1426,Verfuegbarkeitspruefung,2026-02-17 12:56:00,Moser K.,Lager/Logistik
-C1426,Auftrag bestaetigen,2026-02-18 15:06:00,Keller M.,Vertrieb
-C1426,Kommissionieren,2026-02-19 14:10:00,Widmer T.,Lager/Logistik
-C1426,Versenden,2026-02-20 13:05:00,Steiner J.,Lager/Logistik
-C1426,Rechnung stellen,2026-02-23 13:22:00,Weber C.,Buchhaltung
-C1426,Reklamation erfassen,2026-03-04 11:24:00,Roth I.,Kundendienst
-C1426,Retoure erfassen,2026-03-05 11:34:00,Moser K.,Lager/Logistik
+C1426,Auftrag erfassen,2026-04-20 12:38:00,Brunner S.,Vertrieb
+C1426,Kreditpruefung,2026-04-20 13:45:00,Frei D.,Credit Management
+C1426,Verfuegbarkeitspruefung,2026-04-20 15:12:00,Moser K.,Lager/Logistik
+C1426,Auftrag bestaetigen,2026-04-21 08:10:00,Brunner S.,Vertrieb
+C1426,Kommissionieren,2026-04-22 12:01:00,Steiner J.,Lager/Logistik
+C1426,Versenden,2026-04-23 11:39:00,Widmer T.,Lager/Logistik
+C1426,Rechnung stellen,2026-04-23 16:46:00,Zimmermann B.,Buchhaltung
+C1426,Reklamation erfassen,2026-04-27 08:07:00,Kaufmann V.,Kundendienst
+C1426,Retoure erfassen,2026-04-27 14:08:00,Baumann P.,Lager/Logistik
 C1427,Auftrag erfassen,2026-02-10 15:03:00,Gerber R.,Vertrieb
 C1427,Kreditpruefung,2026-02-11 09:27:00,Frei D.,Credit Management
 C1427,Verfuegbarkeitspruefung,2026-02-11 10:01:00,Steiner J.,Lager/Logistik
@@ -12283,15 +12288,15 @@ C1531,Rechnung stellen,2026-03-30 10:47:00,Fischer E.,Buchhaltung
 C1531,Zahlungseingang,2026-05-07 14:58:00,Weber C.,Buchhaltung
 C1531,Zahlung zuordnen,2026-05-08 09:22:00,Weber C.,Buchhaltung
 C1531,Fall abschliessen,2026-05-08 12:11:00,Fischer E.,Buchhaltung
-C1532,Auftrag erfassen,2026-01-22 09:35:00,Brunner S.,Vertrieb
-C1532,Kreditpruefung,2026-01-22 11:21:00,Schmid N.,Credit Management
-C1532,Verfuegbarkeitspruefung,2026-01-22 13:03:00,Steiner J.,Lager/Logistik
-C1532,Auftrag bestaetigen,2026-01-22 16:40:00,Keller M.,Vertrieb
-C1532,Kommissionieren,2026-01-28 15:11:00,Steiner J.,Lager/Logistik
-C1532,Versenden,2026-01-29 15:31:00,Widmer T.,Lager/Logistik
-C1532,Rechnung stellen,2026-01-30 10:08:00,Weber C.,Buchhaltung
-C1532,Reklamation erfassen,2026-02-09 15:35:00,Kaufmann V.,Kundendienst
-C1532,Retoure erfassen,2026-02-10 13:20:00,Baumann P.,Lager/Logistik
+C1532,Auftrag erfassen,2026-04-16 12:50:00,Gerber R.,Vertrieb
+C1532,Kreditpruefung,2026-04-16 15:15:00,Frei D.,Credit Management
+C1532,Verfuegbarkeitspruefung,2026-04-16 16:07:00,Baumann P.,Lager/Logistik
+C1532,Auftrag bestaetigen,2026-04-17 12:43:00,Keller M.,Vertrieb
+C1532,Kommissionieren,2026-04-20 15:56:00,Widmer T.,Lager/Logistik
+C1532,Versenden,2026-04-21 13:39:00,Baumann P.,Lager/Logistik
+C1532,Rechnung stellen,2026-04-22 08:42:00,Fischer E.,Buchhaltung
+C1532,Reklamation erfassen,2026-04-23 15:02:00,Roth I.,Kundendienst
+C1532,Retoure erfassen,2026-04-28 12:29:00,Moser K.,Lager/Logistik
 C1533,Auftrag erfassen,2026-01-08 09:34:00,Keller M.,Vertrieb
 C1533,Kreditpruefung,2026-01-08 12:04:00,Huber A.,Credit Management
 C1533,Verfuegbarkeitspruefung,2026-01-08 13:00:00,Moser K.,Lager/Logistik
@@ -12475,15 +12480,15 @@ C1554,Auftrag bestaetigen,2026-05-14 11:12:00,Brunner S.,Vertrieb
 C1554,Auftrag aendern,2026-05-18 12:28:00,Keller M.,Vertrieb
 C1554,Auftrag aendern,2026-05-19 13:40:00,Keller M.,Vertrieb
 C1554,Kommissionieren,2026-05-20 14:23:00,Baumann P.,Lager/Logistik
-C1555,Auftrag erfassen,2026-04-08 13:13:00,Gerber R.,Vertrieb
-C1555,Kreditpruefung,2026-04-08 15:14:00,Frei D.,Credit Management
-C1555,Verfuegbarkeitspruefung,2026-04-08 16:07:00,Steiner J.,Lager/Logistik
-C1555,Auftrag bestaetigen,2026-04-08 16:41:00,Meier L.,Vertrieb
-C1555,Kommissionieren,2026-04-09 13:20:00,Widmer T.,Lager/Logistik
-C1555,Versenden,2026-04-10 11:11:00,Baumann P.,Lager/Logistik
-C1555,Rechnung stellen,2026-04-13 10:29:00,Fischer E.,Buchhaltung
-C1555,Reklamation erfassen,2026-04-21 14:59:00,Kaufmann V.,Kundendienst
-C1555,Retoure erfassen,2026-04-22 14:59:00,Moser K.,Lager/Logistik
+C1555,Auftrag erfassen,2026-04-22 15:18:00,Gerber R.,Vertrieb
+C1555,Kreditpruefung,2026-04-23 08:19:00,Schmid N.,Credit Management
+C1555,Verfuegbarkeitspruefung,2026-04-23 09:28:00,Baumann P.,Lager/Logistik
+C1555,Auftrag bestaetigen,2026-04-23 10:02:00,Keller M.,Vertrieb
+C1555,Kommissionieren,2026-04-27 13:25:00,Baumann P.,Lager/Logistik
+C1555,Versenden,2026-04-28 11:16:00,Steiner J.,Lager/Logistik
+C1555,Rechnung stellen,2026-04-29 13:43:00,Zimmermann B.,Buchhaltung
+C1555,Reklamation erfassen,2026-05-01 14:12:00,Ammann H.,Kundendienst
+C1555,Retoure erfassen,2026-05-04 15:42:00,Baumann P.,Lager/Logistik
 C1556,Auftrag erfassen,2026-05-04 09:35:00,Keller M.,Vertrieb
 C1556,Kreditpruefung,2026-05-04 10:11:00,Huber A.,Credit Management
 C1556,Verfuegbarkeitspruefung,2026-05-04 11:22:00,Baumann P.,Lager/Logistik
@@ -13588,14 +13593,15 @@ C1689,Kommissionieren,2026-01-23 11:46:00,Baumann P.,Lager/Logistik
 C1689,Versenden,2026-01-26 11:33:00,Moser K.,Lager/Logistik
 C1689,Rechnung stellen,2026-01-26 16:54:00,Zimmermann B.,Buchhaltung
 C1689,Zahlungseingang,2026-02-20 16:09:00,Fischer E.,Buchhaltung
-C1690,Auftrag erfassen,2026-05-07 13:19:00,Keller M.,Vertrieb
-C1690,Kreditpruefung,2026-05-07 16:04:00,Frei D.,Credit Management
-C1690,Verfuegbarkeitspruefung,2026-05-07 16:36:00,Baumann P.,Lager/Logistik
-C1690,Auftrag bestaetigen,2026-05-08 10:14:00,Brunner S.,Vertrieb
-C1690,Kommissionieren,2026-05-12 09:11:00,Baumann P.,Lager/Logistik
-C1690,Versenden,2026-05-12 13:18:00,Steiner J.,Lager/Logistik
-C1690,Reklamation erfassen,2026-05-13 09:17:00,Roth I.,Kundendienst
-C1690,Retoure erfassen,2026-05-13 13:53:00,Baumann P.,Lager/Logistik
+C1690,Auftrag erfassen,2026-05-08 10:26:00,Keller M.,Vertrieb
+C1690,Kreditpruefung,2026-05-08 14:19:00,Huber A.,Credit Management
+C1690,Verfuegbarkeitspruefung,2026-05-08 15:41:00,Steiner J.,Lager/Logistik
+C1690,Auftrag bestaetigen,2026-05-11 08:16:00,Keller M.,Vertrieb
+C1690,Kommissionieren,2026-05-12 11:17:00,Widmer T.,Lager/Logistik
+C1690,Versenden,2026-05-13 08:10:00,Baumann P.,Lager/Logistik
+C1690,Rechnung stellen,2026-05-13 12:57:00,Weber C.,Buchhaltung
+C1690,Reklamation erfassen,2026-05-14 09:17:00,Roth I.,Kundendienst
+C1690,Retoure erfassen,2026-05-14 13:53:00,Baumann P.,Lager/Logistik
 C1691,Auftrag erfassen,2026-02-03 09:20:00,Meier L.,Vertrieb
 C1691,Kreditpruefung,2026-02-03 13:07:00,Huber A.,Credit Management
 C1691,Verfuegbarkeitspruefung,2026-02-03 14:20:00,Steiner J.,Lager/Logistik
@@ -14708,15 +14714,15 @@ C1823,Rechnung stellen,2026-05-20 08:17:00,Zimmermann B.,Buchhaltung
 C1823,Zahlungseingang,2026-06-19 10:52:00,Weber C.,Buchhaltung
 C1823,Zahlung zuordnen,2026-06-19 15:08:00,Zimmermann B.,Buchhaltung
 C1823,Fall abschliessen,2026-06-22 12:59:00,Zimmermann B.,Buchhaltung
-C1824,Auftrag erfassen,2026-03-03 14:14:00,Gerber R.,Vertrieb
-C1824,Kreditpruefung,2026-03-03 15:04:00,Frei D.,Credit Management
-C1824,Verfuegbarkeitspruefung,2026-03-03 16:02:00,Baumann P.,Lager/Logistik
-C1824,Auftrag bestaetigen,2026-03-04 10:38:00,Meier L.,Vertrieb
-C1824,Kommissionieren,2026-03-09 14:50:00,Steiner J.,Lager/Logistik
-C1824,Versenden,2026-03-09 16:02:00,Steiner J.,Lager/Logistik
-C1824,Rechnung stellen,2026-03-10 14:26:00,Zimmermann B.,Buchhaltung
-C1824,Reklamation erfassen,2026-03-13 08:06:00,Kaufmann V.,Kundendienst
-C1824,Retoure erfassen,2026-03-13 16:35:00,Moser K.,Lager/Logistik
+C1824,Auftrag erfassen,2026-03-02 11:20:00,Keller M.,Vertrieb
+C1824,Kreditpruefung,2026-03-02 13:16:00,Schmid N.,Credit Management
+C1824,Verfuegbarkeitspruefung,2026-03-02 15:33:00,Widmer T.,Lager/Logistik
+C1824,Auftrag bestaetigen,2026-03-03 12:31:00,Keller M.,Vertrieb
+C1824,Kommissionieren,2026-03-03 16:08:00,Moser K.,Lager/Logistik
+C1824,Versenden,2026-03-04 13:07:00,Baumann P.,Lager/Logistik
+C1824,Rechnung stellen,2026-03-06 12:18:00,Fischer E.,Buchhaltung
+C1824,Reklamation erfassen,2026-03-09 14:30:00,Kaufmann V.,Kundendienst
+C1824,Retoure erfassen,2026-03-12 16:11:00,Baumann P.,Lager/Logistik
 C1825,Auftrag erfassen,2026-06-05 11:08:00,Keller M.,Vertrieb
 C1825,Kreditpruefung,2026-06-05 13:26:00,Frei D.,Credit Management
 C1825,Verfuegbarkeitspruefung,2026-06-05 14:49:00,Widmer T.,Lager/Logistik
@@ -15337,15 +15343,15 @@ C1903,Rechnung stellen,2026-06-03 16:20:00,Fischer E.,Buchhaltung
 C1903,Zahlungseingang,2026-07-17 12:04:00,Zimmermann B.,Buchhaltung
 C1903,Zahlung zuordnen,2026-07-20 09:24:00,Zimmermann B.,Buchhaltung
 C1903,Fall abschliessen,2026-07-20 11:51:00,Weber C.,Buchhaltung
-C1904,Auftrag erfassen,2026-04-22 09:13:00,Keller M.,Vertrieb
-C1904,Kreditpruefung,2026-04-22 10:23:00,Huber A.,Credit Management
-C1904,Verfuegbarkeitspruefung,2026-04-22 10:39:00,Steiner J.,Lager/Logistik
-C1904,Auftrag bestaetigen,2026-04-22 14:31:00,Meier L.,Vertrieb
-C1904,Kommissionieren,2026-04-27 08:55:00,Baumann P.,Lager/Logistik
-C1904,Versenden,2026-04-27 11:47:00,Widmer T.,Lager/Logistik
-C1904,Rechnung stellen,2026-04-29 09:33:00,Weber C.,Buchhaltung
-C1904,Reklamation erfassen,2026-05-04 13:41:00,Ammann H.,Kundendienst
-C1904,Retoure erfassen,2026-05-05 12:02:00,Moser K.,Lager/Logistik
+C1904,Auftrag erfassen,2026-01-05 10:00:00,Meier L.,Vertrieb
+C1904,Kreditpruefung,2026-01-05 12:13:00,Huber A.,Credit Management
+C1904,Verfuegbarkeitspruefung,2026-01-05 12:47:00,Moser K.,Lager/Logistik
+C1904,Auftrag bestaetigen,2026-01-05 16:09:00,Meier L.,Vertrieb
+C1904,Kommissionieren,2026-01-06 12:54:00,Baumann P.,Lager/Logistik
+C1904,Versenden,2026-01-07 11:40:00,Moser K.,Lager/Logistik
+C1904,Rechnung stellen,2026-01-07 12:37:00,Fischer E.,Buchhaltung
+C1904,Reklamation erfassen,2026-01-12 12:35:00,Kaufmann V.,Kundendienst
+C1904,Retoure erfassen,2026-01-14 13:52:00,Moser K.,Lager/Logistik
 C1905,Auftrag erfassen,2026-04-20 15:00:00,Keller M.,Vertrieb
 C1905,Kreditpruefung,2026-04-21 08:00:00,Frei D.,Credit Management
 C1905,Verfuegbarkeitspruefung,2026-04-21 08:21:00,Steiner J.,Lager/Logistik
@@ -15792,14 +15798,15 @@ C1960,Zahlungseingang,2026-05-11 11:44:00,Zimmermann B.,Buchhaltung
 C1960,Zahlung zuordnen,2026-05-11 13:57:00,Fischer E.,Buchhaltung
 C1960,Fall abschliessen,2026-05-12 10:16:00,Zimmermann B.,Buchhaltung
 C1961,Auftrag erfassen,2026-06-15 13:51:00,Gerber R.,Vertrieb
-C1962,Auftrag erfassen,2026-05-18 10:21:00,Brunner S.,Vertrieb
-C1962,Kreditpruefung,2026-05-18 11:12:00,Frei D.,Credit Management
-C1962,Verfuegbarkeitspruefung,2026-05-18 12:22:00,Moser K.,Lager/Logistik
-C1962,Auftrag bestaetigen,2026-05-19 13:09:00,Meier L.,Vertrieb
-C1962,Kommissionieren,2026-05-21 09:40:00,Baumann P.,Lager/Logistik
-C1962,Versenden,2026-05-22 10:02:00,Widmer T.,Lager/Logistik
-C1962,Reklamation erfassen,2026-05-26 11:14:00,Ammann H.,Kundendienst
-C1962,Retoure erfassen,2026-05-27 09:55:00,Steiner J.,Lager/Logistik
+C1962,Auftrag erfassen,2026-05-18 10:21:00,Meier L.,Vertrieb
+C1962,Kreditpruefung,2026-05-18 13:34:00,Huber A.,Credit Management
+C1962,Verfuegbarkeitspruefung,2026-05-18 14:00:00,Widmer T.,Lager/Logistik
+C1962,Auftrag bestaetigen,2026-05-18 15:23:00,Gerber R.,Vertrieb
+C1962,Kommissionieren,2026-05-26 16:58:00,Moser K.,Lager/Logistik
+C1962,Versenden,2026-05-27 13:31:00,Moser K.,Lager/Logistik
+C1962,Rechnung stellen,2026-05-28 16:59:00,Weber C.,Buchhaltung
+C1962,Reklamation erfassen,2026-06-01 15:30:00,Kaufmann V.,Kundendienst
+C1962,Retoure erfassen,2026-06-02 14:11:00,Widmer T.,Lager/Logistik
 C1963,Auftrag erfassen,2026-04-28 11:56:00,Meier L.,Vertrieb
 C1963,Kreditpruefung,2026-04-28 12:41:00,Frei D.,Credit Management
 C1963,Verfuegbarkeitspruefung,2026-04-28 13:45:00,Baumann P.,Lager/Logistik
@@ -15840,14 +15847,15 @@ C1967,Verfuegbarkeitspruefung,2026-06-11 12:21:00,Widmer T.,Lager/Logistik
 C1967,Auftrag bestaetigen,2026-06-11 15:26:00,Brunner S.,Vertrieb
 C1967,Auftrag stornieren,2026-06-11 15:57:00,Keller M.,Vertrieb
 C1967,Fall abschliessen,2026-06-12 12:44:00,Fischer E.,Buchhaltung
-C1968,Auftrag erfassen,2026-05-13 14:00:00,Gerber R.,Vertrieb
-C1968,Kreditpruefung,2026-05-13 16:45:00,Schmid N.,Credit Management
-C1968,Verfuegbarkeitspruefung,2026-05-14 08:32:00,Widmer T.,Lager/Logistik
-C1968,Auftrag bestaetigen,2026-05-14 10:42:00,Meier L.,Vertrieb
-C1968,Kommissionieren,2026-05-18 14:59:00,Steiner J.,Lager/Logistik
-C1968,Versenden,2026-05-19 12:07:00,Widmer T.,Lager/Logistik
-C1968,Reklamation erfassen,2026-05-26 08:10:00,Ammann H.,Kundendienst
-C1968,Retoure erfassen,2026-05-27 08:01:00,Steiner J.,Lager/Logistik
+C1968,Auftrag erfassen,2026-05-13 14:00:00,Meier L.,Vertrieb
+C1968,Kreditpruefung,2026-05-13 16:06:00,Huber A.,Credit Management
+C1968,Verfuegbarkeitspruefung,2026-05-14 08:29:00,Moser K.,Lager/Logistik
+C1968,Auftrag bestaetigen,2026-05-14 12:57:00,Keller M.,Vertrieb
+C1968,Kommissionieren,2026-05-18 12:40:00,Widmer T.,Lager/Logistik
+C1968,Versenden,2026-05-19 09:52:00,Moser K.,Lager/Logistik
+C1968,Rechnung stellen,2026-05-20 09:52:00,Weber C.,Buchhaltung
+C1968,Reklamation erfassen,2026-05-26 12:33:00,Roth I.,Kundendienst
+C1968,Retoure erfassen,2026-05-27 09:50:00,Baumann P.,Lager/Logistik
 C1969,Auftrag erfassen,2026-03-23 16:23:00,Gerber R.,Vertrieb
 C1969,Kreditpruefung,2026-03-24 08:53:00,Schmid N.,Credit Management
 C1969,Verfuegbarkeitspruefung,2026-03-24 10:27:00,Widmer T.,Lager/Logistik

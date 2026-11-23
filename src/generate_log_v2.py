@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_log_v2.py | WI-Projekt Thema 75 | Prozess v2 (Entwurf) | v0.1
+generate_log_v2.py | WI-Projekt Thema 75 | Prozess v2 (Entwurf) | v0.2
 
 Erzeugt das erweiterte Order-to-Cash Event Log (spec/spec_v2.yaml) mit Ground Truth.
 v1 (src/generate_log.py, data/) bleibt unveraendert. Wiederverwendet werden nur die
@@ -53,7 +53,7 @@ GEN2 = {
     "invoice_dev": (0.02, 0.15),           # E9: relative Abweichung des Rechnungsbetrags
     "credit_share": (0.10, 0.60),          # Gutschrift als Anteil des Rechnungsbetrags
     "shortfall_share": (0.02, 0.50),       # E10: fehlender Anteil der Zahlung
-    "complaint_days": (1, 10),             # Reklamation nach Rechnung bzw. Versand
+    "complaint_days": (1, 10),             # Reklamation nach der Rechnung
     "storno_days": (1, 10),                # Stornierung nach Versand bzw. Rechnung
     "mahnung2_gap_days": (10, 14),         # Mahnstufe 2 nach Zahlungserinnerung
     "e6_mahnung2_min_overdue": 25,         # ab so vielen Tagen Verzug ist Mahnstufe 2 moeglich
@@ -164,7 +164,7 @@ def sequence(rng, ctx, c, n_aendern=0, aendern_late=True, backorder=False, teil=
     """Vollstaendiger Verlauf, wird danach abgeschnitten.
 
     storno     None | before_ship | after_ship | after_invoice
-    complaint  None | (ship|invoice, credited|pending); pending endet nach der Retoure
+    complaint  None | (invoice, credited|pending); Reklamation nach der Rechnung, pending endet nach der Retoure
     reminder   0 | 1 (Zahlungserinnerung) | 2 (zusaetzlich Mahnung Stufe 2)
     partial    Teilzahlung: endet nach 'Zahlung zuordnen' ohne Abschluss
     Rueckgabe  (events, meta) mit meta = {restock, due}
@@ -203,10 +203,6 @@ def sequence(rng, ctx, c, n_aendern=0, aendern_late=True, backorder=False, teil=
         if storno == "after_ship":
             tr.on_date(ctx.STORNO, tr.last.date() + timedelta(days=uint(rng, *GEN2["storno_days"])))
             return tr.events, meta
-        if complaint and complaint[0] == "ship":
-            tr.on_date(ctx.REKL, tr.last.date() + timedelta(days=uint(rng, *GEN2["complaint_days"])))
-            tr.work(ctx.RET)
-            return tr.events, meta          # nur pending: Rechnung wird zurueckgehalten
         tr.work(ctx.RECH)
     inv = first_ts(tr.events, ctx.RECH).date()
     meta["due"] = due = inv + timedelta(days=c["payment_terms_days"])
@@ -652,16 +648,14 @@ def build_e11(rng, ctx, n, bdays):
         tags = ["running"]
         c = draw_common(rng, bdays)
         credit_ok(rng, c)
-        where = "ship" if rng.random() < 0.3 else "invoice"
-        tags.append("complaint_after_" + where)
-        ev, meta = sequence(rng, ctx, c, complaint=(where, "pending"))
+        ev, meta = sequence(rng, ctx, c, complaint=("invoice", "pending"))   # Gutschrift setzt eine Rechnung voraus
         ret = first_ts(ev, ctx.RET).date()
         if rng.random() < GEN2["edge_share"]:
             snap = ret + timedelta(days=ctx.thr11 + 1)
             tags.append("edge_e11")
         else:
             snap = ret + timedelta(days=ctx.thr11 + uint(rng, 1, 20))
-        if meta["due"] is not None and snap > meta["due"]:
+        if snap > meta["due"]:
             tags.append("chain_e6")                     # Kunde haelt Zahlung bis zur Gutschrift zurueck
         prom = promised_from_ship(rng, ctx, ev)
         text, cat, t3 = maybe_noise(rng, ctx, ev, snap, c, GEN["other_noise_share"])

@@ -1,6 +1,6 @@
 # Generation Report v2 (erweiterter Prozess, Entwurf)
 
-Spec: `spec_v2.yaml` v2.0.0, Seed 42. Faelle: 2000, Events: 16102, Aktivitaeten: 21.
+Spec: `spec_v2.yaml` v2.1.0, Seed 42. Faelle: 2000, Events: 16110, Aktivitaeten: 21.
 
 **Ergebnis: 32 von 32 Pruefungen bestanden.**
 
@@ -33,7 +33,7 @@ Triggerlogik aus `src/detect_v2.py` (unabhaengig vom Generator).
 | 21 | Nach 'Auftrag stornieren' hoechstens 'Fall abschliessen' | OK | 0 Verstoesse |
 | 22 | Trigger je Fall = Ground Truth (inkl. Ketten mit E6) | OK | 0 Abweichungen |
 | 23 | Erkannter Typ nach Prioritaet = exception_type | OK | 0 Abweichungen |
-| 24 | Kausale Ketten vorhanden (E8, E9, E11 jeweils mit E6) | OK | E11+E6: 3; E8+E6: 3; E9+E6: 7 |
+| 24 | Kausale Ketten vorhanden (E8, E9, E11 jeweils mit E6) | OK | E11+E6: 12; E8+E6: 3; E9+E6: 7 |
 | 25 | allowed_action_sets entsprechen spec_v2 | OK | 0 Abweichungen |
 | 26 | expected_target_role entspricht spec_v2 | OK | 0 Abweichungen; (leer): 1840; Buchhaltung: 60; Credit Management: 60; Kundendienst: 20; Vertrieb: 20 |
 | 27 | Freitext-Kategorie = Vorlagen-Kategorie (Regex-Abgleich) | OK | 0 Abweichungen |
@@ -41,7 +41,7 @@ Triggerlogik aus `src/detect_v2.py` (unabhaengig vom Generator).
 | 29 | Happy Path: alle 8 Varianten vorhanden | OK | aendern: 175; storno: 69; nachbestellung: 63; teillieferung: 48; erinnerung: 46; reklamation: 34; mahnung2: 29; rechnungskorrektur: 25 |
 | 30 | Happy Path: Grenzfaelle fuer E2, E3, E6, E9, E10, E11, E12 | OK | e10: 12; e11: 11; e12: 11; e2: 12; e3: 12; e6: 12; e9: 12 |
 | 31 | Info: Happy Path abgeschlossen | OK | 984 von 1630 (60.4%) |
-| 32 | Wiederholbarkeit: weiterer Lauf byte-identisch (SHA-256) | OK | event_log.csv: ff822088c993; cases.csv: d5f4a58e8bb5; ground_truth.csv: 82935a1b4015 |
+| 32 | Wiederholbarkeit: weiterer Lauf byte-identisch (SHA-256) | OK | event_log.csv: fca0310ada44; cases.csv: f96bf87778e8; ground_truth.csv: 1a779dd573e7 |
 
 ## Typen
 
@@ -56,7 +56,7 @@ Triggerlogik aus `src/detect_v2.py` (unabhaengig vom Generator).
 | E8 | 20 | 7.5 | 10% |
 | E9 | 40 | 8.1 | 5% |
 | E10 | 40 | 9.8 | 18% |
-| E11 | 30 | 8.7 | 0% |
+| E11 | 30 | 9.0 | 10% |
 | E12 | 30 | 5.3 | 10% |
 
 ## Letzte Aktivitaet zum Stichtag je Typ

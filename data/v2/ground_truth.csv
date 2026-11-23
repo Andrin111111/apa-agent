@@ -10,7 +10,7 @@ C0008,none,none,"[[""A0""]]",,completed
 C0009,E12,none,"[[""A2""],[""A2"",""A4""]]",,running;restock_late_5d
 C0010,none,none,"[[""A0""]]",,completed;variant_aendern
 C0011,none,none,"[[""A0""]]",,completed
-C0012,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0012,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0013,none,irrelevant,"[[""A0""]]",,running;variant_nachbestellung;noise_text;tpl_irrelevant_08
 C0014,none,none,"[[""A0""]]",,completed
 C0015,none,none,"[[""A0""]]",,completed
@@ -60,13 +60,13 @@ C0058,none,none,"[[""A0""]]",,running;variant_aendern
 C0059,none,none,"[[""A0""]]",,completed;variant_nachbestellung
 C0060,none,none,"[[""A0""]]",,running
 C0061,none,none,"[[""A0""]]",,completed;variant_aendern
-C0062,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;chain_e6
+C0062,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0063,none,irrelevant,"[[""A0""]]",,completed;variant_aendern;noise_text;tpl_irrelevant_02
-C0064,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0064,E11,irrelevant,"[[""A4""],[""A4"",""A2""]]",,running;noise_text;tpl_irrelevant_01
 C0065,none,none,"[[""A0""]]",,running
 C0066,none,none,"[[""A0""]]",,completed;variant_rechnungskorrektur
 C0067,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_10
-C0068,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;chain_e6
+C0068,E11,irrelevant,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6;noise_text;tpl_irrelevant_02
 C0069,E7,none,,,running;overshoot_stark;delivery_delta_1d;edge_e3
 C0070,none,irrelevant,"[[""A0""]]",,running;variant_aendern;noise_text;tpl_irrelevant_09
 C0071,E6,payment_announced,"[[""A0""]]",,running;overdue_15d;text_direkt;tpl_payment_announced_02
@@ -143,7 +143,7 @@ C0141,E6,complaint,"[[""A5""]]",Kundendienst,running;variant_mahnung2;overdue_42
 C0142,none,none,"[[""A0""]]",,completed;variant_storno
 C0143,none,none,"[[""A0""]]",,running;boundary_e2
 C0144,none,none,"[[""A0""]]",,completed
-C0145,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship
+C0145,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;edge_e11
 C0146,none,none,"[[""A0""]]",,running;variant_nachbestellung
 C0147,none,none,"[[""A0""]]",,running;variant_aendern
 C0148,E2,none,"[[""A6""]]",Credit Management,running;overshoot_knapp
@@ -170,7 +170,7 @@ C0168,none,none,"[[""A0""]]",,completed
 C0169,none,none,"[[""A0""]]",,completed;variant_erinnerung
 C0170,none,irrelevant,"[[""A0""]]",,running;noise_text;tpl_irrelevant_10
 C0171,none,none,"[[""A0""]]",,completed
-C0172,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;edge_e11
+C0172,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C0173,none,none,"[[""A0""]]",,completed
 C0174,E12,none,"[[""A2""],[""A2"",""A4""]]",,running;restock_late_9d
 C0175,none,none,"[[""A0""]]",,running
@@ -195,7 +195,7 @@ C0193,none,none,"[[""A0""]]",,completed;variant_storno
 C0194,none,none,"[[""A0""]]",,completed
 C0195,E6,complaint,"[[""A5""]]",Kundendienst,running;variant_mahnung2;overdue_32d;text_indirekt;tpl_complaint_06
 C0196,none,none,"[[""A0""]]",,completed
-C0197,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0197,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0198,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_10
 C0199,none,irrelevant,"[[""A0""]]",,running;variant_storno;noise_text;tpl_irrelevant_05
 C0200,none,none,"[[""A0""]]",,running
@@ -262,7 +262,7 @@ C0260,none,none,"[[""A0""]]",,running;boundary_e3
 C0261,none,none,"[[""A0""]]",,running
 C0262,none,none,"[[""A0""]]",,completed
 C0263,none,none,"[[""A0""]]",,completed
-C0264,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0264,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0265,none,none,"[[""A0""]]",,completed
 C0266,none,none,"[[""A0""]]",,completed;variant_reklamation
 C0267,none,irrelevant,"[[""A0""]]",,completed;variant_aendern;noise_text;tpl_irrelevant_01
@@ -272,7 +272,7 @@ C0270,none,none,"[[""A0""]]",,running
 C0271,E10,none,"[[""A1""]]",,running
 C0272,none,none,"[[""A0""]]",,running
 C0273,none,none,"[[""A0""]]",,completed;variant_erinnerung
-C0274,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0274,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0275,none,none,"[[""A0""]]",,running
 C0276,none,none,"[[""A0""]]",,completed
 C0277,none,none,"[[""A0""]]",,completed
@@ -342,7 +342,7 @@ C0340,none,none,"[[""A0""]]",,completed
 C0341,none,none,"[[""A0""]]",,running;boundary_e6
 C0342,none,none,"[[""A0""]]",,completed
 C0343,none,none,"[[""A0""]]",,running
-C0344,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0344,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C0345,none,none,"[[""A0""]]",,completed;variant_aendern
 C0346,E2,none,"[[""A6""]]",Credit Management,running;overshoot_knapp
 C0347,E12,none,"[[""A2""],[""A2"",""A4""]]",,running;variant_aendern;restock_late_7d
@@ -430,7 +430,7 @@ C0428,E9,none,"[[""A5""],[""A5"",""A2""]]",Buchhaltung,running;invoice_high;vari
 C0429,none,none,"[[""A0""]]",,completed
 C0430,E9,none,"[[""A5""],[""A5"",""A2""]]",Buchhaltung,completed;invoice_high
 C0431,none,none,"[[""A0""]]",,completed
-C0432,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;edge_e11
+C0432,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0433,none,none,"[[""A0""]]",,completed;variant_aendern
 C0434,none,none,"[[""A0""]]",,completed
 C0435,none,none,"[[""A0""]]",,running
@@ -516,7 +516,7 @@ C0514,none,none,"[[""A0""]]",,running
 C0515,none,none,"[[""A0""]]",,completed
 C0516,E6,payment_difficulty,"[[""A6""]]",Credit Management,running;variant_mahnung2;overdue_42d;text_indirekt;tpl_payment_difficulty_05
 C0517,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_03
-C0518,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship;edge_e11
+C0518,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C0519,none,irrelevant,"[[""A0""]]",,running;variant_storno;noise_text;tpl_irrelevant_08
 C0520,none,none,"[[""A0""]]",,completed
 C0521,none,none,"[[""A0""]]",,running
@@ -692,7 +692,7 @@ C0690,none,none,"[[""A0""]]",,running;variant_storno
 C0691,none,none,"[[""A0""]]",,running;boundary_e9
 C0692,none,none,"[[""A0""]]",,completed;variant_erinnerung
 C0693,none,none,"[[""A0""]]",,running
-C0694,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0694,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0695,none,none,"[[""A0""]]",,completed
 C0696,none,none,"[[""A0""]]",,completed;variant_erinnerung
 C0697,none,none,"[[""A0""]]",,completed;variant_aendern
@@ -711,7 +711,7 @@ C0709,none,none,"[[""A0""]]",,running
 C0710,none,none,"[[""A0""]]",,running
 C0711,none,none,"[[""A0""]]",,running;boundary_e3
 C0712,none,none,"[[""A0""]]",,running
-C0713,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0713,E11,irrelevant,"[[""A4""],[""A4"",""A2""]]",,running;noise_text;tpl_irrelevant_10
 C0714,E10,none,"[[""A1""]]",,running
 C0715,none,none,"[[""A0""]]",,running;boundary_e6
 C0716,E3,none,"[[""A4""],[""A2""],[""A4"",""A2""]]",,running;delivery_delta_-2d;promise_passed
@@ -817,7 +817,7 @@ C0815,none,none,"[[""A0""]]",,completed
 C0816,E5,irrelevant,"[[""A6"",""A7""]]",Buchhaltung,running;noise_text;tpl_irrelevant_05
 C0817,none,none,"[[""A0""]]",,running;variant_storno
 C0818,none,none,"[[""A0""]]",,running
-C0819,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0819,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0820,none,none,"[[""A0""]]",,completed
 C0821,none,none,"[[""A0""]]",,running;variant_aendern
 C0822,E9,none,"[[""A5""],[""A5"",""A2""]]",Buchhaltung,running;invoice_high
@@ -843,7 +843,7 @@ C0841,none,none,"[[""A0""]]",,completed;variant_storno
 C0842,none,none,"[[""A0""]]",,running
 C0843,none,none,"[[""A0""]]",,running
 C0844,none,none,"[[""A0""]]",,completed;variant_mahnung2
-C0845,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship
+C0845,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0846,none,none,"[[""A0""]]",,running
 C0847,none,none,"[[""A0""]]",,completed;variant_nachbestellung
 C0848,none,none,"[[""A0""]]",,completed
@@ -925,7 +925,7 @@ C0923,none,irrelevant,"[[""A0""]]",,running;noise_text;tpl_irrelevant_01
 C0924,none,none,"[[""A0""]]",,running;variant_storno
 C0925,none,irrelevant,"[[""A0""]]",,running;variant_nachbestellung;noise_text;tpl_irrelevant_03
 C0926,E2,none,"[[""A6""]]",Credit Management,running;overshoot_mittel
-C0927,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship;edge_e11
+C0927,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;edge_e11;chain_e6
 C0928,none,none,"[[""A0""]]",,running;variant_storno
 C0929,none,none,"[[""A0""]]",,completed
 C0930,none,none,"[[""A0""]]",,completed
@@ -938,7 +938,7 @@ C0936,E10,none,"[[""A1""]]",,running;variant_erinnerung
 C0937,none,irrelevant,"[[""A0""]]",,running;boundary_e9;noise_text;tpl_irrelevant_06
 C0938,none,none,"[[""A0""]]",,running
 C0939,E10,none,"[[""A1""]]",,running
-C0940,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C0940,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C0941,none,none,"[[""A0""]]",,completed
 C0942,none,none,"[[""A0""]]",,running
 C0943,none,none,"[[""A0""]]",,completed;variant_erinnerung
@@ -974,7 +974,7 @@ C0972,none,none,"[[""A0""]]",,running
 C0973,none,none,"[[""A0""]]",,running
 C0974,none,none,"[[""A0""]]",,running
 C0975,none,none,"[[""A0""]]",,completed
-C0976,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship
+C0976,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C0977,none,none,"[[""A0""]]",,running;variant_storno
 C0978,none,none,"[[""A0""]]",,running
 C0979,none,none,"[[""A0""]]",,completed
@@ -1008,7 +1008,7 @@ C1006,none,none,"[[""A0""]]",,completed
 C1007,none,none,"[[""A0""]]",,running
 C1008,none,irrelevant,"[[""A0""]]",,running;noise_text;tpl_irrelevant_04
 C1009,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_07
-C1010,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1010,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1011,none,none,"[[""A0""]]",,completed
 C1012,E3,irrelevant,"[[""A4""],[""A2""],[""A4"",""A2""]]",,running;delivery_delta_0d;noise_text;tpl_irrelevant_01
 C1013,none,none,"[[""A0""]]",,completed
@@ -1248,7 +1248,7 @@ C1246,none,none,"[[""A0""]]",,completed;variant_aendern
 C1247,none,none,"[[""A0""]]",,running
 C1248,E6,irrelevant,"[[""A3""]]",,running;variant_mahnung2;overdue_44d;text_direkt;tpl_irrelevant_02
 C1249,none,none,"[[""A0""]]",,running
-C1250,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1250,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C1251,none,none,"[[""A0""]]",,completed
 C1252,none,none,"[[""A0""]]",,running
 C1253,E8,none,"[[""A6""]]",Vertrieb,running;storno_after_ship
@@ -1299,7 +1299,7 @@ C1297,none,none,"[[""A0""]]",,running
 C1298,none,none,"[[""A0""]]",,completed;variant_teillieferung
 C1299,none,none,"[[""A0""]]",,completed;variant_nachbestellung
 C1300,none,none,"[[""A0""]]",,running;variant_aendern
-C1301,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1301,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C1302,E7,none,,,running;overshoot_mittel;delivery_delta_0d
 C1303,none,none,"[[""A0""]]",,completed
 C1304,none,none,"[[""A0""]]",,completed
@@ -1424,7 +1424,7 @@ C1422,none,none,"[[""A0""]]",,running;variant_aendern
 C1423,none,none,"[[""A0""]]",,completed;boundary_e10
 C1424,E12,none,"[[""A2""],[""A2"",""A4""]]",,running;variant_aendern;restock_late_7d
 C1425,none,none,"[[""A0""]]",,completed
-C1426,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;chain_e6
+C1426,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1427,E5,none,"[[""A6"",""A7""]]",Buchhaltung,running
 C1428,E5,none,"[[""A6"",""A7""]]",Buchhaltung,completed
 C1429,none,none,"[[""A0""]]",,completed
@@ -1530,7 +1530,7 @@ C1528,none,none,"[[""A0""]]",,completed
 C1529,none,none,"[[""A0""]]",,completed
 C1530,none,none,"[[""A0""]]",,running
 C1531,none,none,"[[""A0""]]",,completed
-C1532,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1532,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1533,none,none,"[[""A0""]]",,completed
 C1534,none,none,"[[""A0""]]",,completed
 C1535,E8,none,"[[""A6""]]",Vertrieb,running;storno_after_ship
@@ -1553,7 +1553,7 @@ C1551,none,none,"[[""A0""]]",,completed;variant_aendern
 C1552,none,none,"[[""A0""]]",,completed
 C1553,none,none,"[[""A0""]]",,running
 C1554,none,none,"[[""A0""]]",,running;variant_aendern
-C1555,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1555,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1556,none,none,"[[""A0""]]",,running
 C1557,none,none,"[[""A0""]]",,completed;variant_erinnerung
 C1558,E3,none,"[[""A4""],[""A2""],[""A4"",""A2""]]",,running;delivery_delta_0d
@@ -1688,7 +1688,7 @@ C1686,none,none,"[[""A0""]]",,running;boundary_e3
 C1687,none,none,"[[""A0""]]",,running;variant_teillieferung
 C1688,none,irrelevant,"[[""A0""]]",,completed;variant_aendern;noise_text;tpl_irrelevant_02
 C1689,none,none,"[[""A0""]]",,running
-C1690,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship
+C1690,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C1691,none,none,"[[""A0""]]",,completed
 C1692,none,none,"[[""A0""]]",,completed
 C1693,none,none,"[[""A0""]]",,completed
@@ -1822,7 +1822,7 @@ C1820,none,none,"[[""A0""]]",,running
 C1821,E6,payment_difficulty,"[[""A6""]]",Credit Management,running;overdue_10d;text_direkt;tpl_payment_difficulty_09
 C1822,E3,none,"[[""A4""],[""A2""],[""A4"",""A2""]]",,running;variant_aendern;delivery_delta_-5d;promise_passed
 C1823,none,none,"[[""A0""]]",,completed
-C1824,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice;edge_e11
+C1824,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C1825,none,none,"[[""A0""]]",,running;boundary_e12
 C1826,none,irrelevant,"[[""A0""]]",,running;variant_teillieferung;noise_text;tpl_irrelevant_03
 C1827,none,none,"[[""A0""]]",,completed;variant_aendern
@@ -1902,7 +1902,7 @@ C1900,none,none,"[[""A0""]]",,completed;variant_erinnerung
 C1901,none,none,"[[""A0""]]",,completed;variant_teillieferung
 C1902,none,none,"[[""A0""]]",,running
 C1903,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_04
-C1904,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_invoice
+C1904,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1905,none,none,"[[""A0""]]",,completed
 C1906,none,none,"[[""A0""]]",,running
 C1907,none,irrelevant,"[[""A0""]]",,completed;noise_text;tpl_irrelevant_08
@@ -1960,13 +1960,13 @@ C1958,E6,payment_difficulty,"[[""A6""]]",Credit Management,running;overdue_31d;t
 C1959,none,none,"[[""A0""]]",,completed
 C1960,none,none,"[[""A0""]]",,completed
 C1961,E2,none,"[[""A6""]]",Credit Management,running;overshoot_knapp
-C1962,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship
+C1962,E11,none,"[[""A4""],[""A4"",""A2""]]",,running
 C1963,none,irrelevant,"[[""A0""]]",,completed;variant_erinnerung;noise_text;tpl_irrelevant_02
 C1964,E8,irrelevant,"[[""A6""]]",Vertrieb,running;storno_after_ship;noise_text;tpl_irrelevant_08
 C1965,none,none,"[[""A0""]]",,completed
 C1966,none,none,"[[""A0""]]",,completed;variant_storno
 C1967,none,none,"[[""A0""]]",,completed;variant_storno
-C1968,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;complaint_after_ship;edge_e11
+C1968,E11,none,"[[""A4""],[""A4"",""A2""]]",,running;chain_e6
 C1969,E6,complaint,"[[""A5""]]",Kundendienst,running;variant_erinnerung;overdue_12d;text_indirekt;tpl_complaint_08
 C1970,E6,payment_announced,"[[""A0""]]",,running;variant_erinnerung;overdue_20d;text_direkt;tpl_payment_announced_04
 C1971,E3,none,"[[""A4""],[""A2""],[""A4"",""A2""]]",,running;delivery_delta_-1d;promise_passed

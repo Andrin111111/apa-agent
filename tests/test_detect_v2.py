@@ -54,11 +54,24 @@ class TestDetectV2(unittest.TestCase):
         self.assertEqual(r["hard_triggers"], [])
 
     def test_e11_return_without_credit_note(self):
-        ret = SHIPPED + [("Reklamation erfassen", "2026-04-20 10:00"), ("Retoure erfassen", "2026-05-09 10:00")]
-        self.assertEqual(self.trig(case(), ret)["detected_type"], "E11")                       # 11 Tage
-        self.assertEqual(self.trig(case(), ret, datetime(2026, 5, 19, 18))["hard_triggers"], [])   # genau 10
+        inv = SHIPPED + [("Rechnung stellen", "2026-04-08 10:00")]
+        ret = inv + [("Reklamation erfassen", "2026-04-20 10:00"), ("Retoure erfassen", "2026-05-09 10:00")]
+        c = case(invoice_amount=1000, payment_terms_days=60)                                  # kein E6
+        self.assertEqual(self.trig(c, ret)["hard_triggers"], ["E11"])                          # 11 Tage
+        self.assertEqual(self.trig(c, ret, datetime(2026, 5, 19, 18))["hard_triggers"], [])     # genau 10
         credited = ret + [("Gutschrift erstellen", "2026-05-12 10:00")]
-        self.assertEqual(self.trig(case(), credited)["hard_triggers"], [])
+        self.assertEqual(self.trig(c, credited)["hard_triggers"], [])
+
+    def test_e11_requires_invoice_before_return(self):
+        ret = SHIPPED + [("Reklamation erfassen", "2026-04-20 10:00"), ("Retoure erfassen", "2026-05-09 10:00")]
+        self.assertEqual(self.trig(case(), ret)["hard_triggers"], [])                          # keine Rechnung
+        late_inv = ret + [("Rechnung stellen", "2026-05-12 10:00")]
+        self.assertEqual(self.trig(case(invoice_amount=1000), late_inv)["hard_triggers"], [])   # Rechnung nach Retoure
+
+    def test_e8_storno_after_partial_delivery(self):
+        ev = [("Auftrag erfassen", "2026-04-01 09:00"), ("Teillieferung", "2026-04-03 10:00"),
+              ("Auftrag stornieren", "2026-04-05 10:00")]
+        self.assertEqual(self.trig(case(), ev)["detected_type"], "E8")
 
     def test_e12_backorder_and_boundary(self):
         ev = [("Auftrag erfassen", "2026-05-15 09:00"), ("Ware nachbestellen", "2026-05-15 11:00")]
@@ -66,6 +79,12 @@ class TestDetectV2(unittest.TestCase):
         self.assertEqual(self.trig(c, ev)["detected_type"], "E12")
         c = case(promised_delivery_date="2026-05-28", restock_date="2026-05-27")
         self.assertEqual(self.trig(c, ev)["hard_triggers"], [])
+
+    def test_e12_not_after_goods_receipt_or_storno(self):
+        ev = [("Auftrag erfassen", "2026-05-15 09:00"), ("Ware nachbestellen", "2026-05-15 11:00")]
+        c = case(promised_delivery_date="2026-05-28", restock_date="2026-05-28")
+        self.assertEqual(self.trig(c, ev + [("Wareneingang Lager", "2026-05-19 10:00")])["hard_triggers"], [])
+        self.assertEqual(self.trig(c, ev + [("Auftrag stornieren", "2026-05-19 10:00")])["hard_triggers"], [])
 
     def test_e3_wins_over_e12(self):
         ev = [("Auftrag erfassen", "2026-05-15 09:00"), ("Ware nachbestellen", "2026-05-15 11:00")]
