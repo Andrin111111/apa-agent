@@ -45,6 +45,26 @@ Kontext, Entscheide und Plan: `docs/WI-Projekt_Zwischenpraesentation_Kontext_und
 
 Nach jeder Änderung an `data/freitext_vorlagen.yaml` oder `spec/spec.yaml`: Generator und Validierung neu laufen lassen.
 
+## Prozess v2 (Entwurf, Schlussabgabe)
+
+Erweiterter O2C-Prozess parallel zu v1. v1 (`spec/spec.yaml`, `data/`) bleibt unverändert, Pilot, Demo und Folien bleiben gültig. Freigabe durch Jan offen.
+
+| Zweck | Befehl |
+|---|---|
+| Daten v2 erzeugen (`data/v2/`) | `python src/generate_log_v2.py` |
+| Daten v2 prüfen (`out/v2/generation_report.md`) | `python src/validate_log_v2.py` |
+| Erkennung v2 (`out/v2/detections.csv`) | `python src/detect_v2.py` |
+
+Neu in `spec/spec_v2.yaml`:
+
+- **Happy Path mit 10 Schritten:** neu sind Verfügbarkeitsprüfung und Zahlung zuordnen.
+- **11 Varianten:** Mahnung Stufe 2, Ware nachbestellen, Wareneingang Lager, Reklamation, Retoure, Gutschrift, Rechnung korrigieren, Auftrag stornieren.
+- **Neue Attribute:** `restock_date`, `invoice_amount`, `credit_note_amount`, `paid_amount`.
+- **Neue Ausnahmen:** E8 Stornierung nach Versand, E9 Preisabweichung, E10 Unterzahlung, E11 Retoure ohne Gutschrift, E12 Verfügbarkeitsengpass. E3 schliesst stornierte Aufträge aus.
+- **Kausale Ketten:** E8, E9 und E11 kommen teils zusammen mit E6 vor. Die Erkennung wählt die Ursache (Priorität E8 > E5 > E11 > E9 > E10 > E6 > E2 > E3 > E12).
+- **Umfang:** 2000 Fälle, 16'102 Events, Ausnahmequote 18,5 %. Validierung: 32 von 32 Prüfungen bestanden.
+- **Noch offen für v2:** Pilot-Stichprobe, Baseline, Agent-Prompt und Schema (neue Typen), Metriken.
+
 ## Daten in Kürze
 
 1000 Fälle, 5905 Events. Happy Path 700, E2 60, E3 60, E5 40, E6 80 (je 20 pro Freitext-Kategorie), E7 60.

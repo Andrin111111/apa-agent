@@ -1,0 +1,217 @@
+# spec_v2.yaml | v2.0.0 | Stand 22.11.2026 | ENTWURF (Freigabe durch Jan offen)
+# Erweiterter Order-to-Cash-Prozess fuer die Schlussabgabe. Parallel zu spec.yaml v0.5.0, ersetzt sie nicht:
+# Pilot, Demo und Folien der Zwischenpraesentation bleiben auf v1 (data/, bytegleich).
+# Daten v2: data/v2/ (src/generate_log_v2.py), Pruefung: src/validate_log_v2.py, Erkennung: src/detect_v2.py.
+# Konvention wie v1: ASCII-Schreibweise (ae, oe, ue) in Spezifikation und Daten.
+#
+# Aenderungen gegenueber v1:
+#   - Happy Path 10 statt 8 Schritte (neu: Verfuegbarkeitspruefung, Zahlung zuordnen)
+#   - 11 statt 3 zulaessige Varianten (Mahnstufe 2, Nachbestellung, Reklamation/Retoure/Gutschrift,
+#     Rechnungskorrektur, Stornierung)
+#   - Neue Fallattribute: restock_date, invoice_amount, credit_note_amount, paid_amount
+#   - Neue Ausnahmen E8 bis E12; E3 schliesst stornierte Auftraege aus
+#   - Kausale Ketten: E8, E9 und E11 treten teils zusammen mit E6 auf (Ursache vor Symptom)
+#   - 2000 Faelle, Ausnahmequote 18.5 % statt 30 % (naeher an der Praxis)
+#   - Noch nicht in v2: Pilot-Stichprobe, Labeling, Baseline, Agent (folgt nach Freigabe)
+
+meta:
+  version: 2.0.0
+  status: draft
+  seed: 42
+  based_on: spec.yaml v0.5.0
+  evaluated_types: [E2, E3, E6, E8, E9, E10, E11, E12]   # Vorschlag; E5 und E7 bleiben Konzept wie in v1
+
+process:
+  happy_path:
+    - Auftrag erfassen
+    - Kreditpruefung
+    - Verfuegbarkeitspruefung       # neu: Lagerbestand pruefen, sonst Ware nachbestellen
+    - Auftrag bestaetigen
+    - Kommissionieren
+    - Versenden
+    - Rechnung stellen
+    - Zahlungseingang
+    - Zahlung zuordnen              # neu: Ausgleich des offenen Postens in der Debitorenbuchhaltung
+    - Fall abschliessen
+  allowed_variants:
+    - Auftrag aendern
+    - Teillieferung
+    - Zahlungserinnerung            # Mahnstufe 1
+    - Mahnung Stufe 2
+    - Ware nachbestellen            # nach Verfuegbarkeitspruefung, setzt restock_date
+    - Wareneingang Lager            # nachbestellte Ware ist eingetroffen
+    - Reklamation erfassen
+    - Retoure erfassen
+    - Gutschrift erstellen          # setzt credit_note_amount
+    - Rechnung korrigieren          # nach falschem Rechnungsbetrag, invoice_amount ist danach korrekt
+    - Auftrag stornieren
+  roles: [Vertrieb, Credit Management, Lager/Logistik, Buchhaltung, Kundendienst]
+  role_by_activity:
+    Auftrag erfassen: Vertrieb
+    Auftrag bestaetigen: Vertrieb
+    Auftrag aendern: Vertrieb
+    Auftrag stornieren: Vertrieb
+    Kreditpruefung: Credit Management
+    Verfuegbarkeitspruefung: Lager/Logistik
+    Ware nachbestellen: Lager/Logistik
+    Wareneingang Lager: Lager/Logistik
+    Kommissionieren: Lager/Logistik
+    Versenden: Lager/Logistik
+    Teillieferung: Lager/Logistik
+    Retoure erfassen: Lager/Logistik
+    Reklamation erfassen: Kundendienst
+    Rechnung stellen: Buchhaltung
+    Rechnung korrigieren: Buchhaltung
+    Gutschrift erstellen: Buchhaltung
+    Zahlungseingang: Buchhaltung
+    Zahlung zuordnen: Buchhaltung
+    Zahlungserinnerung: Buchhaltung
+    Mahnung Stufe 2: Buchhaltung
+    Fall abschliessen: Buchhaltung
+
+snapshot:
+  mode: one_snapshot_per_case
+  attribute: snapshot_time
+  detection_interface: "evaluate(case, events, now)"
+  implementation: src/detect_v2.py
+  amounts: "invoice_amount, credit_note_amount, paid_amount gelten zum Stichtag (0, wenn das Event noch fehlt)"
+
+detection:
+  granularity: day
+  order_check: timestamp
+  events_considered: "nur Events mit timestamp <= now (AN1)"
+  invoice_date: "Datum des ersten Events 'Rechnung stellen'"
+  soft_trigger: {name: free_text_present, rule: "free_text nicht leer"}
+  precedence: "E7 vor E2/E3 (wie v1)"
+  multi_trigger_priority: [E8, E5, E11, E9, E10, E6, E2, E3, E12]
+  multi_trigger_rationale: >-
+    Ursache vor Symptom: Ein Zahlungsverzug (E6) nach Stornierung (E8), falscher Rechnung (E9) oder
+    offener Retoure (E11) ist eine Folge. Der Agent soll die Ursache bearbeiten. E3 vor E12, weil der
+    Liefertermin dann unmittelbar droht.
+  intended_chains: "E8+E6, E9+E6, E11+E6 werden bewusst erzeugt (Tag chain_e6)"
+
+case_attributes:
+  - order_value
+  - customer_segment
+  - credit_limit
+  - open_items
+  - payment_history
+  - payment_terms_days
+  - promised_delivery_date
+  - restock_date                  # neu, leer ohne 'Ware nachbestellen'
+  - invoice_amount                # neu, 0 ohne 'Rechnung stellen'
+  - credit_note_amount            # neu, 0 ohne 'Gutschrift erstellen'
+  - paid_amount                   # neu, 0 ohne 'Zahlungseingang'
+  - free_text
+  - snapshot_time
+event_attributes: [activity, timestamp, resource, role]
+
+exceptions:
+  E2:
+    name: Kreditlimit ueberschritten
+    type: deterministic
+    trigger: "order_value + open_items > credit_limit"
+    allowed_action_sets: [[A6]]
+    escalation_target: Credit Management
+  E3:
+    name: Lieferverzoegerung
+    type: deterministic
+    trigger: "(promised_delivery_date - date(now)).days < 2 AND 'Versenden' not in events AND 'Auftrag stornieren' not in events"
+    params: {days_threshold: 2}
+    allowed_action_sets: [[A4], [A2], [A4, A2]]
+    change_v2: "stornierte Auftraege ausgeschlossen (sonst Fehlalarm, sobald der Liefertermin verstreicht)"
+  E5:
+    name: Rechnung vor Versand
+    type: deterministic
+    trigger: "'Rechnung stellen' in events AND ('Versenden' not in events OR erstes 'Rechnung stellen' vor erstem 'Versenden')"
+    allowed_action_sets: [[A6, A7]]
+    escalation_target: Buchhaltung
+  E6:
+    name: Zahlungsverzug mit Kundenkommunikation
+    type: judgement
+    trigger: "invoice_date + payment_terms_days < date(now) AND 'Zahlungseingang' not in events"
+    context: free_text
+    free_text_categories:
+      complaint:          {allowed_action_sets: [[A5]], target_role: Kundendienst}
+      payment_announced:  {allowed_action_sets: [[A0]]}
+      payment_difficulty: {allowed_action_sets: [[A6]], target_role: Credit Management}
+      irrelevant:         {allowed_action_sets: [[A3]]}
+  E7:
+    name: Zielkonflikt bei mehreren Signalen
+    type: judgement
+    trigger: "E2 AND E3"
+    approval_required: true
+    allowed_action_sets: TBD_by_labeling
+  E8:
+    name: Stornierung nach Versand
+    type: judgement               # Backlog-Fall "unbekannte Abweichung": Ware ist unterwegs, Auftrag storniert
+    trigger: "'Auftrag stornieren' in events AND erstes 'Versenden' vor 'Auftrag stornieren'"
+    allowed_action_sets: [[A6]]
+    escalation_target: Vertrieb   # klaert mit dem Kunden Ruecksendung oder Ruecknahme der Stornierung
+  E9:
+    name: Preisabweichung Rechnung vs. Auftrag
+    type: deterministic
+    trigger: "invoice_amount > 0 AND abs(invoice_amount - order_value) > tolerance_chf"
+    params: {tolerance_chf: 1}
+    allowed_action_sets: [[A5], [A5, A2]]
+    target_role: Buchhaltung      # Rechnung korrigieren
+  E10:
+    name: Unterzahlung
+    type: deterministic
+    trigger: "'Zahlungseingang' in events AND invoice_amount - credit_note_amount - paid_amount > tolerance_chf"
+    params: {tolerance_chf: 1}
+    allowed_action_sets: [[A1]]   # Grund der Differenz beim Kunden anfragen (Skonto, Abzug, Teilzahlung)
+  E11:
+    name: Retoure ohne Gutschrift
+    type: deterministic
+    trigger: "'Retoure erfassen' in events AND kein 'Gutschrift erstellen' nach der letzten Retoure AND (date(now) - date(letzte Retoure)).days > days_threshold"
+    params: {days_threshold: 10}
+    allowed_action_sets: [[A4], [A4, A2]]
+  E12:
+    name: Verfuegbarkeitsengpass
+    type: deterministic
+    trigger: "'Ware nachbestellen' in events AND 'Versenden' not in events AND restock_date >= promised_delivery_date"
+    allowed_action_sets: [[A2], [A2, A4]]   # Kunde vorab informieren, bevor E3 eintritt
+    note: "Fruehwarnung: erkennt die Verspaetung, bevor der Liefertermin in die E3-Schwelle faellt"
+
+action_catalog:                   # unveraendert gegenueber v1
+  A0: {name: Keine Massnahme / protokollieren, autonomy: autonomous}
+  A1: {name: Information anfordern,            autonomy: autonomous}
+  A2: {name: Kunde informieren,                autonomy: autonomous}
+  A3: {name: Naechsten Schritt empfehlen,      autonomy: autonomous, note: nur Empfehlung}
+  A4: {name: Priorisieren,                     autonomy: autonomous, note: nachtraeglich sichtbar}
+  A5: {name: Neu zuweisen,                     autonomy: approval, params: [target_role]}
+  A6: {name: Eskalieren,                       autonomy: approval, params: [target_role]}
+  A7: {name: Fall sperren,                     autonomy: approval}
+
+ground_truth_schema:
+  case_id: string
+  exception_type: "E2|E3|E5|E6|E7|E8|E9|E10|E11|E12|none"
+  free_text_category: "complaint|payment_announced|payment_difficulty|irrelevant|none"
+  allowed_action_sets: "list of sets"
+  expected_target_role: "Kundendienst|Credit Management|Buchhaltung|Vertrieb|leer"
+  none_allowed_action_sets: [[A0]]
+  match_rule: exact
+  role_check: true
+
+data_generation:
+  n_cases: 2000
+  distribution:
+    happy_path: 0.815
+    E2: 0.02
+    E3: 0.02
+    E5: 0.01
+    E6: 0.04
+    E7: 0.015
+    E8: 0.01
+    E9: 0.02
+    E10: 0.02
+    E11: 0.015
+    E12: 0.015
+  happy_path_variants: "30 % mit Variante (aendern, Teillieferung, Erinnerung, Mahnstufe 2, Nachbestellung, Reklamation mit Gutschrift, Rechnungskorrektur, Stornierung vor Versand)"
+  boundaries: "5 % der Happy-Path-Faelle knapp unter einer Schwelle (E2, E3, E6, E9, E10, E11, E12)"
+  free_text: "Vorlagen aus data/freitext_vorlagen.yaml (unveraendert)"
+  generator_config: "src/generate_log_v2.py, Block GEN2"
+  start_window: ["2026-01-05", "2026-06-30"]
+  data_cutoff: "2026-10-31"
+  outputs: [data/v2/event_log.csv, data/v2/cases.csv, data/v2/ground_truth.csv]

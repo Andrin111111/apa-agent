@@ -482,6 +482,7 @@ Status-Werte: offen / in Arbeit / erledigt / zurückgestellt. Referenz-BPMN: wir
 - [ ] Genaues Datum Schlussabgabe Januar 2027
 - [ ] Namen der anderen zwei Gruppenmitglieder und Verteilung der Aufgaben ab K7
 - [ ] Datenschutz: bei synthetischen Daten voraussichtlich unkritisch, bei Dozent bestätigen
+- [ ] Prozess v2 (Entwurf 22.11.2026, `spec/spec_v2.yaml`, `data/v2/`): Freigabe durch Jan. Danach Baseline, Agent-Prompt, Guardrail-Schema (neue Typen E8 bis E12, Rolle Vertrieb als Eskalationsziel) und Pilot v2. Zu entscheiden: Aktionsmengen E8 bis E12 (Entwurf in der Spec), Ausnahmequote 18,5 %
 
 ## 16. Risiken und kritische Punkte
 
